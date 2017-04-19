@@ -11,7 +11,7 @@ public class Main extends Application {
     @Override
     public void start(Stage primaryStage) throws Exception{
         Parent root = FXMLLoader.load(getClass().getResource("sample.fxml"));
-        primaryStage.setTitle("Software für standardisierte Anforderungssammlung");
+        primaryStage.setTitle("SFSA - Software für standardisierte Anforderungssammlung");
         primaryStage.setScene(new Scene(root, 900, 500));
         primaryStage.show();
     }
