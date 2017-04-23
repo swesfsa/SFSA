@@ -1,34 +1,35 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Menu?>
 <?import javafx.scene.control.MenuBar?>
 <?import javafx.scene.control.MenuItem?>
 <?import javafx.scene.control.Tab?>
 <?import javafx.scene.control.TabPane?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 
-
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sfsa.SFSAController">
    <children>
       <MenuBar layoutX="-6.0" layoutY="5.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
         <menus>
-          <Menu mnemonicParsing="false" text="File">
+          <Menu mnemonicParsing="false" text="Datei">
             <items>
                   <MenuItem mnemonicParsing="false" text="Neues Projekt" />
                   <MenuItem mnemonicParsing="false" text="Öffnen" />
                   <MenuItem mnemonicParsing="false" text="Speichern" />
                   <MenuItem mnemonicParsing="false" text="Speichern als..." />
-              <MenuItem mnemonicParsing="false" text="Close" />
+              <MenuItem mnemonicParsing="false" text="Schließen" />
             </items>
           </Menu>
-          <Menu mnemonicParsing="false" text="Edit">
+          <Menu mnemonicParsing="false" text="Bearbeiten">
             <items>
-              <MenuItem mnemonicParsing="false" text="Delete" />
+              <MenuItem mnemonicParsing="false" text="Löschen" />
             </items>
           </Menu>
-          <Menu mnemonicParsing="false" text="Help">
+          <Menu mnemonicParsing="false" text="Hilfe">
             <items>
-              <MenuItem mnemonicParsing="false" text="About" />
+              <MenuItem mnemonicParsing="false" text="Über" />
             </items>
           </Menu>
         </menus>
@@ -42,7 +43,13 @@
           </Tab>
           <Tab text="Zielbestimmung">
             <content>
-              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <TextField fx:id="zielbestimmungTextField" alignment="TOP_LEFT" editable="false" layoutX="14.0" layoutY="14.0" prefHeight="27.0" prefWidth="575.0" AnchorPane.bottomAnchor="55.0" AnchorPane.leftAnchor="14.0" AnchorPane.rightAnchor="14.0" AnchorPane.topAnchor="14.0" />
+                        <Button fx:id="editButton" layoutX="501.0" layoutY="297.0" mnemonicParsing="false" onAction="#editButtonPressed" text="Bearbeiten" AnchorPane.bottomAnchor="14.0" AnchorPane.rightAnchor="108.0" />
+                        <Button fx:id="deleteButton" layoutX="423.0" layoutY="297.0" mnemonicParsing="false" onAction="#deleteButtonPressed" text="Löschen" AnchorPane.bottomAnchor="14.0" AnchorPane.rightAnchor="207.0" />
+                        <Button fx:id="saveButton" layoutX="182.0" layoutY="297.0" mnemonicParsing="false" onAction="#saveButtonPressed" text="Speichern" AnchorPane.bottomAnchor="14.0" AnchorPane.rightAnchor="14.0" />
+                     </children></AnchorPane>
             </content>
           </Tab>
             <Tab text="Produkteinsatz">
