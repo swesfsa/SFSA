@@ -8,30 +8,57 @@ import javafx.scene.control.TextField;
 public class SFSAController {
 
     @FXML
-    private TextField zielbestimmungTextField;
+    private TextField targetDefinitionTextField;
 
     @FXML
-    private Button saveButton;
+    private TextField productUseTextField;
 
     @FXML
-    private Button editButton;
+    private Button targetDefinitionSaveButton;
 
     @FXML
-    private Button deleteButton;
+    private Button productUseSaveButton;
 
     @FXML
-    void saveButtonPressed(ActionEvent event) {
-        zielbestimmungTextField.setEditable(false);
+    private Button targetDefinitionEditButton;
+
+    @FXML
+    private Button productUseEditButton;
+
+    @FXML
+    private Button targetDefinitionDeleteButton;
+
+    @FXML
+    private Button productUseDeleteButton;
+
+    @FXML
+    void targetDefinitionSaveButtonPressed(ActionEvent event) {
+        targetDefinitionTextField.setEditable(false);
     }
 
     @FXML
-    void editButtonPressed(ActionEvent event) {
-        zielbestimmungTextField.setEditable(true);
+    void targetDefinitonEditButtonPressed(ActionEvent event) {
+        targetDefinitionTextField.setEditable(true);
     }
 
     @FXML
-    void deleteButtonPressed(ActionEvent event) {
-        zielbestimmungTextField.deleteText(0, zielbestimmungTextField.getLength());
+    void targetDefinitionDeleteButtonPressed(ActionEvent event) {
+        targetDefinitionTextField.deleteText(0, targetDefinitionTextField.getLength());
+    }
+
+    @FXML
+    void productUseSaveButtonPressed(ActionEvent event) {
+        productUseTextField.setEditable(false);
+    }
+
+    @FXML
+    void productUseEditButtonPressed(ActionEvent event) {
+        productUseTextField.setEditable(true);
+    }
+
+    @FXML
+    void productUseDeleteButtonPressed(ActionEvent event) {
+        productUseTextField.deleteText(0, productUseTextField.getLength());
     }
 
 }

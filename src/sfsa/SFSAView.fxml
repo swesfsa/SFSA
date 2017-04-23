@@ -45,16 +45,22 @@
             <content>
               <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                      <children>
-                        <TextField fx:id="zielbestimmungTextField" alignment="TOP_LEFT" editable="false" layoutX="14.0" layoutY="14.0" prefHeight="27.0" prefWidth="575.0" AnchorPane.bottomAnchor="55.0" AnchorPane.leftAnchor="14.0" AnchorPane.rightAnchor="14.0" AnchorPane.topAnchor="14.0" />
-                        <Button fx:id="editButton" layoutX="501.0" layoutY="297.0" mnemonicParsing="false" onAction="#editButtonPressed" text="Bearbeiten" AnchorPane.bottomAnchor="14.0" AnchorPane.rightAnchor="108.0" />
-                        <Button fx:id="deleteButton" layoutX="423.0" layoutY="297.0" mnemonicParsing="false" onAction="#deleteButtonPressed" text="Löschen" AnchorPane.bottomAnchor="14.0" AnchorPane.rightAnchor="207.0" />
-                        <Button fx:id="saveButton" layoutX="182.0" layoutY="297.0" mnemonicParsing="false" onAction="#saveButtonPressed" text="Speichern" AnchorPane.bottomAnchor="14.0" AnchorPane.rightAnchor="14.0" />
+                        <TextField fx:id="targetDefinitionTextField" alignment="TOP_LEFT" editable="false" layoutX="14.0" layoutY="14.0" prefHeight="27.0" prefWidth="575.0" AnchorPane.bottomAnchor="55.0" AnchorPane.leftAnchor="14.0" AnchorPane.rightAnchor="14.0" AnchorPane.topAnchor="14.0" />
+                        <Button fx:id="targetDefinitionEditButton" layoutX="501.0" layoutY="297.0" mnemonicParsing="false" onAction="#targetDefinitonEditButtonPressed" text="Bearbeiten" AnchorPane.bottomAnchor="14.0" AnchorPane.rightAnchor="108.0" />
+                        <Button fx:id="targetDefinitionDeleteButton" layoutX="423.0" layoutY="297.0" mnemonicParsing="false" onAction="#targetDefinitionDeleteButtonPressed" text="Löschen" AnchorPane.bottomAnchor="14.0" AnchorPane.rightAnchor="207.0" />
+                        <Button fx:id="targetDefinitionSaveButton" layoutX="182.0" layoutY="297.0" mnemonicParsing="false" onAction="#targetDefinitionSaveButtonPressed" text="Speichern" AnchorPane.bottomAnchor="14.0" AnchorPane.rightAnchor="14.0" />
                      </children></AnchorPane>
             </content>
           </Tab>
             <Tab text="Produkteinsatz">
               <content>
-                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <TextField fx:id="productUseTextField" alignment="TOP_LEFT" editable="false" prefHeight="27.0" prefWidth="575.0" AnchorPane.bottomAnchor="55.0" AnchorPane.leftAnchor="14.0" AnchorPane.rightAnchor="14.0" AnchorPane.topAnchor="14.0" />
+                        <Button fx:id="productUseEditButton" mnemonicParsing="false" onAction="#productUseEditButtonPressed" text="Bearbeiten" AnchorPane.bottomAnchor="14.0" AnchorPane.rightAnchor="108.0" />
+                        <Button fx:id="productUseDeleteButton" mnemonicParsing="false" onAction="#productUseDeleteButtonPressed" text="Löschen" AnchorPane.bottomAnchor="14.0" AnchorPane.rightAnchor="207.0" />
+                        <Button fx:id="productUseSaveButton" layoutX="506.0" layoutY="297.0" mnemonicParsing="false" onAction="#productUseSaveButtonPressed" text="Speichern" AnchorPane.bottomAnchor="14.0" AnchorPane.rightAnchor="14.0" />
+                     </children></AnchorPane>
               </content>
             </Tab>
             <Tab text="Funktionale Anforderungen">
