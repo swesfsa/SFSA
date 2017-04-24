@@ -14,7 +14,7 @@ public class SFSAController {
     private TextField productUseTextField;
 
     @FXML
-    private Button targetDefinitionSaveButton;
+    private Button targetDefinitionFinishButton;
 
     @FXML
     private Button productUseSaveButton;
@@ -38,12 +38,25 @@ public class SFSAController {
 
     @FXML
     void targetDefinitonEditButtonPressed(ActionEvent event) {
+        targetDefinitionEditButton.setDisable(true);
+        targetDefinitionEditButton.setVisible(false);
+        targetDefinitionFinishButton.setDisable(false);
+        targetDefinitionFinishButton.setVisible(true);
         targetDefinitionTextField.setEditable(true);
     }
 
     @FXML
     void targetDefinitionDeleteButtonPressed(ActionEvent event) {
         targetDefinitionTextField.deleteText(0, targetDefinitionTextField.getLength());
+    }
+
+    @FXML
+    void targetDefinitionFinishButtonPressed(ActionEvent event) {
+        targetDefinitionEditButton.setDisable(false);
+        targetDefinitionEditButton.setVisible(true);
+        targetDefinitionTextField.setEditable(false);
+        targetDefinitionFinishButton.setDisable(true);
+        targetDefinitionFinishButton.setVisible(false);
     }
 
     @FXML
