@@ -6,6 +6,6 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <Button layoutX="166.0" layoutY="115.0" mnemonicParsing="false" prefHeight="171.0" prefWidth="268.0" text="Button" />
+      <Button layoutX="271.0" layoutY="187.0" mnemonicParsing="false" text="Button" AnchorPane.bottomAnchor="186.0" AnchorPane.leftAnchor="271.0" AnchorPane.rightAnchor="270.0" AnchorPane.topAnchor="187.0" />
    </children>
 </AnchorPane>
