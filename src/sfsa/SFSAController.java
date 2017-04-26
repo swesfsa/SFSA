@@ -1,9 +1,14 @@
 package sfsa;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
+import javafx.scene.text.Font;
+import javafx.scene.text.Text;
+import javafx.scene.text.TextBuilder;
+import javafx.scene.text.TextFlow;
 
 public class SFSAController {
 
@@ -80,6 +85,27 @@ public class SFSAController {
     @FXML
     void productUseDeleteButtonPressed(ActionEvent event) {
         productUseTextField.deleteText(0, productUseTextField.getLength());
+    }
+
+    @FXML
+    private ListView<TextFlow> list;
+
+    @FXML
+    private Button updateListButton;
+
+    @FXML
+    void updateListButtonPressed(ActionEvent event) {
+
+        ObservableList<TextFlow> items = FXCollections.<TextFlow>observableArrayList();
+
+        Text text1 = new Text("Hallo Tim\n");
+        text1.setStyle("-fx-font-size: 20; -fx-fill: darkred;");
+        Text text2 = new Text("Hallo Thomas");
+        text2.setStyle("-fx-font-size: 30; -fx-fill: goldenrod;");
+        TextFlow textFlow = new TextFlow(text1, text2);
+        items.add(textFlow);
+
+        list.setItems(items);
     }
 
 }
