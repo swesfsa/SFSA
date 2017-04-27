@@ -7,7 +7,6 @@
 <?import javafx.scene.control.MenuItem?>
 <?import javafx.scene.control.Tab?>
 <?import javafx.scene.control.TabPane?>
-<?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
 
@@ -47,26 +46,22 @@
                </content>
           </Tab>
           <Tab text="Zielbestimmung">
-            <content>
-              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
-                     <children>
-                        <TextField fx:id="targetDefinitionTextField" alignment="TOP_LEFT" editable="false" layoutX="14.0" layoutY="14.0" prefHeight="27.0" prefWidth="575.0" AnchorPane.bottomAnchor="55.0" AnchorPane.leftAnchor="14.0" AnchorPane.rightAnchor="14.0" AnchorPane.topAnchor="14.0" />
-                        <Button fx:id="targetDefinitionEditButton" layoutX="501.0" layoutY="297.0" mnemonicParsing="false" onAction="#targetDefinitonEditButtonPressed" text="Bearbeiten" AnchorPane.bottomAnchor="14.0" AnchorPane.rightAnchor="14.0" />
-                        <Button fx:id="targetDefinitionDeleteButton" layoutX="372.0" layoutY="297.0" mnemonicParsing="false" onAction="#targetDefinitionDeleteButtonPressed" text="Löschen" AnchorPane.bottomAnchor="14.0" AnchorPane.rightAnchor="113.0" />
-                        <Button fx:id="targetDefinitionFinishButton" disable="true" layoutX="315.0" layoutY="297.0" mnemonicParsing="false" onAction="#targetDefinitionFinishButtonPressed" prefHeight="27.0" prefWidth="85.0" text="Fertig" visible="false" AnchorPane.bottomAnchor="14.0" AnchorPane.rightAnchor="14.0" />
-                     </children></AnchorPane>
-            </content>
+               <content>
+                  <BorderPane prefHeight="200.0" prefWidth="200.0">
+                     <center>
+                        <fx:include source="Zielbestimmung.fxml" />
+                     </center>
+                  </BorderPane>
+               </content>
           </Tab>
             <Tab text="Produkteinsatz">
-              <content>
-                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
-                     <children>
-                        <TextField fx:id="productUseTextField" alignment="TOP_LEFT" editable="false" prefHeight="27.0" prefWidth="575.0" AnchorPane.bottomAnchor="55.0" AnchorPane.leftAnchor="14.0" AnchorPane.rightAnchor="14.0" AnchorPane.topAnchor="14.0" />
-                        <Button fx:id="productUseEditButton" mnemonicParsing="false" onAction="#productUseEditButtonPressed" text="Bearbeiten" AnchorPane.bottomAnchor="14.0" AnchorPane.rightAnchor="14.0" />
-                        <Button fx:id="productUseDeleteButton" mnemonicParsing="false" onAction="#productUseDeleteButtonPressed" text="Löschen" AnchorPane.bottomAnchor="14.0" AnchorPane.rightAnchor="113.0" />
-                        <Button fx:id="productUseFinishButton" disable="true" layoutX="527.0" layoutY="297.0" mnemonicParsing="false" onAction="#productUseFinishButtonPressed" prefHeight="27.0" prefWidth="85.0" text="Fertig" visible="false" AnchorPane.bottomAnchor="14.0" AnchorPane.rightAnchor="14.0" />
-                     </children></AnchorPane>
-              </content>
+               <content>
+                  <BorderPane prefHeight="200.0" prefWidth="200.0">
+                     <center>
+                        <fx:include source="Produkteinsatz.fxml" />
+                     </center>
+                  </BorderPane>
+               </content>
             </Tab>
             <Tab text="Funktionale Anforderungen">
               <content>
