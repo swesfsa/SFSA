@@ -6,9 +6,9 @@
 
 <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="338.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <TextField alignment="TOP_LEFT" editable="false" layoutX="14.0" layoutY="14.0" prefHeight="27.0" prefWidth="575.0" AnchorPane.bottomAnchor="55.0" AnchorPane.leftAnchor="14.0" AnchorPane.rightAnchor="14.0" AnchorPane.topAnchor="14.0" />
-      <Button layoutX="391.0" layoutY="297.0" mnemonicParsing="false" text="Bearbeiten" AnchorPane.bottomAnchor="14.0" AnchorPane.rightAnchor="102.0" />
-      <Button layoutX="247.0" layoutY="297.0" mnemonicParsing="false" text="Löschen" AnchorPane.bottomAnchor="14.0" AnchorPane.rightAnchor="195.0" />
-      <Button layoutX="73.0" layoutY="36.0" mnemonicParsing="false" text="Speichern" AnchorPane.bottomAnchor="14.0" AnchorPane.rightAnchor="14.0" />
+      <TextField alignment="TOP_LEFT" editable="false" layoutX="14.0" layoutY="14.0" prefHeight="27.0" prefWidth="575.0" promptText="Geben Sie hier den Produkteinsatz ein..." AnchorPane.bottomAnchor="55.0" AnchorPane.leftAnchor="14.0" AnchorPane.rightAnchor="14.0" AnchorPane.topAnchor="14.0" />
+      <Button layoutX="391.0" layoutY="297.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="27.0" prefWidth="85.0" text="Bearbeiten" AnchorPane.bottomAnchor="14.0" AnchorPane.rightAnchor="107.0" />
+      <Button layoutX="247.0" layoutY="297.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="27.0" prefWidth="85.0" text="Löschen" AnchorPane.bottomAnchor="14.0" AnchorPane.rightAnchor="200.0" />
+      <Button layoutX="73.0" layoutY="36.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="27.0" prefWidth="85.0" text="Speichern" AnchorPane.bottomAnchor="14.0" AnchorPane.rightAnchor="14.0" />
    </children>
 </AnchorPane>
