@@ -22,7 +22,7 @@
       <TextField layoutX="203.0" layoutY="178.0" prefHeight="27.0" prefWidth="72.0" promptText="PLZ" />
       <TextField layoutX="203.0" layoutY="222.0" prefHeight="27.0" prefWidth="351.0" promptText="Bsp.: +49 711 123456" />
       <TextField layoutX="203.0" layoutY="266.0" prefHeight="27.0" prefWidth="351.0" promptText="example@domain.com" />
-      <Button layoutX="474.0" layoutY="310.0" mnemonicParsing="false" text="Speichern" />
-      <Button layoutX="381.0" layoutY="310.0" mnemonicParsing="false" text="Bearbeiten" />
+      <Button layoutX="469.0" layoutY="310.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="27.0" prefWidth="85.0" text="Speichern" />
+      <Button layoutX="376.0" layoutY="310.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="27.0" prefWidth="85.0" text="Bearbeiten" />
    </children>
 </AnchorPane>
