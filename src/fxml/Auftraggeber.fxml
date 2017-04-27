@@ -14,12 +14,12 @@
       <Label layoutX="129.0" layoutY="227.0" text="Telefon:" />
       <Label layoutX="137.0" layoutY="271.0" text="E-Mail:" />
       <TextField layoutX="203.0" layoutY="46.0" promptText="Name" />
-      <TextField layoutX="292.0" layoutY="178.0" prefHeight="27.0" prefWidth="262.0" promptText="Ort" />
-      <TextField layoutX="503.0" layoutY="134.0" prefHeight="27.0" prefWidth="51.0" promptText="Nr." />
       <TextField layoutX="387.0" layoutY="46.0" promptText="Vorname" />
       <TextField layoutX="203.0" layoutY="90.0" prefHeight="27.0" prefWidth="351.0" promptText="Firma" />
       <TextField layoutX="203.0" layoutY="134.0" prefHeight="27.0" prefWidth="283.0" promptText="Straße" />
+      <TextField layoutX="503.0" layoutY="134.0" prefHeight="27.0" prefWidth="51.0" promptText="Nr." />
       <TextField layoutX="203.0" layoutY="178.0" prefHeight="27.0" prefWidth="72.0" promptText="PLZ" />
+      <TextField layoutX="292.0" layoutY="178.0" prefHeight="27.0" prefWidth="262.0" promptText="Ort" />
       <TextField layoutX="203.0" layoutY="222.0" prefHeight="27.0" prefWidth="351.0" promptText="Bsp.: +49 711 123456" />
       <TextField layoutX="203.0" layoutY="266.0" prefHeight="27.0" prefWidth="351.0" promptText="example@domain.com" />
       <Button layoutX="469.0" layoutY="310.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="27.0" prefWidth="85.0" text="Speichern" />
