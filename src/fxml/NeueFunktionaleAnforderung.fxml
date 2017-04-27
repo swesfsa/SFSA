@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <Label layoutX="317.0" layoutY="47.0" text="Datum:" />
+      <Label layoutX="107.0" layoutY="88.0" text="ID:" />
+      <Label layoutX="233.0" layoutY="88.0" text="Titel:" />
+      <Label layoutX="71.0" layoutY="129.0" text="Priorität:" />
+      <Label layoutX="233.0" layoutY="129.0" text="Funktion:" />
+      <Label layoutX="79.0" layoutY="166.0" text="Akteur:" />
+      <Label layoutX="346.0" layoutY="166.0" text="Quelle:" />
+      <Label layoutX="35.0" layoutY="202.0" text="Beschreibung:" />
+      <Label layoutX="64.0" layoutY="340.0" text="Verweise:" />
+      <DatePicker layoutX="372.0" layoutY="42.0" />
+      <TextField layoutX="134.0" layoutY="83.0" prefHeight="27.0" prefWidth="87.0" />
+      <TextField layoutX="274.0" layoutY="83.0" prefHeight="27.0" prefWidth="292.0" />
+      <TextField layoutX="134.0" layoutY="124.0" prefHeight="27.0" prefWidth="87.0" />
+      <TextField layoutX="300.0" layoutY="124.0" prefHeight="27.0" prefWidth="266.0" />
+      <TextField layoutX="134.0" layoutY="161.0" />
+      <TextField layoutX="399.0" layoutY="161.0" />
+      <TextArea layoutX="134.0" layoutY="202.0" prefHeight="119.0" prefWidth="432.0" wrapText="true" />
+      <TextField layoutX="134.0" layoutY="335.0" prefHeight="27.0" prefWidth="432.0" />
+   </children>
+</AnchorPane>
