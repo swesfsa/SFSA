@@ -1,5 +1,6 @@
 package sfsa;
 
+import controller.DeleteWindowController;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -12,19 +13,19 @@ public class Main extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception{
-        Parent root = FXMLLoader.load(getClass().getResource("../fxml/SFSA.fxml"));
+      /*  Parent root = FXMLLoader.load(getClass().getResource("../fxml/SFSA.fxml"));
         primaryStage.setTitle("SFSA - Software für standardisierte Anforderungssammlung");
         Scene scene = new Scene(root, 900, 500);
         primaryStage.setScene(scene);
-        primaryStage.show();
+        primaryStage.show();*/
 
         DeleteWindowView deleteWindow = new DeleteWindowView();
-        Stage deleteStage = new Stage();
-        deleteWindow.show(deleteStage);
+        //Stage deleteStage = new Stage();
+        deleteWindow.show(primaryStage);
 
-        CreateFunctionalRequirementView fa = new CreateFunctionalRequirementView();
+      /*  CreateFunctionalRequirementView fa = new CreateFunctionalRequirementView();
         Stage faStage = new Stage();
-        fa.show(faStage);
+        fa.show(faStage);*/
     }
 
 
