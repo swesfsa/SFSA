@@ -8,7 +8,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.SFSAController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <MenuBar layoutX="-6.0" layoutY="5.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
         <menus>
@@ -39,15 +39,15 @@
                <content>
                   <BorderPane prefHeight="200.0" prefWidth="200.0">
                      <center>
-                        <fx:include source="Auftraggeber.fxml" />
+                        <fx:include source="Client.fxml" />
                      </center></BorderPane>
                </content>
           </Tab>
-          <Tab text="Zielbestimmung">
+          <Tab fx:id="targetSpecificationTab" onSelectionChanged="#tabPressed" text="Zielbestimmung">
                <content>
                   <BorderPane prefHeight="200.0" prefWidth="200.0">
                      <center>
-                        <fx:include source="Zielbestimmung.fxml" />
+                        <fx:include source="TargetSpecification.fxml" />
                      </center>
                   </BorderPane>
                </content>
@@ -61,7 +61,7 @@
                <content>
                   <BorderPane prefHeight="200.0" prefWidth="200.0">
                      <center>
-                        <fx:include source="Produkteinsatz.fxml" />
+                        <fx:include source="ProductUse.fxml" />
                      </center>
                   </BorderPane>
                </content>
@@ -70,7 +70,7 @@
                <content>
                   <BorderPane prefHeight="200.0" prefWidth="200.0">
                      <center>
-                        <fx:include source="FunktionaleAnforderungen.fxml" />
+                        <fx:include source="FunctionalRequirements.fxml" />
                      </center>
                   </BorderPane>
                </content>
@@ -79,7 +79,7 @@
                <content>
                   <BorderPane prefHeight="200.0" prefWidth="200.0">
                      <center>
-                        <fx:include source="Produktdaten.fxml" />
+                        <fx:include source="ProductData.fxml" />
                      </center></BorderPane>
                </content>
             </Tab>
