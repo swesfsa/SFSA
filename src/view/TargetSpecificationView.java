@@ -10,11 +10,11 @@ import javafx.scene.control.TextArea;
  */
 public class TargetSpecificationView {
 
-    Button deleteButton;
-    Button editButton;
-    Button saveButton;
+    private Button deleteButton;
+    private Button editButton;
+    private Button saveButton;
 
-    TextArea textArea;
+    private TextArea textArea;
 
     /**
      * @author 1030129
@@ -24,10 +24,10 @@ public class TargetSpecificationView {
 
         Parent root = FXMLLoader.load(getClass().getResource("../fxml/TargetSpecification.fxml"));
 
-        deleteButton = (Button) root.lookup("deleteButton");
-        editButton = (Button) root.lookup("editButton");
-        saveButton = (Button) root.lookup("saveButton");
-        textArea = (TextArea) root.lookup("textArea");
+        deleteButton = (Button) root.lookup("#deleteButton");
+        editButton = (Button) root.lookup("#editButton");
+        saveButton = (Button) root.lookup("#saveButton");
+        textArea = (TextArea) root.lookup("#textArea");
     }
 
     /**

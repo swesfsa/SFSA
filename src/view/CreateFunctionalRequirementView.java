@@ -38,17 +38,17 @@ public class CreateFunctionalRequirementView {
     public CreateFunctionalRequirementView() throws Exception {
         Parent root = FXMLLoader.load(getClass().getResource("../fxml/CreateFunctionalRequirement.fxml"));
 
-        saveButton = (Button) root.lookup("saveButton");
-        cancelButton = (Button) root.lookup("cancelButton");
-        date = (DatePicker) root.lookup("datePicker");
-        id = (TextField) root.lookup("idField");
-        title = (TextField) root.lookup("titleField");
-        priority = (TextField) root.lookup("priorityField");
-        function = (TextField) root.lookup("functionField");
-        protagonist = (TextField) root.lookup("protagonistField");
-        source = (TextField) root.lookup("sourceField");
-        references = (TextField) root.lookup("referencesField");
-        description = (TextArea) root.lookup("descriptionArea");
+        saveButton = (Button) root.lookup("#saveButton");
+        cancelButton = (Button) root.lookup("#cancelButton");
+        date = (DatePicker) root.lookup("#datePicker");
+        id = (TextField) root.lookup("#idField");
+        title = (TextField) root.lookup("#titleField");
+        priority = (TextField) root.lookup("#priorityField");
+        function = (TextField) root.lookup("#functionField");
+        protagonist = (TextField) root.lookup("#protagonistField");
+        source = (TextField) root.lookup("#sourceField");
+        references = (TextField) root.lookup("#referencesField");
+        description = (TextArea) root.lookup("#descriptionArea");
 
         scene = new Scene(root, 600, 400);
     }

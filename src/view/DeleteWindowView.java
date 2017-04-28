@@ -23,8 +23,8 @@ public class DeleteWindowView {
     public DeleteWindowView() throws Exception{
         Parent root = FXMLLoader.load(getClass().getResource("../fxml/DeleteWindow.fxml"));
 
-        yesButton = (Button) root.lookup("yesButton");
-        noButton = (Button) root.lookup("noButton");
+        yesButton = (Button) root.lookup("#yesButton");
+        noButton = (Button) root.lookup("#noButton");
 
         scene = new Scene(root, 400, 200);
     }
