@@ -19,7 +19,6 @@ public class DeleteWindowController {
     public DeleteWindowController() throws Exception{
 
         view = new DeleteWindowView();
-
         view.getYesButton().setOnAction(new yesButtonEventHandler());
         view.getNoButton().setOnAction(new noButtonEventHandler());
     }
@@ -28,7 +27,7 @@ public class DeleteWindowController {
      * @author 1030129
      * @param stage
      */
-    public void view(Stage stage) {
+    public void show(Stage stage) {
         view.show(stage);
     }
 
