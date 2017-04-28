@@ -6,7 +6,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 import view.DeleteWindowView;
-import view.NeueFunktionaleAnforderungView;
+import view.CreateFunctionalRequirementView;
 
 public class Main extends Application {
 
@@ -20,11 +20,11 @@ public class Main extends Application {
 
         DeleteWindowView deleteWindow = new DeleteWindowView();
         Stage deleteStage = new Stage();
-        deleteWindow.openDeleteWindow(deleteStage);
+        deleteWindow.show(deleteStage);
 
-        NeueFunktionaleAnforderungView fa = new NeueFunktionaleAnforderungView();
+        CreateFunctionalRequirementView fa = new CreateFunctionalRequirementView();
         Stage faStage = new Stage();
-        fa.openNeueFunktionaleAnforderung(faStage);
+        fa.show(faStage);
     }
 
 
