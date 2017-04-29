@@ -1,5 +1,6 @@
 package sfsa;
 
+import controller.CreateProductDataController;
 import controller.DeleteWindowController;
 import controller.SFSAController;
 import javafx.application.Application;
@@ -7,6 +8,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import view.CreateProductDataView;
 import view.DeleteWindowView;
 import view.CreateFunctionalRequirementView;
 
@@ -35,8 +37,11 @@ public class Main extends Application {
         //DeleteWindowController controller = new DeleteWindowController();
         //controller.show(primaryStage);
 
-        SFSAController sfsaController = new SFSAController();
-        sfsaController.show(primaryStage);
+        //SFSAController sfsaController = new SFSAController();
+        //sfsaController.show(primaryStage);
+
+        CreateProductDataController createProductDataController = new CreateProductDataController();
+        createProductDataController.show(primaryStage);
 
     }
 
