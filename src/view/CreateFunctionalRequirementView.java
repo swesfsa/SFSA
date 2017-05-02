@@ -3,16 +3,16 @@ package view;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.DatePicker;
-import javafx.scene.control.TextArea;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.stage.Stage;
+import model.IModel;
 
 /**
  * Created by 1030129 on 27.04.17.
  */
 public class CreateFunctionalRequirementView implements ICreateFunctionalRequirementView {
+
+    private IModel model;
 
     private Scene scene;
 
@@ -23,7 +23,6 @@ public class CreateFunctionalRequirementView implements ICreateFunctionalRequire
 
     private TextField id;
     private TextField title;
-    private TextField priority;
     private TextField function;
     private TextField protagonist;
     private TextField source;
@@ -31,11 +30,16 @@ public class CreateFunctionalRequirementView implements ICreateFunctionalRequire
 
     private TextArea description;
 
+    private ChoiceBox<String> priority;
+
     /**
      * @author 1030129
      * @throws Exception
      */
-    public CreateFunctionalRequirementView() throws Exception {
+    public CreateFunctionalRequirementView(IModel model) throws Exception {
+
+        this.model = model;
+
         Parent root = FXMLLoader.load(getClass().getResource("../fxml/CreateFunctionalRequirement.fxml"));
 
         saveButton = (Button) root.lookup("#saveButton");
@@ -43,12 +47,15 @@ public class CreateFunctionalRequirementView implements ICreateFunctionalRequire
         date = (DatePicker) root.lookup("#datePicker");
         id = (TextField) root.lookup("#idField");
         title = (TextField) root.lookup("#titleField");
-        priority = (TextField) root.lookup("#priorityField");
+        priority = (ChoiceBox<String>) root.lookup("#priority");
         function = (TextField) root.lookup("#functionField");
         protagonist = (TextField) root.lookup("#protagonistField");
         source = (TextField) root.lookup("#sourceField");
         references = (TextField) root.lookup("#referencesField");
         description = (TextArea) root.lookup("#descriptionArea");
+
+        priority.getItems().addAll("Niedrig", "Mittel", "Hoch");
+        priority.setValue("Mittel");
 
         scene = new Scene(root, 600, 400);
     }
@@ -108,8 +115,8 @@ public class CreateFunctionalRequirementView implements ICreateFunctionalRequire
      * @author 1030129
      * @return priotity
      */
-    public TextField getPriority() {
-        return priority;
+    public String getPriority() {
+        return priority.getValue();
     }
 
     /**

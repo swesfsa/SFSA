@@ -17,7 +17,7 @@ public interface ICreateFunctionalRequirementView extends IView{
 
     TextField getID();
     TextField getTitle();
-    TextField getPriority();
+    String getPriority();
     TextField getFunction();
     TextField getProtagonist();
     TextField getSource();

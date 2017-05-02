@@ -5,11 +5,14 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.stage.Stage;
+import model.IModel;
 
 /**
  * Created by 1030129 on 27.04.17.
  */
 public class DeleteWindowView implements IDeleteWindowView{
+
+    private IModel model;
 
     private Scene scene;
 
@@ -20,7 +23,10 @@ public class DeleteWindowView implements IDeleteWindowView{
      * @author 1030129
      * @throws Exception
      */
-    public DeleteWindowView() throws Exception{
+    public DeleteWindowView(IModel model) throws Exception{
+
+        this.model = model;
+
         Parent root = FXMLLoader.load(getClass().getResource("../fxml/DeleteWindow.fxml"));
 
         yesButton = (Button) root.lookup("#yesButton");

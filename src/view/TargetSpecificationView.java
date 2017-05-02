@@ -4,11 +4,14 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextArea;
+import model.IModel;
 
 /**
  * Created by 1030129 on 28.04.17.
  */
 public class TargetSpecificationView implements ITargetSpecificationView {
+
+    private IModel model;
 
     private Button deleteButton;
     private Button editButton;
@@ -20,7 +23,9 @@ public class TargetSpecificationView implements ITargetSpecificationView {
      * @author 1030129
      * @throws Exception
      */
-    public TargetSpecificationView() throws Exception {
+    public TargetSpecificationView(IModel model) throws Exception {
+
+        this.model = model;
 
         Parent root = FXMLLoader.load(getClass().getResource("../fxml/TargetSpecification.fxml"));
 

@@ -3,6 +3,7 @@ package controller;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.stage.Stage;
+import model.IModel;
 import view.DeleteWindowView;
 
 /**
@@ -10,15 +11,19 @@ import view.DeleteWindowView;
  */
 public class DeleteWindowController {
 
+    private IModel model;
+
     private DeleteWindowView view;
 
     /**
      * @author 1030129
      * @throws Exception
      */
-    public DeleteWindowController() throws Exception{
+    public DeleteWindowController(IModel model) throws Exception{
 
-        view = new DeleteWindowView();
+        this.model = model;
+        this.view = new DeleteWindowView(model);
+
         view.getYesButton().setOnAction(new yesButtonEventHandler());
         view.getNoButton().setOnAction(new noButtonEventHandler());
     }
