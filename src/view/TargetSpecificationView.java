@@ -8,13 +8,13 @@ import javafx.scene.control.TextArea;
 /**
  * Created by 1030129 on 28.04.17.
  */
-public class TargetSpecificationView {
+public class TargetSpecificationView implements ITargetSpecificationView {
 
     private Button deleteButton;
     private Button editButton;
     private Button saveButton;
 
-    private TextArea textArea;
+    private TextArea targetSpecification;
 
     /**
      * @author 1030129
@@ -27,7 +27,7 @@ public class TargetSpecificationView {
         deleteButton = (Button) root.lookup("#deleteButton");
         editButton = (Button) root.lookup("#editButton");
         saveButton = (Button) root.lookup("#saveButton");
-        textArea = (TextArea) root.lookup("#textArea");
+        targetSpecification = (TextArea) root.lookup("#textArea");
     }
 
     /**
@@ -52,5 +52,13 @@ public class TargetSpecificationView {
      */
     public Button getSaveButton() {
         return saveButton;
+    }
+
+    /**
+     * @author 1030129
+     * @return targetSpecification
+     */
+    public TextArea getTargetSpecification() {
+        return targetSpecification;
     }
 }
