@@ -2,11 +2,11 @@ package controller;
 
 import javafx.event.Event;
 import javafx.event.EventHandler;
-import javafx.stage.Stage;
+import misc.StageHandler;
 import model.IModel;
 import view.SFSAView;
 
-public class SFSAController {
+public class SFSAController implements IController {
 
    private IModel model;
 
@@ -23,8 +23,8 @@ public class SFSAController {
        view.getProductData().setOnSelectionChanged(new ProductDataTabEventHandler());
    }
 
-   public void show(Stage stage) {
-       view.show(stage);
+   public void show() {
+       view.show(StageHandler.getInstance().getPrimaryStage());
    }
 
    class TargetSpecificationTabEventHandler implements  EventHandler<Event> {

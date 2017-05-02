@@ -2,14 +2,14 @@ package controller;
 
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
-import javafx.stage.Stage;
+import misc.StageHandler;
 import model.IModel;
 import view.DeleteWindowView;
 
 /**
  * Created by marcostierle on 27.04.17.
  */
-public class DeleteWindowController {
+public class DeleteWindowController implements IController {
 
     private IModel model;
 
@@ -30,10 +30,9 @@ public class DeleteWindowController {
 
     /**
      * @author 1030129
-     * @param stage
      */
-    public void show(Stage stage) {
-        view.show(stage);
+    public void show() {
+        view.show(StageHandler.getInstance().getPrimaryStage());
     }
 
     /**
