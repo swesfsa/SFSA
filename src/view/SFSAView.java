@@ -6,11 +6,14 @@ import javafx.scene.Scene;
 import javafx.scene.control.Tab;
 import javafx.scene.control.TabPane;
 import javafx.stage.Stage;
+import model.IModel;
 
 /**
  * Created by 1030129 on 28.04.17.
  */
 public class SFSAView implements ISFSAView {
+
+    private IModel model;
 
     private Scene scene;
 
@@ -25,7 +28,9 @@ public class SFSAView implements ISFSAView {
      * @author 1030129
      * @throws Exception
      */
-    public SFSAView() throws Exception{
+    public SFSAView(IModel model) throws Exception{
+
+        this.model = model;
 
         Parent root = FXMLLoader.load(getClass().getResource("../fxml/SFSA.fxml"));
 

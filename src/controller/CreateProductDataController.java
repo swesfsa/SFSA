@@ -1,8 +1,9 @@
 package controller;
 
-import eventHandler.CancelButtonEventHandler;
-import eventHandler.SaveButtonEventHandler;
-import javafx.stage.Stage;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
+import misc.StageHandler;
+import model.IModel;
 import view.CreateProductDataView;
 
 /**
@@ -10,25 +11,51 @@ import view.CreateProductDataView;
  */
 public class CreateProductDataController {
 
+    private IModel model;
+
     private CreateProductDataView view;
 
     /**
      * @author 1030129
      * @throws Exception
      */
-    public CreateProductDataController() throws Exception {
+    public CreateProductDataController(IModel model) throws Exception {
 
-        view = new CreateProductDataView();
+        this.model = model;
+        this.view = new CreateProductDataView(model);
+
         view.getSaveButton().setOnAction(new SaveButtonEventHandler());
         view.getCancelButton().setOnAction(new CancelButtonEventHandler());
     }
 
     /**
      * @author 1030129
-     * @param stage
      */
-    public void show(Stage stage) {
-        view.show(stage);
+    public void show() {
+        view.show(StageHandler.getInstance().getPrimaryStage());
     }
 
+    public class CancelButtonEventHandler implements EventHandler<ActionEvent> {
+
+        /**
+         * @author 1030129
+         * @param event
+         */
+        @Override
+        public void handle(ActionEvent event) {
+            System.out.println("cancelButton pressed");
+        }
+    }
+
+    public class SaveButtonEventHandler implements EventHandler<ActionEvent> {
+
+        /**
+         * @author 1030129
+         * @param event
+         */
+        @Override
+        public void handle(ActionEvent event) {
+            System.out.println("saveButton pressed");
+        }
+    }
 }

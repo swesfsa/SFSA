@@ -4,11 +4,14 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextArea;
+import model.IModel;
 
 /**
  * Created by 1030129 on 02.05.17.
  */
 public class EnvironmentView implements IEnvironmentView{
+
+    private IModel model;
 
     private Button saveButton;
     private Button editButton;
@@ -21,7 +24,9 @@ public class EnvironmentView implements IEnvironmentView{
      * @author 1030129
      * @throws Exception
      */
-    public EnvironmentView() throws Exception{
+    public EnvironmentView(IModel model) throws Exception{
+
+        this.model = model;
 
         Parent root = FXMLLoader.load(getClass().getResource("../fxml/Environment.fxml"));
 

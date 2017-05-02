@@ -8,11 +8,14 @@ import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
+import model.IModel;
 
 /**
  * Created by 1030129 on 29.04.17.
  */
 public class CreateProductDataView implements ICreateProductDataView{
+
+    private IModel model;
 
     private Scene scene;
 
@@ -33,7 +36,9 @@ public class CreateProductDataView implements ICreateProductDataView{
      * @author 1030129
      * @throws Exception
      */
-    public CreateProductDataView() throws Exception{
+    public CreateProductDataView(IModel model) throws Exception{
+
+        this.model = model;
 
         Parent root = FXMLLoader.load(getClass().getResource("../fxml/CreateProductData.fxml"));
 

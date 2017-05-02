@@ -4,11 +4,14 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.control.Button;
 import javafx.scene.control.ListView;
+import model.IModel;
 
 /**
  * Created by 1030129 on 28.04.17.
  */
 public class FunctionalRequirementsView implements IFunctionalRequirementsView{
+
+    private IModel model;
 
     private Button newButton;
     private Button editButton;
@@ -20,7 +23,9 @@ public class FunctionalRequirementsView implements IFunctionalRequirementsView{
      * @author 1030129
      * @throws Exception
      */
-    public FunctionalRequirementsView() throws Exception {
+    public FunctionalRequirementsView(IModel model) throws Exception {
+
+        this.model = model;
 
         Parent root = FXMLLoader.load(getClass().getResource("../fxml/FunctionalRequirements.fxml"));
 

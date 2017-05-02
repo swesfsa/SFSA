@@ -8,9 +8,13 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import misc.FunctionalRequirement;
+import model.IModel;
 import view.CreateProductDataView;
 import view.DeleteWindowView;
 import view.CreateFunctionalRequirementView;
+
+import java.util.List;
 
 public class Main extends Application {
 
@@ -20,7 +24,7 @@ public class Main extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception{
-      /*  Parent root = FXMLLoader.load(getClass().getResource("../fxml/SFSA.fxml"));
+        /*  Parent root = FXMLLoader.load(getClass().getResource("../fxml/SFSA.fxml"));
         primaryStage.setTitle("SFSA - Software für standardisierte Anforderungssammlung");
         Scene scene = new Scene(root, 900, 500);
         primaryStage.setScene(scene);
@@ -40,8 +44,8 @@ public class Main extends Application {
         //SFSAController sfsaController = new SFSAController();
         //sfsaController.show(primaryStage);
 
-        CreateProductDataController createProductDataController = new CreateProductDataController();
-        createProductDataController.show(primaryStage);
+        //CreateProductDataController createProductDataController = new CreateProductDataController();
+        //createProductDataController.show();
 
     }
 

@@ -3,15 +3,20 @@ package controller;
 import javafx.event.Event;
 import javafx.event.EventHandler;
 import javafx.stage.Stage;
+import model.IModel;
 import view.SFSAView;
 
 public class SFSAController {
 
+   private IModel model;
+
    private SFSAView view;
 
-   public SFSAController() throws Exception{
+   public SFSAController(IModel model) throws Exception{
 
-       view = new SFSAView();
+       this.model = model;
+       this.view = new SFSAView(model);
+
        view.getTargetSpecification().setOnSelectionChanged(new TargetSpecificationTabEventHandler());
        view.getProductUse().setOnSelectionChanged(new ProductUseTabEventHandler());
        view.getFunctionalRequirements().setOnSelectionChanged(new FunctionalRequirementsTabEventHandler());
