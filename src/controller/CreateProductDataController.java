@@ -9,7 +9,7 @@ import view.CreateProductDataView;
 /**
  * Created by 1030129 on 29.04.17.
  */
-public class CreateProductDataController {
+public class CreateProductDataController implements IController {
 
     private IModel model;
 
