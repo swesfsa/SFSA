@@ -9,7 +9,7 @@ import javafx.stage.Stage;
 /**
  * Created by 1030129 on 27.04.17.
  */
-public class DeleteWindowView {
+public class DeleteWindowView implements IDeleteWindowView{
 
     private Scene scene;
 

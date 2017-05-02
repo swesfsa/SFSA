@@ -12,7 +12,7 @@ import javafx.stage.Stage;
 /**
  * Created by 1030129 on 27.04.17.
  */
-public class CreateFunctionalRequirementView {
+public class CreateFunctionalRequirementView implements ICreateFunctionalRequirementView {
 
     private Scene scene;
 
@@ -62,5 +62,93 @@ public class CreateFunctionalRequirementView {
         stage.setTitle("Erstellung einer neuen funktionalen Anforderung");
         stage.setResizable(false);
         stage.show();
+    }
+
+    /**
+     * @author 1030129
+     * @return saveButton
+     */
+    public Button getSaveButton() {
+        return saveButton;
+    }
+
+    /**
+     * @author 1030129
+     * @return cancelButton
+     */
+    public Button getCancelButton() {
+        return cancelButton;
+    }
+
+    /**
+     * @author 1030129
+     * @return date
+     */
+    public DatePicker getDate() {
+        return date;
+    }
+
+    /**
+     * @author 1030129
+     * @return id
+     */
+    public TextField getID() {
+        return id;
+    }
+
+    /**
+     * @author 1030129
+     * @return title
+     */
+    public TextField getTitle() {
+        return title;
+    }
+
+    /**
+     * @author 1030129
+     * @return priotity
+     */
+    public TextField getPriority() {
+        return priority;
+    }
+
+    /**
+     * @author 1030129
+     * @return function
+     */
+    public TextField getFunction() {
+        return function;
+    }
+
+    /**
+     * @author 1030129
+     * @return protagonist
+     */
+    public TextField getProtagonist() {
+        return protagonist;
+    }
+
+    /**
+     * @author 1030129
+     * @return source
+     */
+    public TextField getSource() {
+        return source;
+    }
+
+    /**
+     * @author 1030129
+     * @return references
+     */
+    public TextField getReferences() {
+        return references;
+    }
+
+    /**
+     * @author 1030129
+     * @return description
+     */
+    public TextArea getDescription() {
+        return description;
     }
 }

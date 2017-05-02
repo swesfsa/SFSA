@@ -8,12 +8,11 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-
 <AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="$CONTROLLER_NAME$">
    <children>
-      <Button layoutX="492.0" layoutY="353.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="27.0" prefWidth="85.0" text="Speichern" AnchorPane.bottomAnchor="14.0" AnchorPane.rightAnchor="14.0" />
-      <Button layoutX="381.0" layoutY="359.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="27.0" prefWidth="85.0" text="Bearbeiten" AnchorPane.bottomAnchor="14.0" AnchorPane.rightAnchor="109.0" />
-      <Button layoutX="300.0" layoutY="353.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="27.0" prefWidth="85.0" text="Löschen" AnchorPane.bottomAnchor="14.0" AnchorPane.rightAnchor="204.0" />
+      <Button fx:id="saveButton" layoutX="492.0" layoutY="353.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="27.0" prefWidth="85.0" text="Speichern" AnchorPane.bottomAnchor="14.0" AnchorPane.rightAnchor="14.0" />
+      <Button fx:id="editButton" layoutX="381.0" layoutY="359.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="27.0" prefWidth="85.0" text="Bearbeiten" AnchorPane.bottomAnchor="14.0" AnchorPane.rightAnchor="109.0" />
+      <Button fx:id="deleteButton" layoutX="300.0" layoutY="353.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="27.0" prefWidth="85.0" text="Löschen" AnchorPane.bottomAnchor="14.0" AnchorPane.rightAnchor="204.0" />
       <VBox alignment="TOP_RIGHT" prefHeight="345.0" prefWidth="600.0" AnchorPane.bottomAnchor="55.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
             <HBox prefHeight="172.5" prefWidth="600.0" VBox.vgrow="ALWAYS">
@@ -23,7 +22,7 @@
                         <Insets left="14.0" top="14.0" />
                      </HBox.margin>
                   </Label>
-                  <TextArea prefHeight="159.0" prefWidth="448.0" HBox.hgrow="ALWAYS">
+                  <TextArea fx:id="hardware" prefHeight="159.0" prefWidth="448.0" HBox.hgrow="ALWAYS">
                      <HBox.margin>
                         <Insets left="10.0" right="14.0" top="14.0" />
                      </HBox.margin>
@@ -37,7 +36,7 @@
                         <Insets left="14.0" top="14.0" />
                      </HBox.margin>
                   </Label>
-                  <TextArea prefHeight="158.0" prefWidth="448.0" HBox.hgrow="ALWAYS">
+                  <TextArea fx:id="software" prefHeight="158.0" prefWidth="448.0" HBox.hgrow="ALWAYS">
                      <HBox.margin>
                         <Insets left="14.0" right="14.0" top="14.0" />
                      </HBox.margin>

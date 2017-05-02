@@ -12,7 +12,7 @@ import javafx.stage.Stage;
 /**
  * Created by 1030129 on 29.04.17.
  */
-public class CreateProductDataView {
+public class CreateProductDataView implements ICreateProductDataView{
 
     private Scene scene;
 
@@ -85,7 +85,7 @@ public class CreateProductDataView {
      * @author 1030129
      * @return
      */
-    public TextField getId() {
+    public TextField getID() {
         return id;
     }
 
@@ -109,7 +109,7 @@ public class CreateProductDataView {
      * @author 1030129
      * @return
      */
-    public TextField getRet() {
+    public TextField getRET() {
         return ret;
     }
 
@@ -117,7 +117,7 @@ public class CreateProductDataView {
      * @author 1030129
      * @return
      */
-    public TextField getDet() {
+    public TextField getDET() {
         return det;
     }
 
