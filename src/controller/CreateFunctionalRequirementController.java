@@ -3,8 +3,8 @@ package controller;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.control.Alert;
-import misc.Classification;
 import misc.FunctionalRequirement;
+import misc.FunctionalRequirementClassification;
 import misc.Priority;
 import misc.StageHandler;
 import model.IModel;
@@ -13,10 +13,17 @@ import view.EmptyTextfieldException;
 
 import java.time.LocalDate;
 
+import static misc.FunctionalRequirementClassification.INPUT;
+import static misc.FunctionalRequirementClassification.OUTPUT;
+import static misc.FunctionalRequirementClassification.QUERY;
+import static misc.Priority.HIGH;
+import static misc.Priority.LOW;
+import static misc.Priority.MIDDLE;
+
 /**
  * Created by 1030129 on 02.05.17.
  */
-public class CreateFunctionalRequirementController implements IController {
+public class CreateFunctionalRequirementController extends CreateController implements IController {
 
     private IModel model;
 
@@ -73,8 +80,26 @@ public class CreateFunctionalRequirementController implements IController {
                 String source = view.getSource().getText();
                 String references = view.getReferences().getText();
                 String description = view.getDescription().getText();
-                Priority priority = view.getPriority().getValue();
-                Classification classification = view.getClassification().getValue();
+
+                Priority priority = null;
+                switch (view.getPriority().getValue()) {
+                    case "Niedrig": priority = LOW;
+                        break;
+                    case "Mittel": priority = MIDDLE;
+                        break;
+                    case "Hoch": priority = HIGH;
+                        break;
+                }
+
+                FunctionalRequirementClassification classification = null;
+                switch (view.getClassification().getValue()) {
+                    case "Eingabe": classification = INPUT;
+                        break;
+                    case "Ausgabe": classification = OUTPUT;
+                        break;
+                    case "Abfrage": classification = QUERY;
+                        break;
+                }
 
                 if (date == null || title.equals("") || function.equals("") || protagonist.equals("")
                         || source.equals("") || references.equals("") || description.equals("")) {
@@ -91,23 +116,16 @@ public class CreateFunctionalRequirementController implements IController {
                 model.addFunctionalRequirement(functionalRequirement);
                 view.close(StageHandler.getInstance().getPrimaryStage());
 
+                // DEBUG
                 model.getFunctionalRequirementList().iterator().forEachRemaining(FunctionalRequirement::print);
             }
             catch (NumberFormatException e) {
                 System.out.println("Error: " + e);
-                Alert alert = new Alert(Alert.AlertType.WARNING);
-                alert.setTitle("Warnung");
-                alert.setHeaderText("Falsches Eingabeformat");
-                alert.setContentText("Die Textfelder 'ID', 'FTR' und 'DET' erlauben nur Ganzzahlen als Eingabe!");
-                alert.showAndWait();
+                openNumberFormatWarning("Die Textfelder 'ID', 'FTR' und 'DET' erlauben nur Ganzzahlen als Eingabe!");
             }
             catch (EmptyTextfieldException e) {
                 System.out.println("Error: " + e);
-                Alert alert = new Alert((Alert.AlertType.WARNING));
-                alert.setTitle("Warnung");
-                alert.setHeaderText("Leeres Textfeld");
-                alert.setContentText("Bitte füllen Sie alle Textfelder aus.");
-                alert.showAndWait();
+                openEmptyTextFieldWarning();
             }
 
         }

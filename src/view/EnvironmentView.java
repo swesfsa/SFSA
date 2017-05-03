@@ -15,7 +15,7 @@ public class EnvironmentView implements IEnvironmentView{
 
     private Button saveButton;
     private Button editButton;
-    private Button deleteButton;
+    private Button cancelButton;
 
     private TextArea hardwareEnvironment;
     private TextArea softwareEnvironment;
@@ -32,7 +32,7 @@ public class EnvironmentView implements IEnvironmentView{
 
         saveButton = (Button) root.lookup("#saveButton");
         editButton = (Button) root.lookup("#editButton");
-        deleteButton = (Button) root.lookup("#deleteButton");
+        cancelButton = (Button) root.lookup("#cancelButton");
         hardwareEnvironment = (TextArea) root.lookup("#hardware");
         softwareEnvironment = (TextArea) root.lookup("#software");
     }
@@ -57,8 +57,8 @@ public class EnvironmentView implements IEnvironmentView{
      * @author 1030129
      * @return deleteButton
      */
-    public Button getDeleteButton() {
-        return deleteButton;
+    public Button getCancelButton() {
+        return cancelButton;
     }
 
     /**
@@ -76,4 +76,5 @@ public class EnvironmentView implements IEnvironmentView{
     public TextArea getSoftwareEnvironment() {
         return softwareEnvironment;
     }
+
 }

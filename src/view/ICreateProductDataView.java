@@ -1,6 +1,7 @@
 package view;
 
 import javafx.scene.control.Button;
+import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 
@@ -12,13 +13,13 @@ public interface ICreateProductDataView extends IView{
     Button getSaveButton();
     Button getCancelButton();
 
-    TextField getID();
+    TextField getId();
     TextField getMemoryContent();
     TextField getReferences();
-    TextField getRET();
-    TextField getDET();
+    TextField getRet();
+    TextField getDet();
 
     TextArea getEstimation();
 
-    String getClassificationValue();
+    ChoiceBox<String> getClassification();
 }

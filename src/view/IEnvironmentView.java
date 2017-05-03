@@ -10,7 +10,7 @@ public interface IEnvironmentView {
 
     Button getSaveButton();
     Button getEditButton();
-    Button getDeleteButton();
+    Button getCancelButton();
 
     TextArea getHardwareEnvironment();
     TextArea getSoftwareEnvironment();

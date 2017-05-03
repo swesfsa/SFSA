@@ -71,6 +71,10 @@ public class CreateProductDataView extends ViewTemplate implements ICreateProduc
         stage.show();
     }
 
+    public void close(Stage stage) {
+        stage.close();
+    }
+
     /**
      * @author 1030129
      * @return
@@ -91,7 +95,7 @@ public class CreateProductDataView extends ViewTemplate implements ICreateProduc
      * @author 1030129
      * @return
      */
-    public TextField getID() {
+    public TextField getId() {
         return id;
     }
 
@@ -115,7 +119,7 @@ public class CreateProductDataView extends ViewTemplate implements ICreateProduc
      * @author 1030129
      * @return
      */
-    public TextField getRET() {
+    public TextField getRet() {
         return ret;
     }
 
@@ -123,7 +127,7 @@ public class CreateProductDataView extends ViewTemplate implements ICreateProduc
      * @author 1030129
      * @return
      */
-    public TextField getDET() {
+    public TextField getDet() {
         return det;
     }
 
@@ -139,7 +143,7 @@ public class CreateProductDataView extends ViewTemplate implements ICreateProduc
      * @author 1030129
      * @return
      */
-    public String getClassificationValue() {
-        return classification.getValue();
+    public ChoiceBox<String> getClassification() {
+        return classification;
     }
 }

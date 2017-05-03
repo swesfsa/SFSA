@@ -35,6 +35,14 @@ public class SFSAController implements IController {
        }
    }
 
+   class EnvironmentTabEventHandler implements EventHandler<Event> {
+
+       @Override
+       public void handle(Event event) {
+
+       }
+   }
+
    class ProductUseTabEventHandler implements  EventHandler<Event> {
 
        @Override
