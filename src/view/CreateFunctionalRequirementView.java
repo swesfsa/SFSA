@@ -5,12 +5,20 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.stage.Stage;
+import misc.Classification;
+import misc.Priority;
 import model.IModel;
+
+
+import static misc.Classification.Abfrage;
+import static misc.Classification.Ausgabe;
+import static misc.Classification.Eingabe;
+import static misc.Priority.*;
 
 /**
  * Created by 1030129 on 27.04.17.
  */
-public class CreateFunctionalRequirementView implements ICreateFunctionalRequirementView {
+public class CreateFunctionalRequirementView extends ViewTemplate implements ICreateFunctionalRequirementView {
 
     private IModel model;
 
@@ -27,10 +35,13 @@ public class CreateFunctionalRequirementView implements ICreateFunctionalRequire
     private TextField protagonist;
     private TextField source;
     private TextField references;
+    private TextField ftr;
+    private TextField det;
 
     private TextArea description;
 
-    private ChoiceBox<String> priority;
+    private ChoiceBox<Priority> priority;
+    private ChoiceBox<Classification> classification;
 
     /**
      * @author 1030129
@@ -38,26 +49,34 @@ public class CreateFunctionalRequirementView implements ICreateFunctionalRequire
      */
     public CreateFunctionalRequirementView(IModel model) throws Exception {
 
+        super("CreateFunctionalRequirement");
         this.model = model;
 
         Parent root = FXMLLoader.load(getClass().getResource("../fxml/CreateFunctionalRequirement.fxml"));
+        root.getStylesheets().add("/view/style.css");
 
         saveButton = (Button) root.lookup("#saveButton");
         cancelButton = (Button) root.lookup("#cancelButton");
         date = (DatePicker) root.lookup("#datePicker");
         id = (TextField) root.lookup("#idField");
         title = (TextField) root.lookup("#titleField");
-        priority = (ChoiceBox<String>) root.lookup("#priority");
+        priority = (ChoiceBox<Priority>) root.lookup("#priority");
         function = (TextField) root.lookup("#functionField");
         protagonist = (TextField) root.lookup("#protagonistField");
         source = (TextField) root.lookup("#sourceField");
         references = (TextField) root.lookup("#referencesField");
         description = (TextArea) root.lookup("#descriptionArea");
+        ftr = (TextField) root.lookup("#ftr");
+        det = (TextField) root.lookup("#det");
+        classification = (ChoiceBox<Classification>) root.lookup("#classification");
 
-        priority.getItems().addAll("Niedrig", "Mittel", "Hoch");
-        priority.setValue("Mittel");
+        priority.getItems().addAll(Niedrig, Mittel, Hoch);
+        priority.setValue(Mittel);
 
-        scene = new Scene(root, 600, 400);
+        classification.getItems().addAll(Eingabe, Ausgabe, Abfrage);
+        classification.setValue(Eingabe);
+
+        scene = new Scene(root, 600, 450);
     }
 
     /**
@@ -69,6 +88,10 @@ public class CreateFunctionalRequirementView implements ICreateFunctionalRequire
         stage.setTitle("Erstellung einer neuen funktionalen Anforderung");
         stage.setResizable(false);
         stage.show();
+    }
+
+    public void close(Stage stage) {
+        stage.close();
     }
 
     /**
@@ -99,7 +122,7 @@ public class CreateFunctionalRequirementView implements ICreateFunctionalRequire
      * @author 1030129
      * @return id
      */
-    public TextField getID() {
+    public TextField getId() {
         return id;
     }
 
@@ -115,8 +138,8 @@ public class CreateFunctionalRequirementView implements ICreateFunctionalRequire
      * @author 1030129
      * @return priotity
      */
-    public String getPriority() {
-        return priority.getValue();
+    public ChoiceBox<Priority> getPriority() {
+        return priority;
     }
 
     /**
@@ -157,5 +180,33 @@ public class CreateFunctionalRequirementView implements ICreateFunctionalRequire
      */
     public TextArea getDescription() {
         return description;
+    }
+
+    /**
+     * @author 1030129
+     * @return ftr
+     */
+    public TextField getFtr() {
+        return ftr;
+    }
+
+    /**
+     * @author 1030129
+     * @return det
+     */
+    public TextField getDet() {
+        return det;
+    }
+
+    /**
+     * @author 1030129
+     * @return classification
+     */
+    public ChoiceBox<Classification> getClassification() {
+        return classification;
+    }
+
+    public Scene getScene() {
+        return scene;
     }
 }

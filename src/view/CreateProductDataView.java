@@ -13,7 +13,7 @@ import model.IModel;
 /**
  * Created by 1030129 on 29.04.17.
  */
-public class CreateProductDataView implements ICreateProductDataView{
+public class CreateProductDataView extends ViewTemplate implements ICreateProductDataView{
 
     private IModel model;
 
@@ -38,6 +38,7 @@ public class CreateProductDataView implements ICreateProductDataView{
      */
     public CreateProductDataView(IModel model) throws Exception{
 
+        super("CreateProductData");
         this.model = model;
 
         Parent root = FXMLLoader.load(getClass().getResource("../fxml/CreateProductData.fxml"));
