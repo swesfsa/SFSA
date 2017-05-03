@@ -10,7 +10,7 @@ import model.IModel;
 /**
  * Created by 1030129 on 27.04.17.
  */
-public class DeleteWindowView implements IDeleteWindowView{
+public class DeleteWindowView extends ViewTemplate implements IDeleteWindowView{
 
     private IModel model;
 
@@ -25,6 +25,7 @@ public class DeleteWindowView implements IDeleteWindowView{
      */
     public DeleteWindowView(IModel model) throws Exception{
 
+        super("DeleteWindow");
         this.model = model;
 
         Parent root = FXMLLoader.load(getClass().getResource("../fxml/DeleteWindow.fxml"));

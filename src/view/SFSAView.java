@@ -11,7 +11,7 @@ import model.IModel;
 /**
  * Created by 1030129 on 28.04.17.
  */
-public class SFSAView implements ISFSAView {
+public class SFSAView extends ViewTemplate implements ISFSAView {
 
     private IModel model;
 
@@ -30,6 +30,7 @@ public class SFSAView implements ISFSAView {
      */
     public SFSAView(IModel model) throws Exception{
 
+        super("SFSA");
         this.model = model;
 
         Parent root = FXMLLoader.load(getClass().getResource("../fxml/SFSA.fxml"));

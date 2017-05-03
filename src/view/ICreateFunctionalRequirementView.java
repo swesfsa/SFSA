@@ -1,9 +1,10 @@
 package view;
 
-import javafx.scene.control.Button;
-import javafx.scene.control.DatePicker;
-import javafx.scene.control.TextArea;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
+import misc.Classification;
+import misc.Priority;
+
+import java.time.LocalDate;
 
 /**
  * Created by 1030129 on 02.05.17.
@@ -15,13 +16,16 @@ public interface ICreateFunctionalRequirementView extends IView{
 
     DatePicker getDate();
 
-    TextField getID();
+    TextField getId();
     TextField getTitle();
-    String getPriority();
+    ChoiceBox<Priority> getPriority();
     TextField getFunction();
     TextField getProtagonist();
     TextField getSource();
     TextField getReferences();
+    TextField getFtr();
+    TextField getDet();
+    ChoiceBox<Classification> getClassification();
 
     TextArea getDescription();
 }

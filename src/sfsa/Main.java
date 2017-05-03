@@ -55,13 +55,13 @@ public class Main extends Application {
         StageHandler.getInstance().setPrimaryStage(primaryStage);
 
         IModel model = new Model();
-        model.addFunctionalRequirement(new FunctionalRequirement(1, "Peter Bohl", "Test", Priority.LOW));
+        /*model.addFunctionalRequirement(new FunctionalRequirement(1, "Peter Bohl", "Test", Priority.LOW));
         model.addFunctionalRequirement(new FunctionalRequirement(2, "Tim Seitz", "ABC", Priority.HIGH));
         model.addFunctionalRequirement(new FunctionalRequirement(3, "Marco Stierle", "Test", Priority.HIGH));
         model.addFunctionalRequirement(new FunctionalRequirement(4, "Dr. Dre", "2001", Priority.MIDDLE));
-        model.addFunctionalRequirement(new FunctionalRequirement(5, "Future", "Mask Off", Priority.HIGH));
+        model.addFunctionalRequirement(new FunctionalRequirement(5, "Future", "Mask Off", Priority.HIGH));*/
 
-        IController controller = new FunctionalRequirementsController(model);
+        IController controller = new CreateFunctionalRequirementController(model);
         controller.show();
     }
 
