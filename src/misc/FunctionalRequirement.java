@@ -18,11 +18,11 @@ public class FunctionalRequirement {
     private String references;
     private String description;
     private Priority priority;
-    private Classification classification;
+    private FunctionalRequirementClassification classification;
 
     public FunctionalRequirement(int id, int ftr, int det, LocalDate date, String title, String function, String protagonist,
                                  String source, String references, String description, Priority priority,
-                                 Classification classification) {
+                                 FunctionalRequirementClassification classification) {
         this.id = id;
         this.ftr = ftr;
         this.det = det;

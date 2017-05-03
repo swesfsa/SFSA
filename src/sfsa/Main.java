@@ -61,7 +61,7 @@ public class Main extends Application {
         model.addFunctionalRequirement(new FunctionalRequirement(4, "Dr. Dre", "2001", Priority.MIDDLE));
         model.addFunctionalRequirement(new FunctionalRequirement(5, "Future", "Mask Off", Priority.HIGH));*/
 
-        IController controller = new CreateFunctionalRequirementController(model);
+        IController controller = new CreateProductDataController(model);
         controller.show();
     }
 

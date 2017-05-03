@@ -18,14 +18,14 @@ public interface ICreateFunctionalRequirementView extends IView{
 
     TextField getId();
     TextField getTitle();
-    ChoiceBox<Priority> getPriority();
+    ChoiceBox<String> getPriority();
     TextField getFunction();
     TextField getProtagonist();
     TextField getSource();
     TextField getReferences();
     TextField getFtr();
     TextField getDet();
-    ChoiceBox<Classification> getClassification();
+    ChoiceBox<String> getClassification();
 
     TextArea getDescription();
 }
