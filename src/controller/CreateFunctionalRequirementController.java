@@ -62,8 +62,7 @@ public class CreateFunctionalRequirementController extends CreateController {
      * @author 1030129
      */
     public void show() {
-        //_view.show(StageHandler.getInstance().getPrimaryStage());
-        _view.show(stage);
+        _view.show(StageHandler.getInstance().getPrimaryStage());
     }
 
     /**
