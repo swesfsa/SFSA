@@ -1,7 +1,6 @@
 package view;
 
 import javafx.scene.control.*;
-import misc.Classification;
 import misc.Priority;
 
 import java.time.LocalDate;

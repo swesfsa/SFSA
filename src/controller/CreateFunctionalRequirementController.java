@@ -2,7 +2,7 @@ package controller;
 
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
-import javafx.scene.control.Alert;
+import javafx.stage.Stage;
 import misc.FunctionalRequirement;
 import misc.FunctionalRequirementClassification;
 import misc.Priority;
@@ -23,13 +23,25 @@ import static misc.Priority.MIDDLE;
 /**
  * Created by 1030129 on 02.05.17.
  */
-public class CreateFunctionalRequirementController extends CreateController implements IController {
+public class CreateFunctionalRequirementController extends CreateController {
 
-    private IModel model;
+    private Stage stage;
 
-    private CreateFunctionalRequirementView view;
-
+    private CreateFunctionalRequirementView _view;
     private FunctionalRequirement functionalRequirement;
+
+    private LocalDate date;
+    private String title;
+    private String function;
+    private String protagonist;
+    private String source;
+    private String references;
+    private String description;
+    private Priority priority = null;
+    private FunctionalRequirementClassification classification = null;
+    int id;
+    int ftr;
+    int det;
 
     /**
      * @author 1030129
@@ -37,21 +49,78 @@ public class CreateFunctionalRequirementController extends CreateController impl
      */
     public CreateFunctionalRequirementController(IModel model) throws Exception {
 
-        this.model = model;
-        this.view = new CreateFunctionalRequirementView(model);
+        _model = model;
+        _view = new CreateFunctionalRequirementView(_model);
+        System.out.println("CreatedFRView created");
 
-        view.getSaveButton().setOnAction(new SaveButtonEventHandler());
-        view.getCancelButton().setOnAction(new CancelButtonEventHandler());
+        _view.getSaveButton().setOnAction(new SaveButtonEventHandler());
+        _view.getCancelButton().setOnAction(new CancelButtonEventHandler());
+
     }
 
     /**
      * @author 1030129
      */
     public void show() {
-        view.show(StageHandler.getInstance().getPrimaryStage());
+        //_view.show(StageHandler.getInstance().getPrimaryStage());
+        _view.show(stage);
     }
 
-    public class CancelButtonEventHandler implements EventHandler<ActionEvent> {
+    /**
+     * This function gets the data out of the TextFields, TextArea and ChoiceBoxes
+     * of the CreateFunctionalRequirementView.
+     * @author 1030129
+     */
+    private void getDataFromView() {
+
+        date = _view.getDate().getValue();
+        title = _view.getTitle().getText();
+        function = _view.getFunction().getText();
+        protagonist = _view.getProtagonist().getText();
+        source = _view.getSource().getText();
+        references = _view.getReferences().getText();
+        description = _view.getDescription().getText();
+
+        switch (_view.getPriority().getValue()) {
+            case "Niedrig": priority = LOW;
+                break;
+            case "Mittel": priority = MIDDLE;
+                break;
+            case "Hoch": priority = HIGH;
+                break;
+            default: priority = LOW;
+        }
+
+        switch (_view.getClassification().getValue()) {
+            case "Eingabe": classification = INPUT;
+                break;
+            case "Ausgabe": classification = OUTPUT;
+                break;
+            case "Abfrage": classification = QUERY;
+                break;
+            default: classification = INPUT;
+        }
+
+        id = Integer.parseInt(_view.getId().getText());
+        ftr = Integer.parseInt(_view.getFtr().getText());
+        det = Integer.parseInt(_view.getDet().getText());
+    }
+
+    /**
+     * This function checks if any of the data elements gotten from the
+     * CreateFunctionalRequirementView is empty.
+     * @author 1030129
+     * @throws EmptyTextfieldException
+     */
+    private void checkForEmptyFields() throws EmptyTextfieldException{
+
+        if (date == null || title.equals("") || function.equals("") || protagonist.equals("")
+                || source.equals("") || references.equals("") || description.equals("")) {
+            throw new EmptyTextfieldException();
+        }
+    }
+
+    private class CancelButtonEventHandler implements EventHandler<ActionEvent> {
 
         /**
          * @author 1030129
@@ -59,11 +128,11 @@ public class CreateFunctionalRequirementController extends CreateController impl
          */
         @Override
         public void handle(ActionEvent event) {
-            view.close(StageHandler.getInstance().getPrimaryStage());
+            _view.close(StageHandler.getInstance().getPrimaryStage());
         }
     }
 
-    public class SaveButtonEventHandler implements EventHandler<ActionEvent> {
+    private class SaveButtonEventHandler implements EventHandler<ActionEvent> {
 
         /**
          * @author 1030129
@@ -73,51 +142,17 @@ public class CreateFunctionalRequirementController extends CreateController impl
         public void handle(ActionEvent event) {
 
             try {
-                LocalDate date = view.getDate().getValue();
-                String title = view.getTitle().getText();
-                String function = view.getFunction().getText();
-                String protagonist = view.getProtagonist().getText();
-                String source = view.getSource().getText();
-                String references = view.getReferences().getText();
-                String description = view.getDescription().getText();
-
-                Priority priority = null;
-                switch (view.getPriority().getValue()) {
-                    case "Niedrig": priority = LOW;
-                        break;
-                    case "Mittel": priority = MIDDLE;
-                        break;
-                    case "Hoch": priority = HIGH;
-                        break;
-                }
-
-                FunctionalRequirementClassification classification = null;
-                switch (view.getClassification().getValue()) {
-                    case "Eingabe": classification = INPUT;
-                        break;
-                    case "Ausgabe": classification = OUTPUT;
-                        break;
-                    case "Abfrage": classification = QUERY;
-                        break;
-                }
-
-                if (date == null || title.equals("") || function.equals("") || protagonist.equals("")
-                        || source.equals("") || references.equals("") || description.equals("")) {
-                    throw new EmptyTextfieldException();
-                }
-
-                int id = Integer.parseInt(view.getId().getText());
-                int ftr = Integer.parseInt(view.getFtr().getText());
-                int det = Integer.parseInt(view.getDet().getText());
+                getDataFromView();
+                checkForEmptyFields();
 
                 functionalRequirement = new FunctionalRequirement(id, ftr, det, date, title, function, protagonist,
                         source, references, description, priority, classification);
 
-                model.addFunctionalRequirement(functionalRequirement);
-                view.close(StageHandler.getInstance().getPrimaryStage());
+                _model.addFunctionalRequirement(functionalRequirement);
+                _view.close(StageHandler.getInstance().getPrimaryStage());
 
                 // DEBUG
-                model.getFunctionalRequirementList().iterator().forEachRemaining(FunctionalRequirement::print);
+                _model.getFunctionalRequirementList().iterator().forEachRemaining(FunctionalRequirement::print);
             }
             catch (NumberFormatException e) {
                 System.out.println("Error: " + e);

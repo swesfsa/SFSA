@@ -11,7 +11,7 @@ import view.EnvironmentView;
 /**
  * Created by 1030129 on 02.05.17.
  */
-public class EnvironmentController extends CreateController{
+public class EnvironmentController extends CreateController {
 
     private IModel model;
 

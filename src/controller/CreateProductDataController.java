@@ -2,7 +2,6 @@ package controller;
 
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
-import javafx.scene.control.Alert;
 import misc.ProductData;
 import misc.ProductDataClassification;
 import misc.StageHandler;
@@ -20,9 +19,17 @@ public class CreateProductDataController extends CreateController implements ICo
 
     private IModel model;
 
-    private CreateProductDataView view;
+    private CreateProductDataView _view;
 
     private ProductData productData;
+
+    private String memoryContent;
+    private String references;
+    private String estimation;
+    private ProductDataClassification classification = null;
+    private int id;
+    private int ret;
+    private int det;
 
     /**
      * @author 1030129
@@ -31,20 +38,54 @@ public class CreateProductDataController extends CreateController implements ICo
     public CreateProductDataController(IModel model) throws Exception {
 
         this.model = model;
-        this.view = new CreateProductDataView(model);
+        this._view = new CreateProductDataView(model);
 
-        view.getSaveButton().setOnAction(new SaveButtonEventHandler());
-        view.getCancelButton().setOnAction(new CancelButtonEventHandler());
+        _view.getSaveButton().setOnAction(new SaveButtonEventHandler());
+        _view.getCancelButton().setOnAction(new CancelButtonEventHandler());
     }
 
     /**
      * @author 1030129
      */
     public void show() {
-        view.show(StageHandler.getInstance().getPrimaryStage());
+        _view.show(StageHandler.getInstance().getPrimaryStage());
     }
 
-    public class CancelButtonEventHandler implements EventHandler<ActionEvent> {
+    /**
+     * This function gets the data out of the TextFields, TextArea and ChoiceBoxes
+     * of the CreateProductDataView.
+     * @author 1030129
+     */
+    private void getDataFromView() {
+        memoryContent = _view.getMemoryContent().getText();
+        references = _view.getReferences().getText();
+        estimation = _view.getEstimation().getText();
+
+        switch (_view.getClassification().getValue()) {
+            case "ILF": classification = ILF;
+                break;
+            case "EIF": classification = EIF;
+                break;
+        }
+
+        id = Integer.parseInt(_view.getId().getText());
+        ret = Integer.parseInt(_view.getRet().getText());
+        det = Integer.parseInt(_view.getDet().getText());
+    }
+
+    /**
+     * This function checks if any of the data elements gotten from the
+     * CreateProductDataView is empty.
+     * @author 1030129
+     * @throws EmptyTextfieldException
+     */
+    private void checkForEmptyFields() throws EmptyTextfieldException{
+        if (memoryContent.equals("") || references.equals("") || estimation.equals("")) {
+            throw new EmptyTextfieldException();
+        }
+    }
+
+    private class CancelButtonEventHandler implements EventHandler<ActionEvent> {
 
         /**
          * @author 1030129
@@ -52,11 +93,11 @@ public class CreateProductDataController extends CreateController implements ICo
          */
         @Override
         public void handle(ActionEvent event) {
-            view.close(StageHandler.getInstance().getPrimaryStage());
+            _view.close(StageHandler.getInstance().getPrimaryStage());
         }
     }
 
-    public class SaveButtonEventHandler implements EventHandler<ActionEvent> {
+    private class SaveButtonEventHandler implements EventHandler<ActionEvent> {
 
         /**
          * @author 1030129
@@ -66,30 +107,13 @@ public class CreateProductDataController extends CreateController implements ICo
         public void handle(ActionEvent event) {
 
             try {
-                String memoryContent = view.getMemoryContent().getText();
-                String references = view.getReferences().getText();
-                String estimation = view.getEstimation().getText();
-
-                ProductDataClassification classification = null;
-                switch (view.getClassification().getValue()) {
-                    case "ILF": classification = ILF;
-                        break;
-                    case "EIF": classification = EIF;
-                        break;
-                }
-
-                if (memoryContent.equals("") || references.equals("") || estimation.equals("")) {
-                    throw new EmptyTextfieldException();
-                }
-
-                int id = Integer.parseInt(view.getId().getText());
-                int ret = Integer.parseInt(view.getRet().getText());
-                int det = Integer.parseInt(view.getDet().getText());
+                getDataFromView();
+                checkForEmptyFields();
 
                 productData = new ProductData(id, ret, det, memoryContent, estimation, references, classification);
 
                 model.addProductData(productData);
-                view.close(StageHandler.getInstance().getPrimaryStage());
+                _view.close(StageHandler.getInstance().getPrimaryStage());
 
                 model.getProductDataList().iterator().forEachRemaining(ProductData::print);
             }

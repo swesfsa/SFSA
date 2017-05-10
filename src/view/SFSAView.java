@@ -3,6 +3,7 @@ package view;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.control.Tab;
 import javafx.scene.control.TabPane;
 import javafx.stage.Stage;
@@ -23,6 +24,8 @@ public class SFSAView extends ViewTemplate implements ISFSAView {
     private Tab productUse;
     private Tab functionalRequirements;
     private Tab productData;
+    private Tab estimationConfig;
+    private Tab effortEstimation;
 
     /**
      * @author 1030129
@@ -36,11 +39,13 @@ public class SFSAView extends ViewTemplate implements ISFSAView {
         Parent root = FXMLLoader.load(getClass().getResource("../fxml/SFSA.fxml"));
 
         tabPane = (TabPane) root.lookup("#tabPane");
-        targetSpecification = tabPane.getTabs().get(1);
-        environment = tabPane.getTabs().get(2);
-        productUse = tabPane.getTabs().get(3);
-        functionalRequirements = tabPane.getTabs().get(4);
-        productData = tabPane.getTabs().get(5);
+        targetSpecification = tabPane.getTabs().get(0);
+        environment = tabPane.getTabs().get(1);
+        productUse = tabPane.getTabs().get(2);
+        functionalRequirements = tabPane.getTabs().get(3);
+        productData = tabPane.getTabs().get(4);
+        estimationConfig = tabPane.getTabs().get(5);
+        effortEstimation = tabPane.getTabs().get(6);
 
         scene = new Scene(root, 1000, 600);
     }
@@ -89,9 +94,17 @@ public class SFSAView extends ViewTemplate implements ISFSAView {
 
     /**
      * @author 1030129
-     * @return environmentf
+     * @return environment
      */
     public Tab getEnvironment() {
         return environment;
+    }
+
+    public Tab getEstimationConfig() {
+        return estimationConfig;
+    }
+
+    public Tab getEffortEstimation() {
+        return effortEstimation;
     }
 }

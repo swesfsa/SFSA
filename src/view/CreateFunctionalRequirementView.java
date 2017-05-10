@@ -68,6 +68,7 @@ public class CreateFunctionalRequirementView extends ViewTemplate implements ICr
         classification.setValue("Eingabe");
 
         scene = new Scene(root, 600, 450);
+        System.out.println("CreatedFRView Constructor finished");
     }
 
     /**
@@ -79,6 +80,7 @@ public class CreateFunctionalRequirementView extends ViewTemplate implements ICr
         stage.setTitle("Erstellung einer neuen funktionalen Anforderung");
         stage.setResizable(false);
         stage.show();
+        System.out.println("Stage created");
     }
 
     public void close(Stage stage) {
