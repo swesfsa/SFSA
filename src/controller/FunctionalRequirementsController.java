@@ -17,10 +17,8 @@ public class FunctionalRequirementsController extends ControllerTemplate {
 
         _model = model;
         _view = new FunctionalRequirementsView(_model);
-        System.out.println("View created");
 
         _view.getNewButton().setOnAction(new NewButtonEventHandler());
-        System.out.println("NewButtonEventHandler created");
         _view.getEditButton().setOnAction(new EditButtonEventHandler());
         _view.getDeleteButton().setOnAction(new DeleteButtonEventHandler());
     }
@@ -30,7 +28,6 @@ public class FunctionalRequirementsController extends ControllerTemplate {
         @Override
         public void handle(ActionEvent event) {
             try {
-                System.out.println("NewButtonClicked");
                 IController controller = new CreateFunctionalRequirementController(_model);
                 controller.show();
             } catch (Exception e) {

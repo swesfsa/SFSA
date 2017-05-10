@@ -57,9 +57,7 @@ public class SFSAController extends ControllerTemplate implements IController {
        @Override
        public void handle(Event event) {
            try {
-               System.out.println("Tab clicked");
                IController controller = new FunctionalRequirementsController(_model);
-               System.out.println("controller created: " + controller.toString());
            } catch (Exception e) {
                System.out.println(e);
            }
