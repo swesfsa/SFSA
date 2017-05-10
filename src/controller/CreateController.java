@@ -5,7 +5,7 @@ import javafx.scene.control.Alert;
 /**
  * Created by 1030129 on 03.05.17.
  */
-public class CreateController {
+public class CreateController extends ControllerTemplate {
 
     public void openEmptyTextFieldWarning() {
 

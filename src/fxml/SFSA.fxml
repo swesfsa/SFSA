@@ -35,14 +35,6 @@
       </MenuBar>
       <TabPane fx:id="tabPane" layoutX="-5.0" layoutY="27.0" prefHeight="200.0" prefWidth="200.0" tabClosingPolicy="UNAVAILABLE" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="29.0">
         <tabs>
-          <Tab text="Auftraggeber">
-               <content>
-                  <BorderPane prefHeight="200.0" prefWidth="200.0">
-                     <center>
-                        <fx:include source="Client.fxml" />
-                     </center></BorderPane>
-               </content>
-          </Tab>
           <Tab fx:id="targetSpecificationTab" text="Zielbestimmung">
                <content>
                   <BorderPane prefHeight="200.0" prefWidth="200.0">
@@ -86,7 +78,7 @@
                      </center></BorderPane>
                </content>
             </Tab>
-            <Tab text="Schätzkonfigurationen">
+            <Tab text="Schätzkonfiguration">
               <content>
                 <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
               </content>

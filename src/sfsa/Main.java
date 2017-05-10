@@ -22,7 +22,7 @@ public class Main extends Application {
     }
 
     @Override
-    public void start(Stage primaryStage) throws Exception{
+    public void start(Stage primaryStage) throws Exception {
       /*  Parent root = FXMLLoader.load(getClass().getResource("../fxml/SFSA.fxml"));
         primaryStage.setTitle("SFSA - Software für standardisierte Anforderungssammlung");
         Scene scene = new Scene(root, 900, 500);
@@ -55,14 +55,12 @@ public class Main extends Application {
         StageHandler.getInstance().setPrimaryStage(primaryStage);
 
         IModel model = new Model();
-        /*model.addFunctionalRequirement(new FunctionalRequirement(1, "Peter Bohl", "Test", Priority.LOW));
-        model.addFunctionalRequirement(new FunctionalRequirement(2, "Tim Seitz", "ABC", Priority.HIGH));
-        model.addFunctionalRequirement(new FunctionalRequirement(3, "Marco Stierle", "Test", Priority.HIGH));
-        model.addFunctionalRequirement(new FunctionalRequirement(4, "Dr. Dre", "2001", Priority.MIDDLE));
-        model.addFunctionalRequirement(new FunctionalRequirement(5, "Future", "Mask Off", Priority.HIGH));*/
 
-        IController controller = new CreateProductDataController(model);
+        IController controller = new SFSAController(model);
+        //IController controller = new CreateProductDataController(model);
+        //IController controller = new CreateFunctionalRequirementController(model);
         controller.show();
+
     }
 
 }

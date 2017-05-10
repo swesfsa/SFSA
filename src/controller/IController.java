@@ -1,4 +1,7 @@
 package controller;
+
+import view.IView;
+
 /**
  * @author 9459758
  */

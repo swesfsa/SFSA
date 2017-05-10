@@ -6,28 +6,29 @@ import misc.StageHandler;
 import model.IModel;
 import view.SFSAView;
 
-public class SFSAController implements IController {
+public class SFSAController extends ControllerTemplate implements IController {
 
-   private IModel model;
-
-   private SFSAView view;
+   private SFSAView _view;
 
    public SFSAController(IModel model) throws Exception{
 
-       this.model = model;
-       this.view = new SFSAView(model);
+       _model = model;
+       _view = new SFSAView(model);
 
-       view.getTargetSpecification().setOnSelectionChanged(new TargetSpecificationTabEventHandler());
-       view.getProductUse().setOnSelectionChanged(new ProductUseTabEventHandler());
-       view.getFunctionalRequirements().setOnSelectionChanged(new FunctionalRequirementsTabEventHandler());
-       view.getProductData().setOnSelectionChanged(new ProductDataTabEventHandler());
+       _view.getTargetSpecification().setOnSelectionChanged(new TargetSpecificationTabEventHandler());
+       _view.getEnvironment().setOnSelectionChanged(new EnvironmentTabEventHandler());
+       _view.getProductUse().setOnSelectionChanged(new ProductUseTabEventHandler());
+       _view.getFunctionalRequirements().setOnSelectionChanged(new FunctionalRequirementsTabEventHandler());
+       _view.getProductData().setOnSelectionChanged(new ProductDataTabEventHandler());
+       _view.getEstimationConfig().setOnSelectionChanged(new EstimationConfigTabEventHandler());
+       _view.getEffortEstimation().setOnSelectionChanged(new EffortEstimationTabEventHandler());
    }
 
    public void show() {
-       view.show(StageHandler.getInstance().getPrimaryStage());
+       _view.show(StageHandler.getInstance().getPrimaryStage());
    }
 
-   class TargetSpecificationTabEventHandler implements  EventHandler<Event> {
+   class TargetSpecificationTabEventHandler implements EventHandler<Event> {
 
        @Override
        public void handle(Event event) {
@@ -39,7 +40,7 @@ public class SFSAController implements IController {
 
        @Override
        public void handle(Event event) {
-
+           System.out.println("environmentTab clicked");
        }
    }
 
@@ -55,15 +56,37 @@ public class SFSAController implements IController {
 
        @Override
        public void handle(Event event) {
-           System.out.println("functionaleRequirementsTab clicked");
+           try {
+               System.out.println("Tab clicked");
+               IController controller = new FunctionalRequirementsController(_model);
+               System.out.println("controller created: " + controller.toString());
+           } catch (Exception e) {
+               System.out.println(e);
+           }
        }
    }
 
-   class ProductDataTabEventHandler implements  EventHandler<Event> {
+   class ProductDataTabEventHandler implements EventHandler<Event> {
 
        @Override
        public void handle(Event event) {
            System.out.println("productDataTab clicked");
+       }
+   }
+
+   class EstimationConfigTabEventHandler implements EventHandler<Event> {
+
+       @Override
+       public void handle(Event event) {
+           System.out.println("estimationConfigTab clicked");
+       }
+   }
+
+   class EffortEstimationTabEventHandler implements EventHandler<Event> {
+
+       @Override
+       public void handle(Event event) {
+           System.out.println("effortEstimationTab clicked");
        }
    }
 

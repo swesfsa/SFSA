@@ -1,18 +1,58 @@
 package controller;
 
+import javafx.event.ActionEvent;
+import javafx.event.Event;
+import javafx.event.EventHandler;
 import model.IModel;
+import view.FunctionalRequirementsView;
 
 /**
  * Created by 1030129 on 02.05.17.
  */
-public class FunctionalRequirementsController implements IController {
+public class FunctionalRequirementsController extends ControllerTemplate {
 
-    public FunctionalRequirementsController(IModel model) {
+    private FunctionalRequirementsView _view;
 
+    public FunctionalRequirementsController(IModel model) throws Exception {
+
+        _model = model;
+        _view = new FunctionalRequirementsView(_model);
+        System.out.println("View created");
+
+        _view.getNewButton().setOnAction(new NewButtonEventHandler());
+        System.out.println("NewButtonEventHandler created");
+        _view.getEditButton().setOnAction(new EditButtonEventHandler());
+        _view.getDeleteButton().setOnAction(new DeleteButtonEventHandler());
     }
 
-    @Override
-    public void show() {
+    private class NewButtonEventHandler implements EventHandler<ActionEvent> {
 
+        @Override
+        public void handle(ActionEvent event) {
+            try {
+                System.out.println("NewButtonClicked");
+                IController controller = new CreateFunctionalRequirementController(_model);
+                controller.show();
+            } catch (Exception e) {
+                System.out.println(e);
+            }
+        }
     }
+
+    private class EditButtonEventHandler implements EventHandler<ActionEvent> {
+
+        @Override
+        public void handle(ActionEvent event) {
+            System.out.println("EditButtonClicked");
+        }
+    }
+
+    private class DeleteButtonEventHandler implements EventHandler<ActionEvent> {
+
+        @Override
+        public void handle(ActionEvent event) {
+            System.out.println("DeleteButtonClicked");
+        }
+    }
+
 }
