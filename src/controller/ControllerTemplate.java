@@ -1,5 +1,6 @@
 package controller;
 
+import javafx.scene.layout.AnchorPane;
 import model.IModel;
 
 /**
@@ -12,5 +13,10 @@ public class ControllerTemplate implements IController {
     @Override
     public void show() {
 
+    }
+
+    @Override
+    public AnchorPane getfrPane() {
+        return null;
     }
 }

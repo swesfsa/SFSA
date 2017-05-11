@@ -4,12 +4,15 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.control.Button;
 import javafx.scene.control.ListView;
+import javafx.scene.layout.AnchorPane;
 import model.IModel;
 
 /**
  * Created by 1030129 on 28.04.17.
  */
 public class FunctionalRequirementsView implements IFunctionalRequirementsView{
+
+    private AnchorPane frPane;
 
     private IModel model;
 
@@ -33,6 +36,7 @@ public class FunctionalRequirementsView implements IFunctionalRequirementsView{
         editButton = (Button) root.lookup("#editButton");
         deleteButton = (Button) root.lookup("#deleteButton");
         requirementsList = (ListView) root.lookup("#requirementsList");
+        frPane = (AnchorPane) root.lookup("#frPane");
     }
 
     /**
@@ -65,5 +69,9 @@ public class FunctionalRequirementsView implements IFunctionalRequirementsView{
      */
     public ListView getRequirementsList() {
         return requirementsList;
+    }
+
+    public AnchorPane getFrPane() {
+        return frPane;
     }
 }

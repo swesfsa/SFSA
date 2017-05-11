@@ -58,6 +58,7 @@ public class SFSAController extends ControllerTemplate implements IController {
        public void handle(Event event) {
            try {
                IController controller = new FunctionalRequirementsController(_model);
+               _view.getFunctionalRequirements().setContent(controller.getfrPane());
            } catch (Exception e) {
                System.out.println(e);
            }

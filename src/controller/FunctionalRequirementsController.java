@@ -3,6 +3,7 @@ package controller;
 import javafx.event.ActionEvent;
 import javafx.event.Event;
 import javafx.event.EventHandler;
+import javafx.scene.layout.AnchorPane;
 import model.IModel;
 import view.FunctionalRequirementsView;
 
@@ -50,6 +51,10 @@ public class FunctionalRequirementsController extends ControllerTemplate {
         public void handle(ActionEvent event) {
             System.out.println("DeleteButtonClicked");
         }
+    }
+
+    public AnchorPane getfrPane() {
+        return _view.getFrPane();
     }
 
 }
