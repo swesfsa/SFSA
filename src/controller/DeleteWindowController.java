@@ -9,7 +9,7 @@ import view.DeleteWindowView;
 /**
  * Created by marcostierle on 27.04.17.
  */
-public class DeleteWindowController implements IController {
+public class DeleteWindowController extends ControllerTemplate implements IController {
 
     private IModel model;
 

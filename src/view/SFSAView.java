@@ -42,10 +42,10 @@ public class SFSAView extends ViewTemplate implements ISFSAView {
         targetSpecification = tabPane.getTabs().get(0);
         environment = tabPane.getTabs().get(1);
         productUse = tabPane.getTabs().get(2);
-        functionalRequirements = tabPane.getTabs().get(3);
-        productData = tabPane.getTabs().get(4);
-        estimationConfig = tabPane.getTabs().get(5);
-        effortEstimation = tabPane.getTabs().get(6);
+        functionalRequirements = tabPane.getTabs().get(6);
+        productData = tabPane.getTabs().get(3);
+        estimationConfig = tabPane.getTabs().get(4);
+        effortEstimation = tabPane.getTabs().get(5);
 
         scene = new Scene(root, 1000, 600);
     }

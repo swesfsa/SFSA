@@ -1,5 +1,6 @@
 package controller;
 
+import javafx.scene.layout.AnchorPane;
 import view.IView;
 
 /**
@@ -7,4 +8,5 @@ import view.IView;
  */
 public interface IController {
     void show();
+    AnchorPane getfrPane();
 }
