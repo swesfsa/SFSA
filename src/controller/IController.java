@@ -8,5 +8,5 @@ import view.IView;
  */
 public interface IController {
     void show();
-    AnchorPane getfrPane();
+    AnchorPane getPane();
 }

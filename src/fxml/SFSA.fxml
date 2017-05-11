@@ -61,6 +61,11 @@
                   </BorderPane>
                </content>
             </Tab>
+            <Tab fx:id="functionalRequirements" text="Funktionale Anforderungen">
+              <content>
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+              </content>
+            </Tab>
             <Tab fx:id="productDataTab" text="Produktdaten">
                <content>
                   <BorderPane prefHeight="200.0" prefWidth="200.0">
@@ -75,11 +80,6 @@
               </content>
             </Tab>
             <Tab text="Aufwandsschätzung">
-              <content>
-                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
-              </content>
-            </Tab>
-            <Tab fx:id="functionalRequirements" text="Funktionale Anforderungen">
               <content>
                 <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
               </content>

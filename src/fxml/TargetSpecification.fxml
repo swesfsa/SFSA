@@ -4,7 +4,7 @@
 <?import javafx.scene.control.TextArea?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="338.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane fx:id="AnchorPane" minHeight="0.0" minWidth="0.0" prefHeight="338.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <TextArea fx:id="targetSpecificationField" layoutX="194.0" layoutY="46.0" prefHeight="200.0" prefWidth="200.0" promptText="Geben Sie hier die Zielbestimmung ein..." wrapText="true" AnchorPane.bottomAnchor="55.0" AnchorPane.leftAnchor="14.0" AnchorPane.rightAnchor="14.0" AnchorPane.topAnchor="14.0" />
       <Button fx:id="editButton" layoutX="391.0" layoutY="297.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="27.0" prefWidth="85.0" text="Bearbeiten" AnchorPane.bottomAnchor="14.0" AnchorPane.rightAnchor="107.0" />

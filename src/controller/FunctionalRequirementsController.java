@@ -10,7 +10,7 @@ import view.FunctionalRequirementsView;
 /**
  * Created by 1030129 on 02.05.17.
  */
-public class FunctionalRequirementsController extends ControllerTemplate {
+public class FunctionalRequirementsController extends CreateController {
 
     private FunctionalRequirementsView _view;
 
@@ -50,11 +50,12 @@ public class FunctionalRequirementsController extends ControllerTemplate {
         @Override
         public void handle(ActionEvent event) {
             System.out.println("DeleteButtonClicked");
+            openDeleteQuery();
         }
     }
 
-    public AnchorPane getfrPane() {
-        return _view.getFrPane();
+    public AnchorPane getPane() {
+        return _view.getPane();
     }
 
 }
