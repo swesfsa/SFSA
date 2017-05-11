@@ -16,7 +16,7 @@ public class ControllerTemplate implements IController {
     }
 
     @Override
-    public AnchorPane getfrPane() {
+    public AnchorPane getPane() {
         return null;
     }
 }

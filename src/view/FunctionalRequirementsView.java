@@ -12,7 +12,7 @@ import model.IModel;
  */
 public class FunctionalRequirementsView implements IFunctionalRequirementsView{
 
-    private AnchorPane frPane;
+    private AnchorPane Pane;
 
     private IModel model;
 
@@ -36,7 +36,7 @@ public class FunctionalRequirementsView implements IFunctionalRequirementsView{
         editButton = (Button) root.lookup("#editButton");
         deleteButton = (Button) root.lookup("#deleteButton");
         requirementsList = (ListView) root.lookup("#requirementsList");
-        frPane = (AnchorPane) root.lookup("#frPane");
+        Pane = (AnchorPane) root.lookup("#AnchorPane");
     }
 
     /**
@@ -71,7 +71,7 @@ public class FunctionalRequirementsView implements IFunctionalRequirementsView{
         return requirementsList;
     }
 
-    public AnchorPane getFrPane() {
-        return frPane;
+    public AnchorPane getPane() {
+        return Pane;
     }
 }
