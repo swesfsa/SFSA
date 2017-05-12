@@ -1,13 +1,9 @@
 package view;
 
-import com.aquafx_project.AquaFx;
-import com.aquafx_project.controls.skin.styles.TabPaneType;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.Tab;
-import javafx.scene.control.TabPane;
+import javafx.scene.control.*;
 import javafx.stage.Stage;
 import model.IModel;
 
@@ -29,6 +25,10 @@ public class SFSAView extends ViewTemplate implements ISFSAView {
     private Tab estimationConfig;
     private Tab effortEstimation;
 
+    private MenuBar menuBar;
+    private Menu fileMenu;
+    private MenuItem closeItem;
+
     /**
      * @author 1030129
      * @throws Exception
@@ -49,6 +49,10 @@ public class SFSAView extends ViewTemplate implements ISFSAView {
         estimationConfig = tabPane.getTabs().get(5);
         effortEstimation = tabPane.getTabs().get(6);
 
+        menuBar = (MenuBar) root.lookup("#menuBar");
+        fileMenu = menuBar.getMenus().get(0);
+        closeItem = fileMenu.getItems().get(4);
+
         scene = new Scene(root, 1000, 600);
     }
 
@@ -60,6 +64,10 @@ public class SFSAView extends ViewTemplate implements ISFSAView {
         stage.setScene(scene);
         stage.setTitle("SFSA - Software für standardisierte Anforderungssammlung");
         stage.show();
+    }
+
+    public void close(Stage stage) {
+        stage.close();
     }
 
     /**
@@ -108,5 +116,9 @@ public class SFSAView extends ViewTemplate implements ISFSAView {
 
     public Tab getEffortEstimation() {
         return effortEstimation;
+    }
+
+    public MenuItem getCloseItem() {
+        return closeItem;
     }
 }

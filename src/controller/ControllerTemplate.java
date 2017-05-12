@@ -1,5 +1,6 @@
 package controller;
 
+import javafx.scene.control.Alert;
 import javafx.scene.layout.AnchorPane;
 import model.IModel;
 
@@ -16,7 +17,25 @@ public class ControllerTemplate implements IController {
     }
 
     @Override
-    public AnchorPane getPane() {
+    public AnchorPane getAnchorPane() {
         return null;
+    }
+
+    public void openEmptyTextFieldWarning() {
+
+        Alert alert = new Alert((Alert.AlertType.WARNING));
+        alert.setTitle("Warnung");
+        alert.setHeaderText("Leeres Textfeld");
+        alert.setContentText("Bitte füllen Sie alle Textfelder aus.");
+        alert.showAndWait();
+    }
+
+    public void openNumberFormatWarning(String contentText) {
+
+        Alert alert = new Alert(Alert.AlertType.WARNING);
+        alert.setTitle("Warnung");
+        alert.setHeaderText("Falsches Eingabeformat");
+        alert.setContentText(contentText);
+        alert.showAndWait();
     }
 }

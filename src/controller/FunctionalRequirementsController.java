@@ -10,18 +10,29 @@ import view.FunctionalRequirementsView;
 /**
  * Created by 1030129 on 02.05.17.
  */
-public class FunctionalRequirementsController extends CreateController {
+public class FunctionalRequirementsController extends TabController {
 
+    private static FunctionalRequirementsController instance;
     private FunctionalRequirementsView _view;
 
-    public FunctionalRequirementsController(IModel model) throws Exception {
+    private FunctionalRequirementsController(IModel model) throws Exception {
 
         _model = model;
         _view = new FunctionalRequirementsView(_model);
+        anchorPane = _view.getAnchorPane();
 
         _view.getNewButton().setOnAction(new NewButtonEventHandler());
         _view.getEditButton().setOnAction(new EditButtonEventHandler());
         _view.getDeleteButton().setOnAction(new DeleteButtonEventHandler());
+    }
+
+    public synchronized static FunctionalRequirementsController getController(IModel model) throws Exception {
+
+        if (instance == null) {
+            instance = new FunctionalRequirementsController(model);
+        }
+
+        return instance;
     }
 
     private class NewButtonEventHandler implements EventHandler<ActionEvent> {
@@ -52,10 +63,6 @@ public class FunctionalRequirementsController extends CreateController {
             System.out.println("DeleteButtonClicked");
             openDeleteQuery();
         }
-    }
-
-    public AnchorPane getPane() {
-        return _view.getPane();
     }
 
 }

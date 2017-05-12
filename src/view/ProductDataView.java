@@ -9,7 +9,7 @@ import model.IModel;
 /**
  * Created by 1030129 on 28.04.17.
  */
-public class ProductDataView implements IProductDataView{
+public class ProductDataView extends TabView implements IProductDataView{
 
     private IModel model;
 

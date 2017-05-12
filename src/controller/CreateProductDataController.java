@@ -15,7 +15,7 @@ import static misc.ProductDataClassification.ILF;
 /**
  * Created by 1030129 on 29.04.17.
  */
-public class CreateProductDataController extends CreateController implements IController {
+public class CreateProductDataController extends ControllerTemplate {
 
     private IModel model;
 

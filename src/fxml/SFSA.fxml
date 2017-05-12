@@ -10,15 +10,15 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <MenuBar layoutX="-6.0" layoutY="5.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <MenuBar fx:id="menuBar" layoutX="-6.0" layoutY="5.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
         <menus>
-          <Menu mnemonicParsing="false" text="Datei">
+          <Menu fx:id="file" mnemonicParsing="false" text="Datei">
             <items>
                   <MenuItem mnemonicParsing="false" text="Neues Projekt" />
                   <MenuItem mnemonicParsing="false" text="Öffnen" />
                   <MenuItem mnemonicParsing="false" text="Speichern" />
                   <MenuItem mnemonicParsing="false" text="Speichern als..." />
-              <MenuItem mnemonicParsing="false" text="Schließen" />
+              <MenuItem fx:id="close" mnemonicParsing="false" text="Schließen" />
             </items>
           </Menu>
           <Menu mnemonicParsing="false" text="Bearbeiten">
@@ -37,13 +37,8 @@
         <tabs>
           <Tab fx:id="targetSpecificationTab" text="Zielbestimmung">
                <content>
-                  <BorderPane prefHeight="200.0" prefWidth="200.0">
-                     <center>
-                        <fx:include source="TargetSpecification.fxml" />
-                     </center>
-                  </BorderPane>
-               </content>
-          </Tab>
+                  <AnchorPane prefHeight="200.0" prefWidth="200.0" />
+               </content></Tab>
             <Tab text="Umgebung">
                <content>
                   <BorderPane prefHeight="200.0" prefWidth="200.0">

@@ -4,12 +4,13 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextArea;
+import javafx.scene.layout.AnchorPane;
 import model.IModel;
 
 /**
  * Created by 1030129 on 28.04.17.
  */
-public class TargetSpecificationView implements ITargetSpecificationView {
+public class TargetSpecificationView extends TabView implements ITargetSpecificationView {
 
     private IModel model;
 
@@ -33,6 +34,7 @@ public class TargetSpecificationView implements ITargetSpecificationView {
         editButton = (Button) root.lookup("#editButton");
         saveButton = (Button) root.lookup("#saveButton");
         targetSpecification = (TextArea) root.lookup("#textArea");
+        anchorPane = (AnchorPane) root.lookup("#AnchorPane");
     }
 
     /**
