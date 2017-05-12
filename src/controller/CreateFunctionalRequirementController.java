@@ -6,7 +6,6 @@ import javafx.stage.Stage;
 import misc.FunctionalRequirement;
 import misc.FunctionalRequirementClassification;
 import misc.Priority;
-import misc.StageHandler;
 import model.IModel;
 import view.CreateFunctionalRequirementView;
 import view.EmptyTextfieldException;
@@ -23,10 +22,9 @@ import static misc.Priority.MIDDLE;
 /**
  * Created by 1030129 on 02.05.17.
  */
-public class CreateFunctionalRequirementController extends CreateController {
+public class CreateFunctionalRequirementController extends ControllerTemplate {
 
-    private Stage stage;
-
+    private Stage _stage;
     private CreateFunctionalRequirementView _view;
     private FunctionalRequirement functionalRequirement;
 
@@ -39,9 +37,9 @@ public class CreateFunctionalRequirementController extends CreateController {
     private String description;
     private Priority priority = null;
     private FunctionalRequirementClassification classification = null;
-    int id;
-    int ftr;
-    int det;
+    private int id;
+    private int ftr;
+    private int det;
 
     /**
      * @author 1030129
@@ -51,8 +49,7 @@ public class CreateFunctionalRequirementController extends CreateController {
 
         _model = model;
         _view = new CreateFunctionalRequirementView(_model);
-        System.out.println("CreatedFRView created");
-
+        
         _view.getSaveButton().setOnAction(new SaveButtonEventHandler());
         _view.getCancelButton().setOnAction(new CancelButtonEventHandler());
 
@@ -62,7 +59,12 @@ public class CreateFunctionalRequirementController extends CreateController {
      * @author 1030129
      */
     public void show() {
-        _view.show(StageHandler.getInstance().getPrimaryStage());
+        _stage = new Stage();
+        _view.show(_stage);
+    }
+
+    private void close() {
+        _view.close(_stage);
     }
 
     /**
@@ -127,7 +129,7 @@ public class CreateFunctionalRequirementController extends CreateController {
          */
         @Override
         public void handle(ActionEvent event) {
-            _view.close(StageHandler.getInstance().getPrimaryStage());
+            close();
         }
     }
 
@@ -148,7 +150,7 @@ public class CreateFunctionalRequirementController extends CreateController {
                         source, references, description, priority, classification);
 
                 _model.addFunctionalRequirement(functionalRequirement);
-                _view.close(StageHandler.getInstance().getPrimaryStage());
+                close();
 
                 // DEBUG
                 _model.getFunctionalRequirementList().iterator().forEachRemaining(FunctionalRequirement::print);

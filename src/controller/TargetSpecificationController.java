@@ -1,7 +1,84 @@
 package controller;
 
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
+import misc.TargetSpecification;
+import model.IModel;
+import view.EmptyTextfieldException;
+import view.TargetSpecificationView;
+
 /**
  * Created by marcostierle on 28.04.17.
  */
-public class TargetSpecificationController {
+public class TargetSpecificationController extends TabController {
+
+    private static TargetSpecificationController instance;
+    private TargetSpecificationView _view;
+
+    private TargetSpecification targetSpecification;
+    private String targetSpecString;
+
+    private TargetSpecificationController(IModel model) throws Exception {
+
+        _model = model;
+        _view = new TargetSpecificationView(_model);
+        anchorPane = _view.getAnchorPane();
+
+        _view.getSaveButton().setOnAction(new SaveButtonEventHandler());
+        _view.getEditButton().setOnAction(new EditButtonEventHandler());
+        _view.getDeleteButton().setOnAction(new DeleteButtonEventHandler());
+    }
+
+    public synchronized static TargetSpecificationController getController(IModel model) throws Exception {
+
+        if (instance == null) {
+            instance = new TargetSpecificationController(model);
+        }
+
+        return instance;
+    }
+
+    private void getDataFromView() {
+        targetSpecString = _view.getTargetSpecification().getText();
+    }
+
+    private void checkForEmptyFields() throws EmptyTextfieldException {
+        if (targetSpecString.equals("")) {
+            throw new EmptyTextfieldException();
+        }
+    }
+
+    private class SaveButtonEventHandler implements EventHandler<ActionEvent> {
+
+        @Override
+        public void handle(ActionEvent event) {
+            try {
+                System.out.println("saveButtonClicked");
+                getDataFromView();
+                checkForEmptyFields();
+            } catch (EmptyTextfieldException e) {
+                System.out.println("Error: " + e);
+                openEmptyTextFieldWarning();
+            } catch (Exception e) {
+                System.out.println(e);
+            }
+        }
+    }
+
+    private class EditButtonEventHandler implements EventHandler<ActionEvent> {
+
+        @Override
+        public void handle(ActionEvent event) {
+            System.out.println("EditButtonClicked");
+        }
+    }
+
+    private class DeleteButtonEventHandler implements EventHandler<ActionEvent> {
+
+        @Override
+        public void handle(ActionEvent event) {
+            System.out.println("DeleteButtonClicked");
+            openDeleteQuery();
+        }
+    }
 }
