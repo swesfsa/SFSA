@@ -2,18 +2,10 @@ package sfsa;
 
 import controller.*;
 import javafx.application.Application;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.stage.Stage;
-import misc.FunctionalRequirement;
-import misc.Priority;
 import misc.StageHandler;
 import model.IModel;
 import model.Model;
-import view.CreateProductDataView;
-import view.DeleteWindowView;
-import view.CreateFunctionalRequirementView;
 
 public class Main extends Application {
 
@@ -51,6 +43,7 @@ public class Main extends Application {
  * example using mvc model
  * todo: adding fxml import to view classes
  */
+
         // store Stage instance in Singleton Pattern to be accessed by views
         StageHandler.getInstance().setPrimaryStage(primaryStage);
 
