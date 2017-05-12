@@ -1,5 +1,7 @@
 package view;
 
+import com.aquafx_project.AquaFx;
+import com.aquafx_project.controls.skin.styles.TabPaneType;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
