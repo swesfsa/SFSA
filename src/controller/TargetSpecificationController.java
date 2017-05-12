@@ -56,6 +56,10 @@ public class TargetSpecificationController extends TabController {
                 System.out.println("saveButtonClicked");
                 getDataFromView();
                 checkForEmptyFields();
+
+                targetSpecification = new TargetSpecification(targetSpecString);
+                _model.setTargetSpecification(targetSpecification);
+                targetSpecification.print();
             } catch (EmptyTextfieldException e) {
                 System.out.println("Error: " + e);
                 openEmptyTextFieldWarning();
