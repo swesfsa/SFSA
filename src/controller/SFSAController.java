@@ -18,13 +18,7 @@ public class SFSAController extends ControllerTemplate implements IController {
        _model = model;
        _view = new SFSAView(model);
 
-       try {
-           IController controller = TargetSpecificationController.getController(_model);
-           _view.getTargetSpecification().setContent(controller.getAnchorPane());
-           System.out.println(controller.toString());
-       } catch (Exception e) {
-           System.out.println(e);
-       }
+       loadTargetSpecification();
 
        _view.getTargetSpecification().setOnSelectionChanged(new TargetSpecificationTabEventHandler());
        _view.getEnvironment().setOnSelectionChanged(new EnvironmentTabEventHandler());
@@ -41,17 +35,21 @@ public class SFSAController extends ControllerTemplate implements IController {
        _view.show(StageHandler.getInstance().getPrimaryStage());
    }
 
+   private void loadTargetSpecification() {
+       try {
+           IController controller = TargetSpecificationController.getController(_model);
+           _view.getTargetSpecification().setContent(controller.getAnchorPane());
+           System.out.println(controller.toString());
+       } catch (Exception e) {
+           System.out.println(e);
+       }
+   }
+
    class TargetSpecificationTabEventHandler implements EventHandler<Event> {
 
        @Override
        public void handle(Event event) {
-           try {
-               IController controller = TargetSpecificationController.getController(_model);
-               _view.getTargetSpecification().setContent(controller.getAnchorPane());
-               System.out.println(controller.toString());
-           } catch (Exception e) {
-               System.out.println(e);
-           }
+           loadTargetSpecification();
        }
    }
 
