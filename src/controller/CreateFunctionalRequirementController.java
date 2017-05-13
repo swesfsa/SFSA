@@ -72,7 +72,7 @@ public class CreateFunctionalRequirementController extends ControllerTemplate {
      * of the CreateFunctionalRequirementView.
      * @author 1030129
      */
-    private void getDataFromView() {
+    private void getDataFromView() throws EmptyTextfieldException {
 
         date = _view.getDate().getValue();
         title = _view.getTitle().getText();
@@ -81,6 +81,7 @@ public class CreateFunctionalRequirementController extends ControllerTemplate {
         source = _view.getSource().getText();
         references = _view.getReferences().getText();
         description = _view.getDescription().getText();
+        checkForEmptyFields();
 
         switch (_view.getPriority().getValue()) {
             case "Niedrig": priority = LOW;
@@ -144,7 +145,6 @@ public class CreateFunctionalRequirementController extends ControllerTemplate {
 
             try {
                 getDataFromView();
-                checkForEmptyFields();
 
                 functionalRequirement = new FunctionalRequirement(id, ftr, det, date, title, function, protagonist,
                         source, references, description, priority, classification);
