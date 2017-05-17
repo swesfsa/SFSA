@@ -11,15 +11,17 @@ import view.EnvironmentView;
 /**
  * Created by 1030129 on 02.05.17.
  */
-public class EnvironmentController extends ControllerTemplate {
+public class EnvironmentController extends TabController {
 
+    private static EnvironmentController instance;
     private IModel model;
-
     private EnvironmentView view;
 
     private Environment environment;
+    private String hardwareEnvironment;
+    private String softwareEnvironment;
 
-    public EnvironmentController(IModel model) throws Exception{
+    private EnvironmentController(IModel model) throws Exception{
 
         this.model = model;
         this.view = new EnvironmentView(model);
@@ -40,18 +42,34 @@ public class EnvironmentController extends ControllerTemplate {
         view.getCancelButton().setOnAction(new CancelButtonEventHandler());
     }
 
+    public synchronized static EnvironmentController getController(IModel model) throws Exception {
+
+        if (instance == null) {
+            instance = new EnvironmentController(model);
+        }
+
+        return instance;
+    }
+
+    private void getDataFromView() throws EmptyTextFieldException {
+        hardwareEnvironment = view.getHardwareEnvironment().getText();
+        softwareEnvironment = view.getSoftwareEnvironment().getText();
+        checkForEmptyFields();
+    }
+
+    private void checkForEmptyFields() throws EmptyTextFieldException {
+        if (hardwareEnvironment.equals("") || softwareEnvironment.equals("")) {
+            throw new EmptyTextFieldException();
+        }
+    }
+
     public class SaveButtonEventHandler implements EventHandler<ActionEvent> {
 
         @Override
         public void handle(ActionEvent event) {
 
             try {
-                String hardwareEnvironment = view.getHardwareEnvironment().getText();
-                String softwareEnvironment = view.getSoftwareEnvironment().getText();
-
-                if (hardwareEnvironment.equals("") || softwareEnvironment.equals("")) {
-                    throw new EmptyTextFieldException();
-                }
+                getDataFromView();
 
                 environment = new Environment(hardwareEnvironment, softwareEnvironment);
 

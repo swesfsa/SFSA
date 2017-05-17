@@ -5,7 +5,12 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.stage.Stage;
+import misc.FunctionalRequirementClassification;
+import misc.Priority;
 import model.IModel;
+
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * Created by 1030129 on 27.04.17.
@@ -34,6 +39,8 @@ public class CreateFunctionalRequirementView extends ViewTemplate implements ICr
 
     private ChoiceBox<String> priority;
     private ChoiceBox<String> classification;
+    private Map<String, Priority> priorityMap;
+    private Map<String, FunctionalRequirementClassification> classificationMap;
 
     /**
      * @author 1030129
@@ -61,13 +68,19 @@ public class CreateFunctionalRequirementView extends ViewTemplate implements ICr
         det = (TextField) root.lookup("#det");
         classification = (ChoiceBox<String>) root.lookup("#classification");
 
-        priority.getItems().addAll("Niedrig", "Mittel", "Hoch");
-        priority.setValue("Mittel");
+        priorityMap = new HashMap<>();
+        for (Priority iterate : Priority.values()) {
+            priority.getItems().add(iterate.getPriority());
+            priorityMap.put(iterate.getPriority(), iterate);
+        }
 
-        classification.getItems().addAll("Eingabe", "Ausgabe", "Abfrage");
-        classification.setValue("Eingabe");
+        classificationMap = new HashMap<>();
+        for (FunctionalRequirementClassification iterate : FunctionalRequirementClassification.values()) {
+            classification.getItems().add(iterate.getClassification());
+            classificationMap.put(iterate.getClassification(), iterate);
+        }
 
-        scene = new Scene(root, 600, 450);
+                scene = new Scene(root, 600, 450);
         System.out.println("CreatedFRView Constructor finished");
     }
 
@@ -199,4 +212,11 @@ public class CreateFunctionalRequirementView extends ViewTemplate implements ICr
         return classification;
     }
 
+    public Map<String, Priority> getPriorityMap() {
+        return priorityMap;
+    }
+
+    public Map<String, FunctionalRequirementClassification> getClassificationMap() {
+        return classificationMap;
+    }
 }

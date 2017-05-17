@@ -8,7 +8,11 @@ import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
+import misc.ProductDataClassification;
 import model.IModel;
+
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * Created by 1030129 on 29.04.17.
@@ -31,6 +35,7 @@ public class CreateProductDataView extends ViewTemplate implements ICreateProduc
     private TextArea estimation;
 
     private ChoiceBox<String> classification;
+    private Map<String, ProductDataClassification> classificationMap;
 
     /**
      * @author 1030129
@@ -53,8 +58,11 @@ public class CreateProductDataView extends ViewTemplate implements ICreateProduc
         estimation = (TextArea) root.lookup("#estimationArea");
         classification = (ChoiceBox<String>) root.lookup("#classificationChoiceBox");
 
-        classification.getItems().addAll("ILF", "EIF");
-        classification.setValue("ILF");
+        classificationMap = new HashMap<>();
+        for (ProductDataClassification iterate : ProductDataClassification.values()) {
+            classification.getItems().add(iterate.getClassification());
+            classificationMap.put(iterate.getClassification(), iterate);
+        }
 
         scene = new Scene(root, 600, 400);
     }
@@ -145,5 +153,9 @@ public class CreateProductDataView extends ViewTemplate implements ICreateProduc
      */
     public ChoiceBox<String> getClassification() {
         return classification;
+    }
+
+    public Map<String, ProductDataClassification> getClassificationMap() {
+        return classificationMap;
     }
 }

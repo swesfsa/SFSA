@@ -12,13 +12,6 @@ import view.EmptyTextFieldException;
 
 import java.time.LocalDate;
 
-import static misc.FunctionalRequirementClassification.INPUT;
-import static misc.FunctionalRequirementClassification.OUTPUT;
-import static misc.FunctionalRequirementClassification.QUERY;
-import static misc.Priority.HIGH;
-import static misc.Priority.LOW;
-import static misc.Priority.MIDDLE;
-
 /**
  * Created by 1030129 on 02.05.17.
  */
@@ -83,25 +76,8 @@ public class CreateFunctionalRequirementController extends ControllerTemplate {
         description = _view.getDescription().getText();
         checkForEmptyFields();
 
-        switch (_view.getPriority().getValue()) {
-            case "Niedrig": priority = LOW;
-                break;
-            case "Mittel": priority = MIDDLE;
-                break;
-            case "Hoch": priority = HIGH;
-                break;
-            default: priority = LOW;
-        }
-
-        switch (_view.getClassification().getValue()) {
-            case "Eingabe": classification = INPUT;
-                break;
-            case "Ausgabe": classification = OUTPUT;
-                break;
-            case "Abfrage": classification = QUERY;
-                break;
-            default: classification = INPUT;
-        }
+        priority = _view.getPriorityMap().get(_view.getPriority().getValue());
+        classification = _view.getClassificationMap().get(_view.getClassification().getValue());
 
         id = Integer.parseInt(_view.getId().getText());
         ftr = Integer.parseInt(_view.getFtr().getText());

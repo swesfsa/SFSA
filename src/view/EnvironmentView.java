@@ -1,9 +1,11 @@
 package view;
 
+import controller.ProductUseController;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextArea;
+import javafx.scene.layout.AnchorPane;
 import model.IModel;
 
 /**
@@ -11,7 +13,7 @@ import model.IModel;
  */
 public class EnvironmentView extends TabView implements IEnvironmentView{
 
-    private IModel model;
+    private IModel _model;
 
     private Button saveButton;
     private Button editButton;
@@ -26,7 +28,7 @@ public class EnvironmentView extends TabView implements IEnvironmentView{
      */
     public EnvironmentView(IModel model) throws Exception{
 
-        this.model = model;
+        _model = model;
 
         Parent root = FXMLLoader.load(getClass().getResource("../fxml/Environment.fxml"));
 
@@ -35,6 +37,7 @@ public class EnvironmentView extends TabView implements IEnvironmentView{
         cancelButton = (Button) root.lookup("#cancelButton");
         hardwareEnvironment = (TextArea) root.lookup("#hardware");
         softwareEnvironment = (TextArea) root.lookup("#software");
+        anchorPane = (AnchorPane) root.lookup("#AnchorPane");
     }
 
     /**

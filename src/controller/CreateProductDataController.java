@@ -9,6 +9,8 @@ import model.IModel;
 import view.CreateProductDataView;
 import view.EmptyTextFieldException;
 
+import java.util.Map;
+
 import static misc.ProductDataClassification.EIF;
 import static misc.ProductDataClassification.ILF;
 
@@ -26,10 +28,12 @@ public class CreateProductDataController extends ControllerTemplate {
     private String memoryContent;
     private String references;
     private String estimation;
-    private ProductDataClassification classification = null;
+
     private int id;
     private int ret;
     private int det;
+
+    private ProductDataClassification classification = null;
 
     /**
      * @author 1030129
@@ -61,12 +65,7 @@ public class CreateProductDataController extends ControllerTemplate {
         references = _view.getReferences().getText();
         estimation = _view.getEstimation().getText();
 
-        switch (_view.getClassification().getValue()) {
-            case "ILF": classification = ILF;
-                break;
-            case "EIF": classification = EIF;
-                break;
-        }
+        classification = _view.getClassificationMap().get(_view.getClassification().getValue());
 
         id = Integer.parseInt(_view.getId().getText());
         ret = Integer.parseInt(_view.getRet().getText());

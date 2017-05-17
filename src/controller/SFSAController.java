@@ -57,7 +57,13 @@ public class SFSAController extends ControllerTemplate implements IController {
 
        @Override
        public void handle(Event event) {
-           System.out.println("environmentTab clicked");
+           try {
+               IController controller = EnvironmentController.getController(_model);
+               _view.getEnvironment().setContent(controller.getAnchorPane());
+               System.out.println(controller.toString());
+           } catch (Exception e) {
+               System.out.println(e);
+           }
        }
    }
 
