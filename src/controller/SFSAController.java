@@ -20,13 +20,13 @@ public class SFSAController extends ControllerTemplate implements IController {
 
        loadTargetSpecification();
 
-       _view.getTargetSpecification().setOnSelectionChanged(new TargetSpecificationTabEventHandler());
-       _view.getEnvironment().setOnSelectionChanged(new EnvironmentTabEventHandler());
-       _view.getProductUse().setOnSelectionChanged(new ProductUseTabEventHandler());
-       _view.getFunctionalRequirements().setOnSelectionChanged(new FunctionalRequirementsTabEventHandler());
-       _view.getProductData().setOnSelectionChanged(new ProductDataTabEventHandler());
-       _view.getEstimationConfig().setOnSelectionChanged(new EstimationConfigTabEventHandler());
-       _view.getEffortEstimation().setOnSelectionChanged(new EffortEstimationTabEventHandler());
+       _view.getTargetSpecificationTab().setOnSelectionChanged(new TargetSpecificationTabEventHandler());
+       _view.getEnvironmentTab().setOnSelectionChanged(new EnvironmentTabEventHandler());
+       _view.getProductUseTab().setOnSelectionChanged(new ProductUseTabEventHandler());
+       _view.getFunctionalRequirementsTab().setOnSelectionChanged(new FunctionalRequirementsTabEventHandler());
+       _view.getProductDataTab().setOnSelectionChanged(new ProductDataTabEventHandler());
+       _view.getEstimationConfigTab().setOnSelectionChanged(new EstimationConfigTabEventHandler());
+       _view.getCostEstimationTab().setOnSelectionChanged(new EffortEstimationTabEventHandler());
        _view.getCloseItem().setOnAction(new CloseItemEventHandler());
        StageHandler.getInstance().getPrimaryStage().setOnCloseRequest(new CloseRequestEventHandler());
    }
@@ -38,7 +38,7 @@ public class SFSAController extends ControllerTemplate implements IController {
    private void loadTargetSpecification() {
        try {
            IController controller = TargetSpecificationController.getController(_model);
-           _view.getTargetSpecification().setContent(controller.getAnchorPane());
+           _view.getTargetSpecificationTab().setContent(controller.getAnchorPane());
            System.out.println(controller.toString());
        } catch (Exception e) {
            System.out.println(e);
@@ -59,7 +59,7 @@ public class SFSAController extends ControllerTemplate implements IController {
        public void handle(Event event) {
            try {
                IController controller = EnvironmentController.getController(_model);
-               _view.getEnvironment().setContent(controller.getAnchorPane());
+               _view.getEnvironmentTab().setContent(controller.getAnchorPane());
                System.out.println(controller.toString());
            } catch (Exception e) {
                System.out.println(e);
@@ -73,7 +73,7 @@ public class SFSAController extends ControllerTemplate implements IController {
        public void handle(Event event) {
            try {
                IController controller = ProductUseController.getController(_model);
-               _view.getProductUse().setContent(controller.getAnchorPane());
+               _view.getProductUseTab().setContent(controller.getAnchorPane());
                System.out.println(controller.toString());
            } catch (Exception e) {
                System.out.println(e);
@@ -87,7 +87,7 @@ public class SFSAController extends ControllerTemplate implements IController {
        public void handle(Event event) {
            try {
                IController controller = FunctionalRequirementsController.getController(_model);
-               _view.getFunctionalRequirements().setContent(controller.getAnchorPane());
+               _view.getFunctionalRequirementsTab().setContent(controller.getAnchorPane());
                System.out.println(controller.toString());
            } catch (Exception e) {
                System.out.println(e);
@@ -101,7 +101,7 @@ public class SFSAController extends ControllerTemplate implements IController {
        public void handle(Event event) {
            try {
                IController controller = ProductDataController.getController(_model);
-               _view.getProductData().setContent(controller.getAnchorPane());
+               _view.getProductDataTab().setContent(controller.getAnchorPane());
                System.out.println(controller.toString());
            } catch (Exception e) {
                System.out.println(e);

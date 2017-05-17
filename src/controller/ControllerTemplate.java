@@ -2,6 +2,7 @@ package controller;
 
 import javafx.scene.control.Alert;
 import javafx.scene.layout.AnchorPane;
+import javafx.stage.Stage;
 import model.IModel;
 
 /**
@@ -13,7 +14,6 @@ public class ControllerTemplate implements IController {
 
     @Override
     public void show() {
-
     }
 
     @Override

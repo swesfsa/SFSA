@@ -48,12 +48,10 @@ public class CreateProductDataController extends ControllerTemplate {
     public void show() {
         _stage = new Stage();
         _view.show(_stage);
-        System.out.println("Erzeuge: " + _stage);
     }
 
     public void close() {
         _view.close(_stage);
-        System.out.println("Schließe: " + _stage);
     }
 
     /**
