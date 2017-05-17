@@ -23,10 +23,19 @@ public class ControllerTemplate implements IController {
 
     public void openEmptyTextFieldWarning() {
 
-        Alert alert = new Alert((Alert.AlertType.WARNING));
+        Alert alert = new Alert(Alert.AlertType.WARNING);
         alert.setTitle("Warnung");
         alert.setHeaderText("Leeres Textfeld");
         alert.setContentText("Bitte füllen Sie alle Textfelder aus.");
+        alert.showAndWait();
+    }
+
+    public void openEmptyChoiceBoxWarning(String contentText) {
+
+        Alert alert = new Alert(Alert.AlertType.WARNING);
+        alert.setTitle("Warnung");
+        alert.setHeaderText("Leere Auswahlliste");
+        alert.setContentText(contentText);
         alert.showAndWait();
     }
 

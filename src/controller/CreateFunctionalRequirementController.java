@@ -65,7 +65,7 @@ public class CreateFunctionalRequirementController extends ControllerTemplate {
      * of the CreateFunctionalRequirementView.
      * @author 1030129
      */
-    private void getDataFromView() throws EmptyTextFieldException {
+    private void getDataFromView() throws EmptyTextFieldException, EmptyChoiceBoxException, NumberSmallerOneException {
 
         date = _view.getDate().getValue();
         title = _view.getTitle().getText();
@@ -78,10 +78,12 @@ public class CreateFunctionalRequirementController extends ControllerTemplate {
 
         priority = _view.getPriorityMap().get(_view.getPriority().getValue());
         classification = _view.getClassificationMap().get(_view.getClassification().getValue());
+        checkForEmptyChoiceBox();
 
         id = Integer.parseInt(_view.getId().getText());
         ftr = Integer.parseInt(_view.getFtr().getText());
         det = Integer.parseInt(_view.getDet().getText());
+        checkForNumbersSmallerOne();
     }
 
     /**
@@ -95,6 +97,20 @@ public class CreateFunctionalRequirementController extends ControllerTemplate {
         if (date == null || title.equals("") || function.equals("") || protagonist.equals("")
                 || source.equals("") || references.equals("") || description.equals("")) {
             throw new EmptyTextFieldException();
+        }
+    }
+
+    private void checkForEmptyChoiceBox() throws EmptyChoiceBoxException {
+
+        if (priority == null || classification == null) {
+            throw new EmptyChoiceBoxException();
+        }
+    }
+
+    private void checkForNumbersSmallerOne() throws NumberSmallerOneException {
+
+        if (id < 1 || ftr < 1 || det < 1) {
+            throw new NumberSmallerOneException();
         }
     }
 
@@ -138,6 +154,14 @@ public class CreateFunctionalRequirementController extends ControllerTemplate {
             catch (EmptyTextFieldException e) {
                 System.out.println("Error: " + e);
                 openEmptyTextFieldWarning();
+            }
+            catch (EmptyChoiceBoxException e) {
+                System.out.println("Error: " + e);
+                openEmptyChoiceBoxWarning("Bitte wählen Sie in den Auswahllisten \"Priorität\" und \"Klassifikation\" ein Element aus.");
+            }
+            catch (NumberSmallerOneException e) {
+                System.out.println("Error: " + e);
+                openNumberFormatWarning("Die Textfelder 'ID', 'FTR' und 'DET' erlauben nur Ganzzahlen > 0 als Eingabe!");
             }
 
         }
