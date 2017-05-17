@@ -8,7 +8,7 @@ import misc.FunctionalRequirementClassification;
 import misc.Priority;
 import model.IModel;
 import view.CreateFunctionalRequirementView;
-import view.EmptyTextfieldException;
+import view.EmptyTextFieldException;
 
 import java.time.LocalDate;
 
@@ -72,7 +72,7 @@ public class CreateFunctionalRequirementController extends ControllerTemplate {
      * of the CreateFunctionalRequirementView.
      * @author 1030129
      */
-    private void getDataFromView() throws EmptyTextfieldException {
+    private void getDataFromView() throws EmptyTextFieldException {
 
         date = _view.getDate().getValue();
         title = _view.getTitle().getText();
@@ -112,13 +112,13 @@ public class CreateFunctionalRequirementController extends ControllerTemplate {
      * This function checks if any of the data elements gotten from the
      * CreateFunctionalRequirementView is empty.
      * @author 1030129
-     * @throws EmptyTextfieldException
+     * @throws EmptyTextFieldException
      */
-    private void checkForEmptyFields() throws EmptyTextfieldException{
+    private void checkForEmptyFields() throws EmptyTextFieldException {
 
         if (date == null || title.equals("") || function.equals("") || protagonist.equals("")
                 || source.equals("") || references.equals("") || description.equals("")) {
-            throw new EmptyTextfieldException();
+            throw new EmptyTextFieldException();
         }
     }
 
@@ -159,7 +159,7 @@ public class CreateFunctionalRequirementController extends ControllerTemplate {
                 System.out.println("Error: " + e);
                 openNumberFormatWarning("Die Textfelder 'ID', 'FTR' und 'DET' erlauben nur Ganzzahlen als Eingabe!");
             }
-            catch (EmptyTextfieldException e) {
+            catch (EmptyTextFieldException e) {
                 System.out.println("Error: " + e);
                 openEmptyTextFieldWarning();
             }

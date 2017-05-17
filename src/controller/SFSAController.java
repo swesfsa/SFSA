@@ -65,7 +65,13 @@ public class SFSAController extends ControllerTemplate implements IController {
 
        @Override
        public void handle(Event event) {
-           System.out.println("productUseTab clicked");
+           try {
+               IController controller = ProductUseController.getController(_model);
+               _view.getProductUse().setContent(controller.getAnchorPane());
+               System.out.println(controller.toString());
+           } catch (Exception e) {
+               System.out.println(e);
+           }
        }
    }
 

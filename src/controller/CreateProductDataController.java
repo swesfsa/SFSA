@@ -7,7 +7,7 @@ import misc.ProductDataClassification;
 import misc.StageHandler;
 import model.IModel;
 import view.CreateProductDataView;
-import view.EmptyTextfieldException;
+import view.EmptyTextFieldException;
 
 import static misc.ProductDataClassification.EIF;
 import static misc.ProductDataClassification.ILF;
@@ -77,11 +77,11 @@ public class CreateProductDataController extends ControllerTemplate {
      * This function checks if any of the data elements gotten from the
      * CreateProductDataView is empty.
      * @author 1030129
-     * @throws EmptyTextfieldException
+     * @throws EmptyTextFieldException
      */
-    private void checkForEmptyFields() throws EmptyTextfieldException{
+    private void checkForEmptyFields() throws EmptyTextFieldException {
         if (memoryContent.equals("") || references.equals("") || estimation.equals("")) {
-            throw new EmptyTextfieldException();
+            throw new EmptyTextFieldException();
         }
     }
 
@@ -121,7 +121,7 @@ public class CreateProductDataController extends ControllerTemplate {
                 System.out.println("Error: " + e);
                 openNumberFormatWarning("Die Textfelder 'ID', 'RET' und 'DET' erlauben nur Ganzzahlen als Eingabe!");
             }
-            catch (EmptyTextfieldException e) {
+            catch (EmptyTextFieldException e) {
                 System.out.println("Error: " + e);
                 openEmptyTextFieldWarning();
             }

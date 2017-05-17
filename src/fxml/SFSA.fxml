@@ -6,7 +6,6 @@
 <?import javafx.scene.control.Tab?>
 <?import javafx.scene.control.TabPane?>
 <?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.BorderPane?>
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1">
    <children>
@@ -41,19 +40,12 @@
                </content></Tab>
             <Tab text="Umgebung">
                <content>
-                  <BorderPane prefHeight="200.0" prefWidth="200.0">
-                     <center>
-                        <fx:include source="Environment.fxml" />
-                     </center></BorderPane>
+                  <AnchorPane prefHeight="200.0" prefWidth="200.0" />
                </content>
             </Tab>
             <Tab fx:id="productUseTab" text="Produkteinsatz">
                <content>
-                  <BorderPane prefHeight="200.0" prefWidth="200.0">
-                     <center>
-                        <fx:include source="ProductUse.fxml" />
-                     </center>
-                  </BorderPane>
+                  <AnchorPane prefHeight="200.0" prefWidth="200.0" />
                </content>
             </Tab>
             <Tab fx:id="functionalRequirements" text="Funktionale Anforderungen">
@@ -63,10 +55,7 @@
             </Tab>
             <Tab fx:id="productDataTab" text="Produktdaten">
                <content>
-                  <BorderPane prefHeight="200.0" prefWidth="200.0">
-                     <center>
-                        <fx:include source="ProductData.fxml" />
-                     </center></BorderPane>
+                  <AnchorPane prefHeight="200.0" prefWidth="200.0" />
                </content>
             </Tab>
             <Tab text="Schätzkonfiguration">

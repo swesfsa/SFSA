@@ -4,7 +4,7 @@ import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import misc.Environment;
 import model.IModel;
-import view.EmptyTextfieldException;
+import view.EmptyTextFieldException;
 import view.EnvironmentView;
 
 
@@ -50,7 +50,7 @@ public class EnvironmentController extends ControllerTemplate {
                 String softwareEnvironment = view.getSoftwareEnvironment().getText();
 
                 if (hardwareEnvironment.equals("") || softwareEnvironment.equals("")) {
-                    throw new EmptyTextfieldException();
+                    throw new EmptyTextFieldException();
                 }
 
                 environment = new Environment(hardwareEnvironment, softwareEnvironment);
@@ -65,7 +65,7 @@ public class EnvironmentController extends ControllerTemplate {
                 // DEBUG
                 model.getEnvironment().print();
             }
-            catch (EmptyTextfieldException e) {
+            catch (EmptyTextFieldException e) {
                 openEmptyTextFieldWarning();
             }
         }

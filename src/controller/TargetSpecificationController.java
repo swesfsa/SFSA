@@ -4,7 +4,7 @@ import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import misc.TargetSpecification;
 import model.IModel;
-import view.EmptyTextfieldException;
+import view.EmptyTextFieldException;
 import view.TargetSpecificationView;
 
 /**
@@ -42,9 +42,9 @@ public class TargetSpecificationController extends TabController {
         targetSpecString = _view.getTargetSpecification().getText();
     }
 
-    private void checkForEmptyFields() throws EmptyTextfieldException {
+    private void checkForEmptyFields() throws EmptyTextFieldException {
         if (targetSpecString.equals("")) {
-            throw new EmptyTextfieldException();
+            throw new EmptyTextFieldException();
         }
     }
 
@@ -60,7 +60,7 @@ public class TargetSpecificationController extends TabController {
                 targetSpecification = new TargetSpecification(targetSpecString);
                 _model.setTargetSpecification(targetSpecification);
                 targetSpecification.print();
-            } catch (EmptyTextfieldException e) {
+            } catch (EmptyTextFieldException e) {
                 System.out.println("Error: " + e);
                 openEmptyTextFieldWarning();
             } catch (Exception e) {
