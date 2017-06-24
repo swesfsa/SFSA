@@ -18,7 +18,7 @@ public class TargetSpecificationController extends TabController {
     private TargetSpecification targetSpecification;
     private String targetSpecString;
 
-    private TargetSpecificationController(IModel model) throws Exception {
+    public TargetSpecificationController(IModel model) throws Exception {
 
         _model = model;
         _view = new TargetSpecificationView(_model);
@@ -27,15 +27,6 @@ public class TargetSpecificationController extends TabController {
         _view.getSaveButton().setOnAction(new SaveButtonEventHandler());
         _view.getEditButton().setOnAction(new EditButtonEventHandler());
         _view.getDeleteButton().setOnAction(new DeleteButtonEventHandler());
-    }
-
-    public synchronized static TargetSpecificationController getController(IModel model) throws Exception {
-
-        if (instance == null) {
-            instance = new TargetSpecificationController(model);
-        }
-
-        return instance;
     }
 
     private void getDataFromView() {
