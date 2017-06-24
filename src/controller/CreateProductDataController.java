@@ -59,7 +59,7 @@ public class CreateProductDataController extends ControllerTemplate {
      * of the CreateProductDataView.
      * @author 1030129
      */
-    private void getDataFromView() throws EmptyTextFieldException, EmptyChoiceBoxException, NumberSmallerOneException {
+    public void getDataFromView() throws EmptyTextFieldException, EmptyChoiceBoxException, NumberSmallerOneException {
         memoryContent = _view.getMemoryContent().getText();
         references = _view.getReferences().getText();
         estimation = _view.getEstimation().getText();

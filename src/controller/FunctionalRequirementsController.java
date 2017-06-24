@@ -15,7 +15,7 @@ public class FunctionalRequirementsController extends TabController {
     private static FunctionalRequirementsController instance;
     private FunctionalRequirementsView _view;
 
-    private FunctionalRequirementsController(IModel model) throws Exception {
+    public FunctionalRequirementsController(IModel model) throws Exception {
 
         _model = model;
         _view = new FunctionalRequirementsView(_model);
@@ -24,15 +24,6 @@ public class FunctionalRequirementsController extends TabController {
         _view.getNewButton().setOnAction(new NewButtonEventHandler());
         _view.getEditButton().setOnAction(new EditButtonEventHandler());
         _view.getDeleteButton().setOnAction(new DeleteButtonEventHandler());
-    }
-
-    public synchronized static FunctionalRequirementsController getController(IModel model) throws Exception {
-
-        if (instance == null) {
-            instance = new FunctionalRequirementsController(model);
-        }
-
-        return instance;
     }
 
     private class NewButtonEventHandler implements EventHandler<ActionEvent> {

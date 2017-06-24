@@ -1,6 +1,7 @@
 package controller;
 
 import javafx.scene.layout.AnchorPane;
+import view.EmptyTextFieldException;
 import view.IView;
 
 /**
@@ -8,5 +9,6 @@ import view.IView;
  */
 public interface IController {
     void show();
+    void getDataFromView() throws EmptyTextFieldException, EmptyChoiceBoxException, NumberSmallerOneException;
     AnchorPane getAnchorPane();
 }

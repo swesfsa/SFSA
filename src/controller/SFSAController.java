@@ -9,7 +9,7 @@ import misc.StageHandler;
 import model.IModel;
 import view.SFSAView;
 
-public class SFSAController extends ControllerTemplate implements IController {
+public abstract class SFSAController extends ControllerTemplate implements IController {
 
    private SFSAView _view;
 
@@ -72,7 +72,7 @@ public class SFSAController extends ControllerTemplate implements IController {
        @Override
        public void handle(Event event) {
            try {
-               IController controller = ProductUseController.getController(_model);
+               IController controller = new ProductUseController(_model);
                _view.getProductUseTab().setContent(controller.getAnchorPane());
                System.out.println(controller.toString());
            } catch (Exception e) {
@@ -86,7 +86,7 @@ public class SFSAController extends ControllerTemplate implements IController {
        @Override
        public void handle(Event event) {
            try {
-               IController controller = FunctionalRequirementsController.getController(_model);
+               IController controller = new FunctionalRequirementsController(_model);
                _view.getFunctionalRequirementsTab().setContent(controller.getAnchorPane());
                System.out.println(controller.toString());
            } catch (Exception e) {
@@ -100,7 +100,7 @@ public class SFSAController extends ControllerTemplate implements IController {
        @Override
        public void handle(Event event) {
            try {
-               IController controller = ProductDataController.getController(_model);
+               IController controller = new ProductDataController(_model);
                _view.getProductDataTab().setContent(controller.getAnchorPane());
                System.out.println(controller.toString());
            } catch (Exception e) {

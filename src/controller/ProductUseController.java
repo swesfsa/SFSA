@@ -18,7 +18,7 @@ public class ProductUseController extends TabController {
     private ProductUse productUse;
     private String productUseString;
 
-    private ProductUseController(IModel model) throws Exception {
+    public ProductUseController(IModel model) throws Exception {
 
         _model = model;
         _view = new ProductUseView(_model);
@@ -29,16 +29,7 @@ public class ProductUseController extends TabController {
         _view.getDeleteButton().setOnAction(new DeleteButtonEventHandler());
     }
 
-    public synchronized static ProductUseController getController(IModel model) throws Exception {
-
-        if (instance == null) {
-            instance = new ProductUseController(model);
-        }
-
-        return instance;
-    }
-
-    private void getDataFromView() {
+    public void getDataFromView() {
         productUseString = _view.getProductUse().getText();
     }
 

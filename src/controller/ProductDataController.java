@@ -14,7 +14,7 @@ public class ProductDataController extends TabController {
     private static ProductDataController instance;
     private ProductDataView _view;
 
-    private ProductDataController(IModel model) throws Exception {
+    public ProductDataController(IModel model) throws Exception {
 
         _model = model;
         _view = new ProductDataView(_model);
@@ -23,15 +23,6 @@ public class ProductDataController extends TabController {
         _view.getNewButton().setOnAction(new NewButtonEventHandler());
         _view.getEditButton().setOnAction(new EditButtonEventHandler());
         _view.getDeleteButton().setOnAction(new DeleteButtonEventHandler());
-    }
-
-    public synchronized static ProductDataController getController(IModel model) throws Exception {
-
-        if (instance == null) {
-            instance = new ProductDataController(model);
-        }
-
-        return instance;
     }
 
     private class NewButtonEventHandler implements EventHandler<ActionEvent> {

@@ -64,7 +64,7 @@ public class CreateFunctionalRequirementController extends ControllerTemplate {
      * of the CreateFunctionalRequirementView.
      * @author 1030129
      */
-    private void getDataFromView() throws EmptyTextFieldException, EmptyChoiceBoxException, NumberSmallerOneException {
+    public void getDataFromView() throws EmptyTextFieldException, EmptyChoiceBoxException, NumberSmallerOneException {
 
         date = _view.getDate().getValue();
         title = _view.getTitle().getText();
