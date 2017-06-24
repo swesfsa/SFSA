@@ -4,6 +4,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.control.Button;
 import javafx.scene.control.ListView;
+import javafx.scene.layout.AnchorPane;
 import model.IModel;
 
 /**
@@ -33,6 +34,7 @@ public class ProductDataView extends TabView implements IProductDataView{
         editButton = (Button) root.lookup("#editButton");
         deleteButton = (Button) root.lookup("#deleteButton");
         dataList = (ListView) root.lookup("#dataList");
+        anchorPane = (AnchorPane) root.lookup("#AnchorPane");
     }
 
     /**

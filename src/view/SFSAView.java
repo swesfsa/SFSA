@@ -17,13 +17,13 @@ public class SFSAView extends ViewTemplate implements ISFSAView {
     private Scene scene;
 
     private TabPane tabPane;
-    private Tab targetSpecification;
-    private Tab environment;
-    private Tab productUse;
-    private Tab functionalRequirements;
-    private Tab productData;
-    private Tab estimationConfig;
-    private Tab effortEstimation;
+    private Tab targetSpecificationTab;
+    private Tab environmentTab;
+    private Tab productUseTab;
+    private Tab functionalRequirementsTab;
+    private Tab productDataTab;
+    private Tab estimationConfigTab;
+    private Tab costEstimationTab;
 
     private MenuBar menuBar;
     private Menu fileMenu;
@@ -41,13 +41,13 @@ public class SFSAView extends ViewTemplate implements ISFSAView {
         Parent root = FXMLLoader.load(getClass().getResource("../fxml/SFSA.fxml"));
 
         tabPane = (TabPane) root.lookup("#tabPane");
-        targetSpecification = tabPane.getTabs().get(0);
-        environment = tabPane.getTabs().get(1);
-        productUse = tabPane.getTabs().get(2);
-        functionalRequirements = tabPane.getTabs().get(3);
-        productData = tabPane.getTabs().get(4);
-        estimationConfig = tabPane.getTabs().get(5);
-        effortEstimation = tabPane.getTabs().get(6);
+        targetSpecificationTab = tabPane.getTabs().get(0);
+        environmentTab = tabPane.getTabs().get(1);
+        productUseTab = tabPane.getTabs().get(2);
+        functionalRequirementsTab = tabPane.getTabs().get(3);
+        productDataTab = tabPane.getTabs().get(4);
+        estimationConfigTab = tabPane.getTabs().get(5);
+        costEstimationTab = tabPane.getTabs().get(6);
 
         menuBar = (MenuBar) root.lookup("#menuBar");
         fileMenu = menuBar.getMenus().get(0);
@@ -72,50 +72,50 @@ public class SFSAView extends ViewTemplate implements ISFSAView {
 
     /**
      * @author 1030129
-     * @return targetSpecification
+     * @return targetSpecificationTab
      */
-    public Tab getTargetSpecification() {
-        return targetSpecification;
+    public Tab getTargetSpecificationTab() {
+        return targetSpecificationTab;
     }
 
     /**
      * @author 1030129
-     * @return productUse
+     * @return productUseTab
      */
-    public Tab getProductUse() {
-        return productUse;
+    public Tab getProductUseTab() {
+        return productUseTab;
     }
 
     /**
      * @author 1030129
-     * @return functionalRequirements
+     * @return functionalRequirementsTab
      */
-    public Tab getFunctionalRequirements() {
-        return functionalRequirements;
+    public Tab getFunctionalRequirementsTab() {
+        return functionalRequirementsTab;
     }
 
     /**
      * @author 1030129
-     * @return productData
+     * @return productDataTab
      */
-    public Tab getProductData() {
-        return productData;
+    public Tab getProductDataTab() {
+        return productDataTab;
     }
 
     /**
      * @author 1030129
-     * @return environment
+     * @return environmentTab
      */
-    public Tab getEnvironment() {
-        return environment;
+    public Tab getEnvironmentTab() {
+        return environmentTab;
     }
 
-    public Tab getEstimationConfig() {
-        return estimationConfig;
+    public Tab getEstimationConfigTab() {
+        return estimationConfigTab;
     }
 
-    public Tab getEffortEstimation() {
-        return effortEstimation;
+    public Tab getCostEstimationTab() {
+        return costEstimationTab;
     }
 
     public MenuItem getCloseItem() {

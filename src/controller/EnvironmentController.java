@@ -4,40 +4,54 @@ import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import misc.Environment;
 import model.IModel;
-import view.EmptyTextfieldException;
+import view.EmptyTextFieldException;
 import view.EnvironmentView;
 
 
 /**
  * Created by 1030129 on 02.05.17.
  */
-public class EnvironmentController extends ControllerTemplate {
+public class EnvironmentController extends TabController {
 
-    private IModel model;
-
-    private EnvironmentView view;
+    private static EnvironmentController instance;
+    private EnvironmentView _view;
 
     private Environment environment;
+    private String hardwareEnvironment;
+    private String softwareEnvironment;
 
     public EnvironmentController(IModel model) throws Exception{
 
-        this.model = model;
-        this.view = new EnvironmentView(model);
+        _model = model;
+        _view = new EnvironmentView(model);
+        anchorPane = _view.getAnchorPane();
 
         Environment savedEnvironment = model.getEnvironment();
         String hardwareEnvironment = savedEnvironment.getHardwareEnvironment();
         String softwareEnvironment = savedEnvironment.getSoftwareEnvironment();
 
-        view.getHardwareEnvironment().setText(hardwareEnvironment);
-        view.getSoftwareEnvironment().setText(softwareEnvironment);
+        _view.getHardwareEnvironment().setText(hardwareEnvironment);
+        _view.getSoftwareEnvironment().setText(softwareEnvironment);
 
-        view.getCancelButton().setDisable(true);
-        view.getHardwareEnvironment().setEditable(false);
-        view.getSoftwareEnvironment().setEditable(false);
+        _view.getCancelButton().setDisable(true);
+        _view.getHardwareEnvironment().setEditable(false);
+        _view.getSoftwareEnvironment().setEditable(false);
 
-        view.getSaveButton().setOnAction(new SaveButtonEventHandler());
-        view.getEditButton().setOnAction(new EditButtonEventHandler());
-        view.getCancelButton().setOnAction(new CancelButtonEventHandler());
+        _view.getSaveButton().setOnAction(new SaveButtonEventHandler());
+        _view.getEditButton().setOnAction(new EditButtonEventHandler());
+        _view.getCancelButton().setOnAction(new CancelButtonEventHandler());
+    }
+
+    private void getDataFromView() throws EmptyTextFieldException {
+        hardwareEnvironment = _view.getHardwareEnvironment().getText();
+        softwareEnvironment = _view.getSoftwareEnvironment().getText();
+        checkForEmptyFields();
+    }
+
+    private void checkForEmptyFields() throws EmptyTextFieldException {
+        if (hardwareEnvironment.equals("") || softwareEnvironment.equals("")) {
+            throw new EmptyTextFieldException();
+        }
     }
 
     public class SaveButtonEventHandler implements EventHandler<ActionEvent> {
@@ -46,26 +60,21 @@ public class EnvironmentController extends ControllerTemplate {
         public void handle(ActionEvent event) {
 
             try {
-                String hardwareEnvironment = view.getHardwareEnvironment().getText();
-                String softwareEnvironment = view.getSoftwareEnvironment().getText();
-
-                if (hardwareEnvironment.equals("") || softwareEnvironment.equals("")) {
-                    throw new EmptyTextfieldException();
-                }
+                getDataFromView();
 
                 environment = new Environment(hardwareEnvironment, softwareEnvironment);
 
-                model.setEnvironment(environment);
+                _model.setEnvironment(environment);
 
-                view.getHardwareEnvironment().setEditable(false);
-                view.getSoftwareEnvironment().setEditable(false);
-                view.getEditButton().setDisable(false);
-                view.getCancelButton().setDisable(true);
+                _view.getHardwareEnvironment().setEditable(false);
+                _view.getSoftwareEnvironment().setEditable(false);
+                _view.getEditButton().setDisable(false);
+                _view.getCancelButton().setDisable(true);
 
                 // DEBUG
-                model.getEnvironment().print();
+                _model.getEnvironment().print();
             }
-            catch (EmptyTextfieldException e) {
+            catch (EmptyTextFieldException e) {
                 openEmptyTextFieldWarning();
             }
         }
@@ -76,10 +85,10 @@ public class EnvironmentController extends ControllerTemplate {
         @Override
         public void handle(ActionEvent event) {
 
-            view.getHardwareEnvironment().setEditable(true);
-            view.getSoftwareEnvironment().setEditable(true);
-            view.getEditButton().setDisable(true);
-            view.getCancelButton().setDisable(false);
+            _view.getHardwareEnvironment().setEditable(true);
+            _view.getSoftwareEnvironment().setEditable(true);
+            _view.getEditButton().setDisable(true);
+            _view.getCancelButton().setDisable(false);
         }
     }
 
@@ -88,17 +97,17 @@ public class EnvironmentController extends ControllerTemplate {
         @Override
         public void handle(ActionEvent event) {
 
-            Environment savedEnvironment = model.getEnvironment();
+            Environment savedEnvironment = _model.getEnvironment();
             String hardwareEnvironment = savedEnvironment.getHardwareEnvironment();
             String softwareEnvironment = savedEnvironment.getSoftwareEnvironment();
 
-            view.getHardwareEnvironment().setText(hardwareEnvironment);
-            view.getSoftwareEnvironment().setText(softwareEnvironment);
+            _view.getHardwareEnvironment().setText(hardwareEnvironment);
+            _view.getSoftwareEnvironment().setText(softwareEnvironment);
 
-            view.getHardwareEnvironment().setEditable(false);
-            view.getSoftwareEnvironment().setEditable(false);
-            view.getEditButton().setDisable(false);
-            view.getCancelButton().setDisable(true);
+            _view.getHardwareEnvironment().setEditable(false);
+            _view.getSoftwareEnvironment().setEditable(false);
+            _view.getEditButton().setDisable(false);
+            _view.getCancelButton().setDisable(true);
         }
     }
 }

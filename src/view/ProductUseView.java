@@ -4,6 +4,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.Button;
+import javafx.scene.layout.AnchorPane;
 import model.IModel;
 
 /**
@@ -33,6 +34,7 @@ public class ProductUseView extends TabView implements IProductUseView{
         editButton = (Button) root.lookup("#editButton");
         saveButton = (Button) root.lookup("#saveButton");
         productUse = (TextArea) root.lookup("#textArea");
+        anchorPane = (AnchorPane) root.lookup("#AnchorPane");
     }
 
     /**

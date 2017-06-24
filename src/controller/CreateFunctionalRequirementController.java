@@ -8,16 +8,8 @@ import misc.FunctionalRequirementClassification;
 import misc.Priority;
 import model.IModel;
 import view.CreateFunctionalRequirementView;
-import view.EmptyTextfieldException;
-
+import view.EmptyTextFieldException;
 import java.time.LocalDate;
-
-import static misc.FunctionalRequirementClassification.INPUT;
-import static misc.FunctionalRequirementClassification.OUTPUT;
-import static misc.FunctionalRequirementClassification.QUERY;
-import static misc.Priority.HIGH;
-import static misc.Priority.LOW;
-import static misc.Priority.MIDDLE;
 
 /**
  * Created by 1030129 on 02.05.17.
@@ -72,7 +64,7 @@ public class CreateFunctionalRequirementController extends ControllerTemplate {
      * of the CreateFunctionalRequirementView.
      * @author 1030129
      */
-    private void getDataFromView() throws EmptyTextfieldException {
+    private void getDataFromView() throws EmptyTextFieldException, EmptyChoiceBoxException, NumberSmallerOneException {
 
         date = _view.getDate().getValue();
         title = _view.getTitle().getText();
@@ -83,42 +75,41 @@ public class CreateFunctionalRequirementController extends ControllerTemplate {
         description = _view.getDescription().getText();
         checkForEmptyFields();
 
-        switch (_view.getPriority().getValue()) {
-            case "Niedrig": priority = LOW;
-                break;
-            case "Mittel": priority = MIDDLE;
-                break;
-            case "Hoch": priority = HIGH;
-                break;
-            default: priority = LOW;
-        }
-
-        switch (_view.getClassification().getValue()) {
-            case "Eingabe": classification = INPUT;
-                break;
-            case "Ausgabe": classification = OUTPUT;
-                break;
-            case "Abfrage": classification = QUERY;
-                break;
-            default: classification = INPUT;
-        }
+        priority = _view.getPriorityMap().get(_view.getPriority().getValue());
+        classification = _view.getClassificationMap().get(_view.getClassification().getValue());
+        checkForEmptyChoiceBox();
 
         id = Integer.parseInt(_view.getId().getText());
         ftr = Integer.parseInt(_view.getFtr().getText());
         det = Integer.parseInt(_view.getDet().getText());
+        checkForNumbersSmallerOne();
     }
 
     /**
      * This function checks if any of the data elements gotten from the
      * CreateFunctionalRequirementView is empty.
      * @author 1030129
-     * @throws EmptyTextfieldException
+     * @throws EmptyTextFieldException
      */
-    private void checkForEmptyFields() throws EmptyTextfieldException{
+    private void checkForEmptyFields() throws EmptyTextFieldException {
 
         if (date == null || title.equals("") || function.equals("") || protagonist.equals("")
                 || source.equals("") || references.equals("") || description.equals("")) {
-            throw new EmptyTextfieldException();
+            throw new EmptyTextFieldException();
+        }
+    }
+
+    private void checkForEmptyChoiceBox() throws EmptyChoiceBoxException {
+
+        if (priority == null || classification == null) {
+            throw new EmptyChoiceBoxException();
+        }
+    }
+
+    private void checkForNumbersSmallerOne() throws NumberSmallerOneException {
+
+        if (id < 1 || ftr < 1 || det < 1) {
+            throw new NumberSmallerOneException();
         }
     }
 
@@ -159,11 +150,18 @@ public class CreateFunctionalRequirementController extends ControllerTemplate {
                 System.out.println("Error: " + e);
                 openNumberFormatWarning("Die Textfelder 'ID', 'FTR' und 'DET' erlauben nur Ganzzahlen als Eingabe!");
             }
-            catch (EmptyTextfieldException e) {
+            catch (EmptyTextFieldException e) {
                 System.out.println("Error: " + e);
                 openEmptyTextFieldWarning();
             }
-
+            catch (EmptyChoiceBoxException e) {
+                System.out.println("Error: " + e);
+                openEmptyChoiceBoxWarning("Bitte wählen Sie in den Auswahllisten \"Priorität\" und \"Klassifikation\" ein Element aus.");
+            }
+            catch (NumberSmallerOneException e) {
+                System.out.println("Error: " + e);
+                openNumberFormatWarning("Die Textfelder 'ID', 'FTR' und 'DET' erlauben nur Ganzzahlen > 0 als Eingabe!");
+            }
         }
     }
 }

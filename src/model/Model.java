@@ -8,7 +8,6 @@ import java.util.List;
 /**
  * @author 9459758
  */
-
 public class Model implements IModel {
 
     private TargetSpecification targetSpecification;

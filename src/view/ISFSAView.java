@@ -7,9 +7,9 @@ import javafx.scene.control.Tab;
  */
 public interface ISFSAView extends IView {
 
-    Tab getTargetSpecification();
-    Tab getProductUse();
-    Tab getEnvironment();
-    Tab getFunctionalRequirements();
-    Tab getProductData();
+    Tab getTargetSpecificationTab();
+    Tab getProductUseTab();
+    Tab getEnvironmentTab();
+    Tab getFunctionalRequirementsTab();
+    Tab getProductDataTab();
 }
