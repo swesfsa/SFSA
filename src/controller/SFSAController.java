@@ -37,7 +37,7 @@ public class SFSAController extends ControllerTemplate implements IController {
 
    private void loadTargetSpecification() {
        try {
-           IController controller = TargetSpecificationController.getController(_model);
+           IController controller = new TargetSpecificationController(_model);
            _view.getTargetSpecificationTab().setContent(controller.getAnchorPane());
            System.out.println(controller.toString());
        } catch (Exception e) {
