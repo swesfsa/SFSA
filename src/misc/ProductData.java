@@ -34,4 +34,32 @@ public class ProductData {
         System.out.println("DET: " + det);
         System.out.println("Classification: " + classification);
     }
+
+    public int getId() {
+        return id;
+    }
+
+    public int getRet() {
+        return ret;
+    }
+
+    public int getDet() {
+        return det;
+    }
+
+    public String getMemoryContent() {
+        return memoryContent;
+    }
+
+    public String getReferences() {
+        return references;
+    }
+
+    public String getEstimation() {
+        return estimation;
+    }
+
+    public ProductDataClassification getClassification() {
+        return classification;
+    }
 }

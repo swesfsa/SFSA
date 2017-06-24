@@ -2,7 +2,6 @@ package controller;
 
 import javafx.scene.control.Alert;
 import javafx.scene.layout.AnchorPane;
-import javafx.stage.Stage;
 import model.IModel;
 
 /**
@@ -14,6 +13,7 @@ public class ControllerTemplate implements IController {
 
     @Override
     public void show() {
+
     }
 
     @Override
@@ -38,7 +38,7 @@ public class ControllerTemplate implements IController {
         alert.setContentText(contentText);
         alert.showAndWait();
     }
-
+  
     public void openNumberFormatWarning(String contentText) {
 
         Alert alert = new Alert(Alert.AlertType.WARNING);

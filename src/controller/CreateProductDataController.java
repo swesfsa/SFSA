@@ -22,13 +22,13 @@ public class CreateProductDataController extends ControllerTemplate {
     private String memoryContent;
     private String references;
     private String estimation;
-
+  
     private int id;
     private int ret;
     private int det;
 
     private ProductDataClassification classification = null;
-
+  
     /**
      * @author 1030129
      * @throws Exception

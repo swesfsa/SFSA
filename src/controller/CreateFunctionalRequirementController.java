@@ -9,7 +9,6 @@ import misc.Priority;
 import model.IModel;
 import view.CreateFunctionalRequirementView;
 import view.EmptyTextFieldException;
-
 import java.time.LocalDate;
 
 /**
@@ -163,7 +162,6 @@ public class CreateFunctionalRequirementController extends ControllerTemplate {
                 System.out.println("Error: " + e);
                 openNumberFormatWarning("Die Textfelder 'ID', 'FTR' und 'DET' erlauben nur Ganzzahlen > 0 als Eingabe!");
             }
-
         }
     }
 }

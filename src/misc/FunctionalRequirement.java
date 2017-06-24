@@ -52,4 +52,51 @@ public class FunctionalRequirement {
         System.out.println("Classification: " + classification);
     }
 
+    public int getId() {
+        return id;
+    }
+
+    public int getFtr() {
+        return ftr;
+    }
+
+    public int getDet() {
+        return det;
+    }
+
+    public LocalDate getDate() {
+        return date;
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public String getFunction() {
+        return function;
+    }
+
+    public String getProtagonist() {
+        return protagonist;
+    }
+
+    public String getSource() {
+        return source;
+    }
+
+    public String getReferences() {
+        return references;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public Priority getPriority() {
+        return priority;
+    }
+
+    public FunctionalRequirementClassification getClassification() {
+        return classification;
+    }
 }
