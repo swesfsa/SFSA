@@ -20,7 +20,7 @@ public class EnvironmentController extends TabController {
     private String hardwareEnvironment;
     private String softwareEnvironment;
 
-    private EnvironmentController(IModel model) throws Exception{
+    public EnvironmentController(IModel model) throws Exception{
 
         _model = model;
         _view = new EnvironmentView(model);
@@ -40,15 +40,6 @@ public class EnvironmentController extends TabController {
         _view.getSaveButton().setOnAction(new SaveButtonEventHandler());
         _view.getEditButton().setOnAction(new EditButtonEventHandler());
         _view.getCancelButton().setOnAction(new CancelButtonEventHandler());
-    }
-
-    public synchronized static EnvironmentController getController(IModel model) throws Exception {
-
-        if (instance == null) {
-            instance = new EnvironmentController(model);
-        }
-
-        return instance;
     }
 
     private void getDataFromView() throws EmptyTextFieldException {
