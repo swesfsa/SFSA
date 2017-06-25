@@ -12,13 +12,13 @@ import model.IModel;
  */
 public class TargetSpecificationView extends TabView implements ITargetSpecificationView {
 
-    private IModel model;
+    private IModel _model;
 
-    private Button deleteButton;
-    private Button editButton;
-    private Button saveButton;
+    private Button _deleteButton;
+    private Button _editButton;
+    private Button _saveButton;
 
-    private TextArea targetSpecification;
+    private TextArea _targetSpecification;
 
     /**
      * @author 1030129
@@ -26,46 +26,46 @@ public class TargetSpecificationView extends TabView implements ITargetSpecifica
      */
     public TargetSpecificationView(IModel model) throws Exception {
 
-        this.model = model;
+        this._model = model;
 
         Parent root = FXMLLoader.load(getClass().getResource("../fxml/TargetSpecification.fxml"));
 
-        deleteButton = (Button) root.lookup("#deleteButton");
-        editButton = (Button) root.lookup("#editButton");
-        saveButton = (Button) root.lookup("#saveButton");
-        targetSpecification = (TextArea) root.lookup("#textArea");
-        anchorPane = (AnchorPane) root.lookup("#AnchorPane");
+        _deleteButton = (Button) root.lookup("#deleteButton");
+        _editButton = (Button) root.lookup("#editButton");
+        _saveButton = (Button) root.lookup("#saveButton");
+        _targetSpecification = (TextArea) root.lookup("#textArea");
+        _anchorPane = (AnchorPane) root.lookup("#AnchorPane");
     }
 
     /**
      * @author 1030129
-     * @return deleteButton
+     * @return _deleteButton
      */
-    public Button getDeleteButton() {
-        return deleteButton;
+    public Button get_deleteButton() {
+        return _deleteButton;
     }
 
     /**
      * @author 1030129
-     * @return editButton
+     * @return _editButton
      */
-    public Button getEditButton() {
-        return editButton;
+    public Button get_editButton() {
+        return _editButton;
     }
 
     /**
      * @author 1030129
-     * @return saveButton
+     * @return _saveButton
      */
-    public Button getSaveButton() {
-        return saveButton;
+    public Button get_saveButton() {
+        return _saveButton;
     }
 
     /**
      * @author 1030129
-     * @return targetSpecification
+     * @return _targetSpecification
      */
-    public TextArea getTargetSpecification() {
-        return targetSpecification;
+    public TextArea get_targetSpecification() {
+        return _targetSpecification;
     }
 }

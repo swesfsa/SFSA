@@ -4,29 +4,29 @@ package misc;
  * Created by tmonn on 22.06.2017.
  */
 public class FunctionPoints {
-    private long functionPoints;
+    private long _functionPoints;
 
     public FunctionPoints(long functionPoints) {
-        this.functionPoints = functionPoints;
+        _functionPoints = functionPoints;
     }
 
     public FunctionPoints(FunctionPoints functionPoints) {
-        this.functionPoints = functionPoints.functionPoints;
+        _functionPoints = functionPoints._functionPoints;
     }
 
     public long getFunctionPoints() {
-        return functionPoints;
+        return _functionPoints;
     }
 
     public void setFunctionPoints(long functionPoints) {
-        this.functionPoints = functionPoints;
+        _functionPoints = functionPoints;
     }
 
     public void increment() {
-        ++functionPoints;
+        ++_functionPoints;
     }
 
     public void add(FunctionPoints functionPoints) {
-        this.functionPoints += functionPoints.getFunctionPoints();
+        _functionPoints += functionPoints.getFunctionPoints();
     }
 }

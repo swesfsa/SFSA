@@ -19,23 +19,23 @@ import java.util.Map;
  */
 public class CreateProductDataView extends ViewTemplate implements ICreateProductDataView{
 
-    private IModel model;
+    private IModel _model;
 
-    private Scene scene;
+    private Scene _scene;
 
-    private Button saveButton;
-    private Button cancelButton;
+    private Button _saveButton;
+    private Button _cancelButton;
 
-    private TextField id;
-    private TextField memoryContent;
-    private TextField references;
-    private TextField ret;
-    private TextField det;
+    private TextField _id;
+    private TextField _memoryContent;
+    private TextField _references;
+    private TextField _ret;
+    private TextField _det;
 
-    private TextArea estimation;
+    private TextArea _estimation;
 
-    private ChoiceBox<String> classification;
-    private Map<String, ProductDataClassification> classificationMap;
+    private ChoiceBox<String> _classification;
+    private Map<String, ProductDataClassification> _classificationMap;
 
     /**
      * @author 1030129
@@ -44,27 +44,27 @@ public class CreateProductDataView extends ViewTemplate implements ICreateProduc
     public CreateProductDataView(IModel model) throws Exception{
 
         super("CreateProductData");
-        this.model = model;
+        _model = model;
 
         Parent root = FXMLLoader.load(getClass().getResource("../fxml/CreateProductData.fxml"));
 
-        saveButton = (Button) root.lookup("#saveButton");
-        cancelButton = (Button) root.lookup("#cancelButton");
-        id = (TextField) root.lookup("#idField");
-        memoryContent = (TextField) root.lookup("#memoryContentField");
-        references = (TextField) root.lookup("#referencesField");
-        ret = (TextField) root.lookup("#RETField");
-        det = (TextField) root.lookup("#DETField");
-        estimation = (TextArea) root.lookup("#estimationArea");
-        classification = (ChoiceBox<String>) root.lookup("#classificationChoiceBox");
+        _saveButton = (Button) root.lookup("#saveButton");
+        _cancelButton = (Button) root.lookup("#cancelButton");
+        _id = (TextField) root.lookup("#idField");
+        _memoryContent = (TextField) root.lookup("#memoryContentField");
+        _references = (TextField) root.lookup("#referencesField");
+        _ret = (TextField) root.lookup("#RETField");
+        _det = (TextField) root.lookup("#DETField");
+        _estimation = (TextArea) root.lookup("#estimationArea");
+        _classification = (ChoiceBox<String>) root.lookup("#classificationChoiceBox");
 
-        classificationMap = new HashMap<>();
+        _classificationMap = new HashMap<>();
         for (ProductDataClassification iterate : ProductDataClassification.values()) {
-            classification.getItems().add(iterate.getClassification());
-            classificationMap.put(iterate.getClassification(), iterate);
+            _classification.getItems().add(iterate.get_classification());
+            _classificationMap.put(iterate.get_classification(), iterate);
         }
 
-        scene = new Scene(root, 600, 400);
+        _scene = new Scene(root, 600, 400);
     }
 
     /**
@@ -73,7 +73,7 @@ public class CreateProductDataView extends ViewTemplate implements ICreateProduc
      */
     public void show(Stage stage) {
 
-        stage.setScene(scene);
+        stage.setScene(_scene);
         stage.setTitle("Erstellen eines neuen Produktdatums");
         stage.setResizable(false);
         stage.show();
@@ -87,75 +87,75 @@ public class CreateProductDataView extends ViewTemplate implements ICreateProduc
      * @author 1030129
      * @return
      */
-    public Button getSaveButton() {
-        return saveButton;
+    public Button get_saveButton() {
+        return _saveButton;
     }
 
     /**
      * @author 1030129
      * @return
      */
-    public Button getCancelButton() {
-        return cancelButton;
+    public Button get_cancelButton() {
+        return _cancelButton;
     }
 
     /**
      * @author 1030129
      * @return
      */
-    public TextField getId() {
-        return id;
+    public TextField get_id() {
+        return _id;
     }
 
     /**
      * @author 1030129
      * @return
      */
-    public TextField getMemoryContent() {
-        return memoryContent;
+    public TextField get_memoryContent() {
+        return _memoryContent;
     }
 
     /**
      * @author 1030129
      * @return
      */
-    public TextField getReferences() {
-        return references;
+    public TextField get_references() {
+        return _references;
     }
 
     /**
      * @author 1030129
      * @return
      */
-    public TextField getRet() {
-        return ret;
+    public TextField get_ret() {
+        return _ret;
     }
 
     /**
      * @author 1030129
      * @return
      */
-    public TextField getDet() {
-        return det;
+    public TextField get_det() {
+        return _det;
     }
 
     /**
      * @author 1030129
      * @return
      */
-    public TextArea getEstimation() {
-        return estimation;
+    public TextArea get_estimation() {
+        return _estimation;
     }
 
     /**
      * @author 1030129
      * @return
      */
-    public ChoiceBox<String> getClassification() {
-        return classification;
+    public ChoiceBox<String> get_classification() {
+        return _classification;
     }
 
-    public Map<String, ProductDataClassification> getClassificationMap() {
-        return classificationMap;
+    public Map<String, ProductDataClassification> get_classificationMap() {
+        return _classificationMap;
     }
 }

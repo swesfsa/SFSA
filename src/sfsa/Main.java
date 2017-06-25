@@ -45,7 +45,7 @@ public class Main extends Application {
  */
 
         // store Stage instance in Singleton Pattern to be accessed by views
-        StageHandler.getInstance().setPrimaryStage(primaryStage);
+        StageHandler.get_instance().setPrimaryStage(primaryStage);
 
         IModel model = new Model();
 

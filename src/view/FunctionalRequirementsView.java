@@ -12,13 +12,13 @@ import model.IModel;
  */
 public class FunctionalRequirementsView extends TabView implements IFunctionalRequirementsView{
 
-    private IModel model;
+    private IModel _model;
 
-    private Button newButton;
-    private Button editButton;
-    private Button deleteButton;
+    private Button _newButton;
+    private Button _editButton;
+    private Button _deleteButton;
 
-    private ListView requirementsList;
+    private ListView _requirementsList;
 
     /**
      * @author 1030129
@@ -26,46 +26,46 @@ public class FunctionalRequirementsView extends TabView implements IFunctionalRe
      */
     public FunctionalRequirementsView(IModel model) throws Exception {
 
-        this.model = model;
+        _model = model;
 
         Parent root = FXMLLoader.load(getClass().getResource("../fxml/FunctionalRequirements.fxml"));
 
-        newButton = (Button) root.lookup("#newButton");
-        editButton = (Button) root.lookup("#editButton");
-        deleteButton = (Button) root.lookup("#deleteButton");
-        requirementsList = (ListView) root.lookup("#requirementsList");
-        anchorPane = (AnchorPane) root.lookup("#AnchorPane");
+        _newButton = (Button) root.lookup("#newButton");
+        _editButton = (Button) root.lookup("#editButton");
+        _deleteButton = (Button) root.lookup("#deleteButton");
+        _requirementsList = (ListView) root.lookup("#requirementsList");
+        _anchorPane = (AnchorPane) root.lookup("#AnchorPane");
     }
 
     /**
      * @author 1030129
-     * @return newButton
+     * @return _newButton
      */
-    public Button getNewButton() {
-        return newButton;
+    public Button get_newButton() {
+        return _newButton;
     }
 
     /**
      * @author 1030129
-     * @return editButton
+     * @return _editButton
      */
-    public Button getEditButton() {
-        return editButton;
+    public Button get_editButton() {
+        return _editButton;
     }
 
     /**
      * @author 1030129
-     * @return deleteButton
+     * @return _deleteButton
      */
-    public Button getDeleteButton() {
-        return deleteButton;
+    public Button get_deleteButton() {
+        return _deleteButton;
     }
 
     /**
      * @author 1030129
-     * @return requirementsList
+     * @return _requirementsList
      */
-    public ListView getRequirementsList() {
-        return requirementsList;
+    public ListView get_requirementsList() {
+        return _requirementsList;
     }
 }

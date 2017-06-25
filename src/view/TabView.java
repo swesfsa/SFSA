@@ -7,9 +7,9 @@ import javafx.scene.layout.AnchorPane;
  */
 public class TabView {
 
-    protected AnchorPane anchorPane;
+    protected AnchorPane _anchorPane;
 
-    public AnchorPane getAnchorPane() {
-        return anchorPane;
+    public AnchorPane get_anchorPane() {
+        return _anchorPane;
     }
 }

@@ -8,13 +8,13 @@ public enum Priority {
     MIDDLE("Mittel"),
     HIGH("Hoch");
 
-    public final String priority;
+    public final String _priority;
 
     private Priority(String priority) {
-        this.priority = priority;
+        _priority = priority;
     }
 
-    public String getPriority() {
-        return priority;
+    public String get_priority() {
+        return _priority;
     }
 }

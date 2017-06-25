@@ -6,60 +6,60 @@ package misc;
  */
 public class ProductData {
 
-    private int id;
-    private int ret;
-    private int det;
-    private String memoryContent;
-    private String references;
-    private String estimation;
-    private ProductDataClassification classification;
+    private int _id;
+    private int _ret;
+    private int _det;
+    private String _memoryContent;
+    private String _references;
+    private String _estimation;
+    private ProductDataClassification _classification;
 
     public ProductData(int id, int ret, int det, String memoryContent, String references, String estimation,
                        ProductDataClassification classification) {
-        this.id = id;
-        this.ret = ret;
-        this.det = det;
-        this.memoryContent = memoryContent;
-        this.references = references;
-        this.estimation = estimation;
-        this.classification = classification;
+        _id = id;
+        _ret = ret;
+        _det = det;
+        _memoryContent = memoryContent;
+        _references = references;
+        _estimation = estimation;
+        _classification = classification;
     }
 
     public void print() {
-        System.out.println("ID: " + id);
-        System.out.println("MemoryContent: " + memoryContent);
-        System.out.println("Estimation: " + estimation);
-        System.out.println("References: " + references);
-        System.out.println("RET: " + ret);
-        System.out.println("DET: " + det);
-        System.out.println("Classification: " + classification);
+        System.out.println("ID: " + _id);
+        System.out.println("MemoryContent: " + _memoryContent);
+        System.out.println("Estimation: " + _estimation);
+        System.out.println("References: " + _references);
+        System.out.println("RET: " + _ret);
+        System.out.println("DET: " + _det);
+        System.out.println("Classification: " + _classification);
     }
 
-    public int getId() {
-        return id;
+    public int get_id() {
+        return _id;
     }
 
-    public int getRet() {
-        return ret;
+    public int get_ret() {
+        return _ret;
     }
 
-    public int getDet() {
-        return det;
+    public int get_det() {
+        return _det;
     }
 
-    public String getMemoryContent() {
-        return memoryContent;
+    public String get_memoryContent() {
+        return _memoryContent;
     }
 
-    public String getReferences() {
-        return references;
+    public String get_references() {
+        return _references;
     }
 
-    public String getEstimation() {
-        return estimation;
+    public String get_estimation() {
+        return _estimation;
     }
 
-    public ProductDataClassification getClassification() {
-        return classification;
+    public ProductDataClassification get_classification() {
+        return _classification;
     }
 }

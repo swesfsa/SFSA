@@ -8,9 +8,9 @@ import javafx.scene.control.TextArea;
  */
 public interface IProductUseView {
 
-    Button getSaveButton();
-    Button getEditButton();
-    Button getDeleteButton();
+    Button get_saveButton();
+    Button get_editButton();
+    Button get_deleteButton();
 
-    TextArea getProductUse();
+    TextArea get_productUse();
 }

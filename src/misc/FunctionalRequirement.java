@@ -7,96 +7,96 @@ import java.time.LocalDate;
  */
 public class FunctionalRequirement {
 
-    private int id;
-    private int ftr;
-    private int det;
-    private LocalDate date;
-    private String title;
-    private String function;
-    private String protagonist;
-    private String source;
-    private String references;
-    private String description;
-    private Priority priority;
-    private FunctionalRequirementClassification classification;
+    private int _id;
+    private int _ftr;
+    private int _det;
+    private LocalDate _date;
+    private String _title;
+    private String _function;
+    private String _protagonist;
+    private String _source;
+    private String _references;
+    private String _description;
+    private Priority _priority;
+    private FunctionalRequirementClassification _classification;
 
     public FunctionalRequirement(int id, int ftr, int det, LocalDate date, String title, String function, String protagonist,
                                  String source, String references, String description, Priority priority,
                                  FunctionalRequirementClassification classification) {
-        this.id = id;
-        this.ftr = ftr;
-        this.det = det;
-        this.date = date;
-        this.title = title;
-        this.function = function;
-        this.protagonist = protagonist;
-        this.source = source;
-        this.references = references;
-        this.description = description;
-        this.priority = priority;
-        this.classification = classification;
+        _id = id;
+        _ftr = ftr;
+        _det = det;
+        _date = date;
+        _title = title;
+        _function = function;
+        _protagonist = protagonist;
+        _source = source;
+        _references = references;
+        _description = description;
+        _priority = priority;
+        _classification = classification;
     }
 
     public void print() {
-        System.out.println("ID: " + id);
-        System.out.println("FTR: " + ftr);
-        System.out.println("DET: " + det);
-        System.out.println("Date: " + date);
-        System.out.println("Title: " + title);
-        System.out.println("Function: " + function);
-        System.out.println("Protagonist: " + protagonist);
-        System.out.println("Source: " + source);
-        System.out.println("References: " + references);
-        System.out.println("Description: " + description);
-        System.out.println("Priority: " + priority);
-        System.out.println("Classification: " + classification);
+        System.out.println("ID: " + _id);
+        System.out.println("FTR: " + _ftr);
+        System.out.println("DET: " + _det);
+        System.out.println("Date: " + _date);
+        System.out.println("Title: " + _title);
+        System.out.println("Function: " + _function);
+        System.out.println("Protagonist: " + _protagonist);
+        System.out.println("Source: " + _source);
+        System.out.println("References: " + _references);
+        System.out.println("Description: " + _description);
+        System.out.println("Priority: " + _priority);
+        System.out.println("Classification: " + _classification);
     }
 
-    public int getId() {
-        return id;
+    public int get_id() {
+        return _id;
     }
 
-    public int getFtr() {
-        return ftr;
+    public int get_ftr() {
+        return _ftr;
     }
 
-    public int getDet() {
-        return det;
+    public int get_det() {
+        return _det;
     }
 
-    public LocalDate getDate() {
-        return date;
+    public LocalDate get_date() {
+        return _date;
     }
 
-    public String getTitle() {
-        return title;
+    public String get_title() {
+        return _title;
     }
 
-    public String getFunction() {
-        return function;
+    public String get_function() {
+        return _function;
     }
 
-    public String getProtagonist() {
-        return protagonist;
+    public String get_protagonist() {
+        return _protagonist;
     }
 
-    public String getSource() {
-        return source;
+    public String get_source() {
+        return _source;
     }
 
-    public String getReferences() {
-        return references;
+    public String get_references() {
+        return _references;
     }
 
-    public String getDescription() {
-        return description;
+    public String get_description() {
+        return _description;
     }
 
-    public Priority getPriority() {
-        return priority;
+    public Priority get_priority() {
+        return _priority;
     }
 
-    public FunctionalRequirementClassification getClassification() {
-        return classification;
+    public FunctionalRequirementClassification get_classification() {
+        return _classification;
     }
 }

@@ -11,10 +11,10 @@ import java.util.Optional;
  */
 public class TabController extends ControllerTemplate {
 
-    protected AnchorPane anchorPane;
+    protected AnchorPane _anchorPane;
 
     public AnchorPane getAnchorPane(){
-        return anchorPane;
+        return _anchorPane;
     }
 
     public void openDeleteQuery() {

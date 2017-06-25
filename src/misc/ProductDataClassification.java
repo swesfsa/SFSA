@@ -7,13 +7,13 @@ public enum ProductDataClassification {
     ILF("ILF"),
     EIF("EIF");
 
-    private final String classification;
+    private final String _classification;
 
     private ProductDataClassification(String classification) {
-        this.classification = classification;
+        this._classification = classification;
     }
 
-    public String getClassification() {
-        return classification;
+    public String get_classification() {
+        return _classification;
     }
 }

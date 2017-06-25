@@ -17,30 +17,30 @@ import java.util.Map;
  */
 public class CreateFunctionalRequirementView extends ViewTemplate implements ICreateFunctionalRequirementView {
 
-    private IModel model;
+    private IModel _model;
 
-    private Scene scene;
+    private Scene _scene;
 
-    private Button saveButton;
-    private Button cancelButton;
+    private Button _saveButton;
+    private Button _cancelButton;
 
-    private DatePicker date;
+    private DatePicker _date;
 
-    private TextField id;
-    private TextField title;
-    private TextField function;
-    private TextField protagonist;
-    private TextField source;
-    private TextField references;
-    private TextField ftr;
-    private TextField det;
+    private TextField _id;
+    private TextField _title;
+    private TextField _function;
+    private TextField _protagonist;
+    private TextField _source;
+    private TextField _references;
+    private TextField _ftr;
+    private TextField _det;
 
-    private TextArea description;
+    private TextArea _description;
 
-    private ChoiceBox<String> priority;
-    private ChoiceBox<String> classification;
-    private Map<String, Priority> priorityMap;
-    private Map<String, FunctionalRequirementClassification> classificationMap;
+    private ChoiceBox<String> _priority;
+    private ChoiceBox<String> _classification;
+    private Map<String, Priority> _priorityMap;
+    private Map<String, FunctionalRequirementClassification> _classificationMap;
 
     /**
      * @author 1030129
@@ -49,38 +49,38 @@ public class CreateFunctionalRequirementView extends ViewTemplate implements ICr
     public CreateFunctionalRequirementView(IModel model) throws Exception {
 
         super("CreateFunctionalRequirement");
-        this.model = model;
+        _model = model;
 
         Parent root = FXMLLoader.load(getClass().getResource("../fxml/CreateFunctionalRequirement.fxml"));
 
-        saveButton = (Button) root.lookup("#saveButton");
-        cancelButton = (Button) root.lookup("#cancelButton");
-        date = (DatePicker) root.lookup("#datePicker");
-        id = (TextField) root.lookup("#idField");
-        title = (TextField) root.lookup("#titleField");
-        priority = (ChoiceBox<String>) root.lookup("#priority");
-        function = (TextField) root.lookup("#functionField");
-        protagonist = (TextField) root.lookup("#protagonistField");
-        source = (TextField) root.lookup("#sourceField");
-        references = (TextField) root.lookup("#referencesField");
-        description = (TextArea) root.lookup("#descriptionArea");
-        ftr = (TextField) root.lookup("#ftr");
-        det = (TextField) root.lookup("#det");
-        classification = (ChoiceBox<String>) root.lookup("#classification");
+        _saveButton = (Button) root.lookup("#saveButton");
+        _cancelButton = (Button) root.lookup("#cancelButton");
+        _date = (DatePicker) root.lookup("#datePicker");
+        _id = (TextField) root.lookup("#idField");
+        _title = (TextField) root.lookup("#titleField");
+        _priority = (ChoiceBox<String>) root.lookup("#priority");
+        _function = (TextField) root.lookup("#functionField");
+        _protagonist = (TextField) root.lookup("#protagonistField");
+        _source = (TextField) root.lookup("#sourceField");
+        _references = (TextField) root.lookup("#referencesField");
+        _description = (TextArea) root.lookup("#descriptionArea");
+        _ftr = (TextField) root.lookup("#ftr");
+        _det = (TextField) root.lookup("#det");
+        _classification = (ChoiceBox<String>) root.lookup("#classification");
 
-        priorityMap = new HashMap<>();
+        _priorityMap = new HashMap<>();
         for (Priority iterate : Priority.values()) {
-            priority.getItems().add(iterate.getPriority());
-            priorityMap.put(iterate.getPriority(), iterate);
+            _priority.getItems().add(iterate.get_priority());
+            _priorityMap.put(iterate.get_priority(), iterate);
         }
 
-        classificationMap = new HashMap<>();
+        _classificationMap = new HashMap<>();
         for (FunctionalRequirementClassification iterate : FunctionalRequirementClassification.values()) {
-            classification.getItems().add(iterate.getClassification());
-            classificationMap.put(iterate.getClassification(), iterate);
+            _classification.getItems().add(iterate.get_classification());
+            _classificationMap.put(iterate.get_classification(), iterate);
         }
 
-                scene = new Scene(root, 600, 450);
+                _scene = new Scene(root, 600, 450);
         System.out.println("CreatedFRView Constructor finished");
     }
 
@@ -89,7 +89,7 @@ public class CreateFunctionalRequirementView extends ViewTemplate implements ICr
      * @param stage
      */
     public void show(Stage stage) {
-        stage.setScene(scene);
+        stage.setScene(_scene);
         stage.setTitle("Erstellung einer neuen funktionalen Anforderung");
         stage.setResizable(false);
         stage.show();
@@ -102,121 +102,121 @@ public class CreateFunctionalRequirementView extends ViewTemplate implements ICr
 
     /**
      * @author 1030129
-     * @return saveButton
+     * @return _saveButton
      */
     public Button getSaveButton() {
-        return saveButton;
+        return _saveButton;
     }
 
     /**
      * @author 1030129
-     * @return cancelButton
+     * @return _cancelButton
      */
     public Button getCancelButton() {
-        return cancelButton;
+        return _cancelButton;
     }
 
     /**
      * @author 1030129
-     * @return date
+     * @return _date
      */
     public DatePicker getDate() {
-        return date;
+        return _date;
     }
 
     /**
      * @author 1030129
-     * @return id
+     * @return _id
      */
     public TextField getId() {
-        return id;
+        return _id;
     }
 
     /**
      * @author 1030129
-     * @return title
+     * @return _title
      */
     public TextField getTitle() {
-        return title;
+        return _title;
     }
 
     /**
      * @author 1030129
      * @return priotity
      */
-    public ChoiceBox<String> getPriority() {
-        return priority;
+    public ChoiceBox<String> get_priority() {
+        return _priority;
     }
 
     /**
      * @author 1030129
-     * @return function
+     * @return _function
      */
-    public TextField getFunction() {
-        return function;
+    public TextField get_function() {
+        return _function;
     }
 
     /**
      * @author 1030129
-     * @return protagonist
+     * @return _protagonist
      */
     public TextField getProtagonist() {
-        return protagonist;
+        return _protagonist;
     }
 
     /**
      * @author 1030129
-     * @return source
+     * @return _source
      */
     public TextField getSource() {
-        return source;
+        return _source;
     }
 
     /**
      * @author 1030129
-     * @return references
+     * @return _references
      */
     public TextField getReferences() {
-        return references;
+        return _references;
     }
 
     /**
      * @author 1030129
-     * @return description
+     * @return _description
      */
-    public TextArea getDescription() {
-        return description;
+    public TextArea get_description() {
+        return _description;
     }
 
     /**
      * @author 1030129
-     * @return ftr
+     * @return _ftr
      */
-    public TextField getFtr() {
-        return ftr;
+    public TextField get_ftr() {
+        return _ftr;
     }
 
     /**
      * @author 1030129
-     * @return det
+     * @return _det
      */
     public TextField getDet() {
-        return det;
+        return _det;
     }
 
     /**
      * @author 1030129
-     * @return classification
+     * @return _classification
      */
-    public ChoiceBox<String> getClassification() {
-        return classification;
+    public ChoiceBox<String> get_classification() {
+        return _classification;
     }
 
-    public Map<String, Priority> getPriorityMap() {
-        return priorityMap;
+    public Map<String, Priority> get_priorityMap() {
+        return _priorityMap;
     }
 
-    public Map<String, FunctionalRequirementClassification> getClassificationMap() {
-        return classificationMap;
+    public Map<String, FunctionalRequirementClassification> get_classificationMap() {
+        return _classificationMap;
     }
 }

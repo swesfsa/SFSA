@@ -12,23 +12,23 @@ import model.IModel;
  */
 public class SFSAView extends ViewTemplate implements ISFSAView {
 
-    private IModel model;
+    private IModel _model;
 
-    private Scene scene;
+    private Scene _scene;
 
-    private TabPane tabPane;
-    private Tab targetSpecificationTab;
-    private Tab environmentTab;
-    private Tab productUseTab;
-    private Tab functionalRequirementsTab;
-    private Tab productDataTab;
-    private Tab estimationConfigTab;
-    private Tab costEstimationTab;
+    private TabPane _tabPane;
+    private Tab _targetSpecificationTab;
+    private Tab _environmentTab;
+    private Tab _productUseTab;
+    private Tab _functionalRequirementsTab;
+    private Tab _productDataTab;
+    private Tab _estimationConfigTab;
+    private Tab _costEstimationTab;
 
-    private MenuBar menuBar;
-    private Menu fileMenu;
+    private MenuBar _menuBar;
+    private Menu _fileMenu;
     private Menu _xml;
-    private MenuItem closeItem;
+    private MenuItem _closeItem;
     private MenuItem _import;
     private MenuItem _export;
 
@@ -39,29 +39,29 @@ public class SFSAView extends ViewTemplate implements ISFSAView {
     public SFSAView(IModel model) throws Exception{
 
         super("SFSA");
-        this.model = model;
+        _model = model;
 
         Parent root = FXMLLoader.load(getClass().getResource("../fxml/SFSA.fxml"));
 
-        tabPane = (TabPane) root.lookup("#tabPane");
-        targetSpecificationTab = tabPane.getTabs().get(0);
-        environmentTab = tabPane.getTabs().get(1);
-        productUseTab = tabPane.getTabs().get(2);
-        functionalRequirementsTab = tabPane.getTabs().get(3);
-        productDataTab = tabPane.getTabs().get(4);
-        estimationConfigTab = tabPane.getTabs().get(5);
-        costEstimationTab = tabPane.getTabs().get(6);
+        _tabPane = (TabPane) root.lookup("#tabPane");
+        _targetSpecificationTab = _tabPane.getTabs().get(0);
+        _environmentTab = _tabPane.getTabs().get(1);
+        _productUseTab = _tabPane.getTabs().get(2);
+        _functionalRequirementsTab = _tabPane.getTabs().get(3);
+        _productDataTab = _tabPane.getTabs().get(4);
+        _estimationConfigTab = _tabPane.getTabs().get(5);
+        _costEstimationTab = _tabPane.getTabs().get(6);
 
-        menuBar = (MenuBar) root.lookup("#menuBar");
-        fileMenu = menuBar.getMenus().get(0);
-        closeItem = fileMenu.getItems().get(4);
-        _xml = menuBar.getMenus().get(2);
+        _menuBar = (MenuBar) root.lookup("#menuBar");
+        _fileMenu = _menuBar.getMenus().get(0);
+        _closeItem = _fileMenu.getItems().get(4);
+        _xml = _menuBar.getMenus().get(2);
         _import = _xml.getItems().get(0);
         _export = _xml.getItems().get(1);
 
 
 
-        scene = new Scene(root, 1000, 600);
+        _scene = new Scene(root, 1000, 600);
     }
 
     /**
@@ -69,7 +69,7 @@ public class SFSAView extends ViewTemplate implements ISFSAView {
      * @param stage
      */
     public void show(Stage stage) {
-        stage.setScene(scene);
+        stage.setScene(_scene);
         stage.setTitle("SFSA - Software für standardisierte Anforderungssammlung");
         stage.show();
     }
@@ -80,54 +80,54 @@ public class SFSAView extends ViewTemplate implements ISFSAView {
 
     /**
      * @author 1030129
-     * @return targetSpecificationTab
+     * @return _targetSpecificationTab
      */
-    public Tab getTargetSpecificationTab() {
-        return targetSpecificationTab;
+    public Tab get_targetSpecificationTab() {
+        return _targetSpecificationTab;
     }
 
     /**
      * @author 1030129
-     * @return productUseTab
+     * @return _productUseTab
      */
-    public Tab getProductUseTab() {
-        return productUseTab;
+    public Tab get_productUseTab() {
+        return _productUseTab;
     }
 
     /**
      * @author 1030129
-     * @return functionalRequirementsTab
+     * @return _functionalRequirementsTab
      */
-    public Tab getFunctionalRequirementsTab() {
-        return functionalRequirementsTab;
+    public Tab get_functionalRequirementsTab() {
+        return _functionalRequirementsTab;
     }
 
     /**
      * @author 1030129
-     * @return productDataTab
+     * @return _productDataTab
      */
-    public Tab getProductDataTab() {
-        return productDataTab;
+    public Tab get_productDataTab() {
+        return _productDataTab;
     }
 
     /**
      * @author 1030129
-     * @return environmentTab
+     * @return _environmentTab
      */
-    public Tab getEnvironmentTab() {
-        return environmentTab;
+    public Tab get_environmentTab() {
+        return _environmentTab;
     }
 
-    public Tab getEstimationConfigTab() {
-        return estimationConfigTab;
+    public Tab get_estimationConfigTab() {
+        return _estimationConfigTab;
     }
 
-    public Tab getCostEstimationTab() {
-        return costEstimationTab;
+    public Tab get_costEstimationTab() {
+        return _costEstimationTab;
     }
 
-    public MenuItem getCloseItem() {
-        return closeItem;
+    public MenuItem get_closeItem() {
+        return _closeItem;
     }
 
     public MenuItem getImportItem() {

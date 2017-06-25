@@ -5,24 +5,24 @@ package misc;
  */
 public class Environment {
 
-    private String hardwareEnvironment;
-    private String softwareEnvironment;
+    private String _hardwareEnvironment;
+    private String _softwareEnvironment;
 
     public Environment(String hardwareEnvironment, String softwareEnvironment) {
-        this.hardwareEnvironment = hardwareEnvironment;
-        this.softwareEnvironment = softwareEnvironment;
+        _hardwareEnvironment = hardwareEnvironment;
+        _softwareEnvironment = softwareEnvironment;
     }
 
-    public String getHardwareEnvironment() {
-        return hardwareEnvironment;
+    public String get_hardwareEnvironment() {
+        return _hardwareEnvironment;
     }
 
-    public String getSoftwareEnvironment() {
-        return softwareEnvironment;
+    public String get_softwareEnvironment() {
+        return _softwareEnvironment;
     }
 
     public void print() {
-        System.out.println("HardwareEnvironment:\n" + hardwareEnvironment);
-        System.out.println("SoftwareEnvironment:\n" + softwareEnvironment);
+        System.out.println("HardwareEnvironment:\n" + _hardwareEnvironment);
+        System.out.println("SoftwareEnvironment:\n" + _softwareEnvironment);
     }
 }

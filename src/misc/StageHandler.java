@@ -6,8 +6,8 @@ import javafx.stage.Stage;
  */
 public class StageHandler {
 
-    private static StageHandler instance;
-    private static Stage primaryStage;
+    private static StageHandler _instance;
+    private static Stage _primaryStage;
 
     /**
      * Private constructor
@@ -17,23 +17,23 @@ public class StageHandler {
     }
 
     /**
-     * Static method "getInstance()" returns instance of StageHandler
-     * Singleton pattern - new instance if first call
+     * Static method "get_instance()" returns _instance of StageHandler
+     * Singleton pattern - new _instance if first call
      * Synchronized to be thread-secure
      */
-    public synchronized static StageHandler getInstance()
+    public synchronized static StageHandler get_instance()
     {
-        if (instance == null) {
-            instance = new StageHandler();
+        if (_instance == null) {
+            _instance = new StageHandler();
         }
-        return instance;
+        return _instance;
     }
 
     public Stage getPrimaryStage() {
-        return primaryStage;
+        return _primaryStage;
     }
 
     public void setPrimaryStage(Stage primaryStage) {
-        StageHandler.primaryStage = primaryStage;
+        StageHandler._primaryStage = primaryStage;
     }
 }

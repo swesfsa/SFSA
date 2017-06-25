@@ -67,19 +67,19 @@ public class CreateFunctionalRequirementController extends ControllerTemplate {
 
         _date = _view.getDate().getValue();
         _title = _view.getTitle().getText();
-        _function = _view.getFunction().getText();
+        _function = _view.get_function().getText();
         _protagonist = _view.getProtagonist().getText();
         _source = _view.getSource().getText();
         _references = _view.getReferences().getText();
-        _description = _view.getDescription().getText();
+        _description = _view.get_description().getText();
         checkForEmptyFields();
 
-        _priority = _view.getPriorityMap().get(_view.getPriority().getValue());
-        _classification = _view.getClassificationMap().get(_view.getClassification().getValue());
+        _priority = _view.get_priorityMap().get(_view.get_priority().getValue());
+        _classification = _view.get_classificationMap().get(_view.get_classification().getValue());
         checkForEmptyChoiceBox();
 
         _id = Integer.parseInt(_view.getId().getText());
-        _ftr = Integer.parseInt(_view.getFtr().getText());
+        _ftr = Integer.parseInt(_view.get_ftr().getText());
         _det = Integer.parseInt(_view.getDet().getText());
         checkForNumbersSmallerOne();
     }
@@ -143,7 +143,7 @@ public class CreateFunctionalRequirementController extends ControllerTemplate {
                 close();
 
                 // DEBUG
-                _model.getFunctionalRequirementList().iterator().forEachRemaining(FunctionalRequirement::print);
+                _model.get_functionalRequirementList().iterator().forEachRemaining(FunctionalRequirement::print);
             }
             catch (NumberFormatException e) {
                 System.out.println("Error: " + e);

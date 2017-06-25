@@ -8,9 +8,9 @@ import javafx.scene.control.TextArea;
  */
 public interface ITargetSpecificationView {
 
-    Button getDeleteButton();
-    Button getEditButton();
-    Button getSaveButton();
+    Button get_deleteButton();
+    Button get_editButton();
+    Button get_saveButton();
 
-    TextArea getTargetSpecification();
+    TextArea get_targetSpecification();
 }

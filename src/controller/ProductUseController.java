@@ -12,29 +12,27 @@ import view.ProductUseView;
  */
 public class ProductUseController extends TabController {
 
-    private static ProductUseController instance;
     private ProductUseView _view;
 
-    private ProductUse productUse;
-    private String productUseString;
+    private String _productUseString;
 
     public ProductUseController(IModel model) throws Exception {
 
         _model = model;
         _view = new ProductUseView(_model);
-        anchorPane = _view.getAnchorPane();
+        _anchorPane = _view.get_anchorPane();
 
-        _view.getSaveButton().setOnAction(new SaveButtonEventHandler());
-        _view.getEditButton().setOnAction(new EditButtonEventHandler());
-        _view.getDeleteButton().setOnAction(new DeleteButtonEventHandler());
+        _view.get_saveButton().setOnAction(new SaveButtonEventHandler());
+        _view.get_editButton().setOnAction(new EditButtonEventHandler());
+        _view.get_deleteButton().setOnAction(new DeleteButtonEventHandler());
     }
 
     private void getDataFromView() {
-        productUseString = _view.getProductUse().getText();
+        _productUseString = _view.get_productUse().getText();
     }
 
     private void checkForEmptyFields() throws EmptyTextFieldException {
-        if (productUseString.equals("")) {
+        if (_productUseString.equals("")) {
             throw new EmptyTextFieldException();
         }
     }
@@ -48,8 +46,8 @@ public class ProductUseController extends TabController {
                 getDataFromView();
                 checkForEmptyFields();
 
-                productUse = new ProductUse(productUseString);
-                _model.setProductUse(productUse);
+                ProductUse productUse = new ProductUse(_productUseString);
+                _model.set_productUse(productUse);
                 productUse.print();
             } catch (EmptyTextFieldException e) {
                 System.out.println("Error: " + e);

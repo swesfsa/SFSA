@@ -10,19 +10,19 @@ import java.util.List;
  */
 public class Model implements IModel {
 
-    private TargetSpecification targetSpecification;
-    private ProductUse productUse;
-    private Environment environment;
-    private List<FunctionalRequirement> functionalRequirementList;
-    private List<ProductData> productDataList;
+    private TargetSpecification _targetSpecification;
+    private ProductUse _productUse;
+    private Environment _environment;
+    private List<FunctionalRequirement> _functionalRequirementList;
+    private List<ProductData> _productDataList;
     private Factors _factors;
 
     public Model() {
-        targetSpecification = new TargetSpecification("");
-        productUse = new ProductUse("");
-        environment = new Environment("", "");
-        functionalRequirementList = new ArrayList<>();
-        productDataList = new ArrayList<>();
+        _targetSpecification = new TargetSpecification("");
+        _productUse = new ProductUse("");
+        _environment = new Environment("", "");
+        _functionalRequirementList = new ArrayList<>();
+        _productDataList = new ArrayList<>();
     }
 
     private Complexity calculateEIComplexity(int frFTR, int frDET) {
@@ -125,18 +125,18 @@ public class Model implements IModel {
 
     public CostEstimation costEstimationCalculation() {
         FunctionPoints unweightedFunctionPoints = new FunctionPoints(0);
-        for(FunctionalRequirement functionalRequirement : functionalRequirementList) {
+        for(FunctionalRequirement functionalRequirement : _functionalRequirementList) {
             Complexity complexity = null;
-            if(functionalRequirement.getClassification() == FunctionalRequirementClassification.INPUT)
-                complexity = calculateEIComplexity(functionalRequirement.getDet(), functionalRequirement.getFtr());
-            else if(functionalRequirement.getClassification() == FunctionalRequirementClassification.OUTPUT ||
-                    functionalRequirement.getClassification() == FunctionalRequirementClassification.QUERY)
-                complexity = calculateEOEQComplexity(functionalRequirement.getDet(), functionalRequirement.getFtr());
-            unweightedFunctionPoints.add(calculateFunctionalRequirementsFunctionPoints(functionalRequirement.getClassification(), complexity));
+            if(functionalRequirement.get_classification() == FunctionalRequirementClassification.INPUT)
+                complexity = calculateEIComplexity(functionalRequirement.get_det(), functionalRequirement.get_ftr());
+            else if(functionalRequirement.get_classification() == FunctionalRequirementClassification.OUTPUT ||
+                    functionalRequirement.get_classification() == FunctionalRequirementClassification.QUERY)
+                complexity = calculateEOEQComplexity(functionalRequirement.get_det(), functionalRequirement.get_ftr());
+            unweightedFunctionPoints.add(calculateFunctionalRequirementsFunctionPoints(functionalRequirement.get_classification(), complexity));
         }
-        for(ProductData productData : productDataList) {
-            Complexity complexity = calculateProductDataComplexity(productData.getRet(), productData.getDet());
-            unweightedFunctionPoints.add(calculateProductDataFunctionPoints(productData.getClassification(), complexity));
+        for(ProductData productData : _productDataList) {
+            Complexity complexity = calculateProductDataComplexity(productData.get_ret(), productData.get_det());
+            unweightedFunctionPoints.add(calculateProductDataFunctionPoints(productData.get_classification(), complexity));
         }
         double factorSum = _factors.getFactorSum();
         FunctionPoints weightedFunctionPoints = new FunctionPoints(Math.round(unweightedFunctionPoints.getFunctionPoints() * (factorSum/100 + 0.7)));
@@ -147,41 +147,41 @@ public class Model implements IModel {
     }
 
     public void addFunctionalRequirement(FunctionalRequirement functionalRequirement) {
-        functionalRequirementList.add(functionalRequirement);
+        _functionalRequirementList.add(functionalRequirement);
     }
-    public List<FunctionalRequirement> getFunctionalRequirementList() {
-        return functionalRequirementList;
+    public List<FunctionalRequirement> get_functionalRequirementList() {
+        return _functionalRequirementList;
     }
 
     public void addProductData(ProductData productData) {
-        productDataList.add(productData);
+        _productDataList.add(productData);
     }
 
-    public List<ProductData> getProductDataList() {
-        return productDataList;
+    public List<ProductData> get_productDataList() {
+        return _productDataList;
     }
 
-    public TargetSpecification getTargetSpecification() {
-        return targetSpecification;
+    public TargetSpecification get_targetSpecification() {
+        return _targetSpecification;
     }
 
-    public void setTargetSpecification(TargetSpecification targetSpecification) {
-        this.targetSpecification = targetSpecification;
+    public void set_targetSpecification(TargetSpecification _targetSpecification) {
+        this._targetSpecification = _targetSpecification;
     }
 
-    public ProductUse getProductUse() {
-        return productUse;
+    public ProductUse get_productUse() {
+        return _productUse;
     }
 
-    public void setProductUse(ProductUse productUse) {
-        this.productUse = productUse;
+    public void set_productUse(ProductUse _productUse) {
+        this._productUse = _productUse;
     }
 
-    public Environment getEnvironment() {
-        return environment;
+    public Environment get_environment() {
+        return _environment;
     }
 
-    public void setEnvironment(Environment environment) {
-        this.environment = environment;
+    public void set_environment(Environment _environment) {
+        this._environment = _environment;
     }
 }

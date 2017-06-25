@@ -36,8 +36,8 @@ public class CreateProductDataController extends ControllerTemplate {
         _model = model;
         _view = new CreateProductDataView(model);
 
-        _view.getSaveButton().setOnAction(new SaveButtonEventHandler());
-        _view.getCancelButton().setOnAction(new CancelButtonEventHandler());
+        _view.get_saveButton().setOnAction(new SaveButtonEventHandler());
+        _view.get_cancelButton().setOnAction(new CancelButtonEventHandler());
     }
 
     /**
@@ -58,17 +58,17 @@ public class CreateProductDataController extends ControllerTemplate {
      * @author 1030129
      */
     private void getDataFromView() throws EmptyTextFieldException, EmptyChoiceBoxException, NumberSmallerOneException {
-        _memoryContent = _view.getMemoryContent().getText();
-        _references = _view.getReferences().getText();
-        _estimation = _view.getEstimation().getText();
+        _memoryContent = _view.get_memoryContent().getText();
+        _references = _view.get_references().getText();
+        _estimation = _view.get_estimation().getText();
         checkForEmptyFields();
 
-        _classification = _view.getClassificationMap().get(_view.getClassification().getValue());
+        _classification = _view.get_classificationMap().get(_view.get_classification().getValue());
         checkForEmptyChoiceBox();
 
-        _id = Integer.parseInt(_view.getId().getText());
-        _ret = Integer.parseInt(_view.getRet().getText());
-        _det = Integer.parseInt(_view.getDet().getText());
+        _id = Integer.parseInt(_view.get_id().getText());
+        _ret = Integer.parseInt(_view.get_ret().getText());
+        _det = Integer.parseInt(_view.get_det().getText());
         checkForNumbersSmallerOne();
     }
 
@@ -128,7 +128,7 @@ public class CreateProductDataController extends ControllerTemplate {
                 _model.addProductData(productData);
                 close();
 
-                _model.getProductDataList().iterator().forEachRemaining(ProductData::print);
+                _model.get_productDataList().iterator().forEachRemaining(ProductData::print);
             }
             catch (NumberFormatException e) {
                 System.out.println("Error: " + e);

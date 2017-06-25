@@ -4,33 +4,33 @@ package misc;
  * Created by tmonn on 17.05.2017.
  */
 public class Factors {
-    private int integration;
-    private int decentralData;
-    private int transactionRate;
-    private int calculation;
-    private int control;
-    private int exception;
-    private int logic;
-    private int reusability;
-    private int conversion;
-    private int customization;
+    private int _integration;
+    private int _decentralData;
+    private int _transactionRate;
+    private int _calculation;
+    private int _control;
+    private int _exception;
+    private int _logic;
+    private int _reusability;
+    private int _conversion;
+    private int _customization;
 
     public Factors(int integration, int decentralData, int transactionRate, int calculation, int control,
             int exception, int logic, int reusability, int conversion, int customization) {
-        this.integration = integration;
-        this.decentralData = decentralData;
-        this.transactionRate = transactionRate;
-        this.calculation = calculation;
-        this.control = control;
-        this.exception = exception;
-        this.logic = logic;
-        this.reusability = reusability;
-        this.conversion = conversion;
-        this.customization = customization;
+        _integration = integration;
+        _decentralData = decentralData;
+        _transactionRate = transactionRate;
+        _calculation = calculation;
+        _control = control;
+        _exception = exception;
+        _logic = logic;
+        _reusability = reusability;
+        _conversion = conversion;
+        _customization = customization;
     }
 
     public int getFactorSum() {
-        return integration + decentralData + transactionRate + calculation + control +
-                exception + logic + reusability + conversion + customization;
+        return _integration + _decentralData + _transactionRate + _calculation + _control +
+                _exception + _logic + _reusability + _conversion + _customization;
     }
 }

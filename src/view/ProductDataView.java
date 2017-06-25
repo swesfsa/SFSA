@@ -12,13 +12,13 @@ import model.IModel;
  */
 public class ProductDataView extends TabView implements IProductDataView{
 
-    private IModel model;
+    private IModel _model;
 
-    private Button newButton;
-    private Button editButton;
-    private Button deleteButton;
+    private Button _newButton;
+    private Button _editButton;
+    private Button _deleteButton;
 
-    private ListView dataList;
+    private ListView _dataList;
 
     /**
      * @author 1030129
@@ -26,46 +26,46 @@ public class ProductDataView extends TabView implements IProductDataView{
      */
     public ProductDataView(IModel model) throws Exception {
 
-        this.model = model;
+        this._model = model;
 
         Parent root = FXMLLoader.load(getClass().getResource("../fxml/ProductData.fxml"));
 
-        newButton = (Button) root.lookup("#newButton");
-        editButton = (Button) root.lookup("#editButton");
-        deleteButton = (Button) root.lookup("#deleteButton");
-        dataList = (ListView) root.lookup("#dataList");
-        anchorPane = (AnchorPane) root.lookup("#AnchorPane");
+        _newButton = (Button) root.lookup("#newButton");
+        _editButton = (Button) root.lookup("#editButton");
+        _deleteButton = (Button) root.lookup("#deleteButton");
+        _dataList = (ListView) root.lookup("#dataList");
+        _anchorPane = (AnchorPane) root.lookup("#AnchorPane");
     }
 
     /**
      * @author 1030129
-     * @return newButton
+     * @return _newButton
      */
-    public Button getNewButton() {
-        return newButton;
+    public Button get_newButton() {
+        return _newButton;
     }
 
     /**
      * @author 1030129
-     * @return editButton
+     * @return _editButton
      */
-    public Button getEditButton() {
-        return editButton;
+    public Button get_editButton() {
+        return _editButton;
     }
 
     /**
      * @author 1030129
-     * @return deleteButton
+     * @return _deleteButton
      */
-    public Button getDeleteButton() {
-        return deleteButton;
+    public Button get_deleteButton() {
+        return _deleteButton;
     }
 
     /**
      * @author 1030129
-     * @return dataList
+     * @return _dataList
      */
-    public ListView getDataList() {
-        return dataList;
+    public ListView get_dataList() {
+        return _dataList;
     }
 }

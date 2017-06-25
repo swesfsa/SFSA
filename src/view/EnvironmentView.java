@@ -14,12 +14,12 @@ public class EnvironmentView extends TabView implements IEnvironmentView{
 
     private IModel _model;
 
-    private Button saveButton;
-    private Button editButton;
-    private Button cancelButton;
+    private Button _saveButton;
+    private Button _editButton;
+    private Button _cancelButton;
 
-    private TextArea hardwareEnvironment;
-    private TextArea softwareEnvironment;
+    private TextArea _hardwareEnvironment;
+    private TextArea _softwareEnvironment;
 
     /**
      * @author 1030129
@@ -31,52 +31,52 @@ public class EnvironmentView extends TabView implements IEnvironmentView{
 
         Parent root = FXMLLoader.load(getClass().getResource("../fxml/Environment.fxml"));
 
-        saveButton = (Button) root.lookup("#saveButton");
-        editButton = (Button) root.lookup("#editButton");
-        cancelButton = (Button) root.lookup("#cancelButton");
-        hardwareEnvironment = (TextArea) root.lookup("#hardware");
-        softwareEnvironment = (TextArea) root.lookup("#software");
-        anchorPane = (AnchorPane) root.lookup("#AnchorPane");
+        _saveButton = (Button) root.lookup("#saveButton");
+        _editButton = (Button) root.lookup("#editButton");
+        _cancelButton = (Button) root.lookup("#cancelButton");
+        _hardwareEnvironment = (TextArea) root.lookup("#hardware");
+        _softwareEnvironment = (TextArea) root.lookup("#software");
+        _anchorPane = (AnchorPane) root.lookup("#AnchorPane");
     }
 
     /**
      * @author 1030129
-     * @return saveButton
+     * @return _saveButton
      */
-    public Button getSaveButton() {
-        return saveButton;
+    public Button get_saveButton() {
+        return _saveButton;
     }
 
     /**
      * @author 1030129
-     * @return editButton
+     * @return _editButton
      */
-    public Button getEditButton() {
-        return editButton;
+    public Button get_editButton() {
+        return _editButton;
     }
 
     /**
      * @author 1030129
      * @return deleteButton
      */
-    public Button getCancelButton() {
-        return cancelButton;
+    public Button get_cancelButton() {
+        return _cancelButton;
     }
 
     /**
      * @author 1030129
-     * @return hardwareEnvironment
+     * @return _hardwareEnvironment
      */
-    public TextArea getHardwareEnvironment() {
-        return hardwareEnvironment;
+    public TextArea get_hardwareEnvironment() {
+        return _hardwareEnvironment;
     }
 
     /**
      * @author 1030129
-     * @return softwareEnvironment
+     * @return _softwareEnvironment
      */
-    public TextArea getSoftwareEnvironment() {
-        return softwareEnvironment;
+    public TextArea get_softwareEnvironment() {
+        return _softwareEnvironment;
     }
 
 }

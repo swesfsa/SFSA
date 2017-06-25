@@ -9,9 +9,9 @@ import javafx.scene.control.TextArea;
  */
 public interface IProductDataView {
 
-    Button getNewButton();
-    Button getEditButton();
-    Button getDeleteButton();
+    Button get_newButton();
+    Button get_editButton();
+    Button get_deleteButton();
 
-    ListView getDataList();
+    ListView get_dataList();
 }

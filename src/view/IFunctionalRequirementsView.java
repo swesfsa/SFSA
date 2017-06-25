@@ -7,9 +7,9 @@ import javafx.scene.control.*;
  */
 public interface IFunctionalRequirementsView {
 
-    Button getNewButton();
-    Button getEditButton();
-    Button getDeleteButton();
+    Button get_newButton();
+    Button get_editButton();
+    Button get_deleteButton();
 
-    ListView getRequirementsList();
+    ListView get_requirementsList();
 }

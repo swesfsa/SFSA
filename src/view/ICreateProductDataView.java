@@ -10,16 +10,16 @@ import javafx.scene.control.TextField;
  */
 public interface ICreateProductDataView extends IView{
 
-    Button getSaveButton();
-    Button getCancelButton();
+    Button get_saveButton();
+    Button get_cancelButton();
 
-    TextField getId();
-    TextField getMemoryContent();
-    TextField getReferences();
-    TextField getRet();
-    TextField getDet();
+    TextField get_id();
+    TextField get_memoryContent();
+    TextField get_references();
+    TextField get_ret();
+    TextField get_det();
 
-    TextArea getEstimation();
+    TextArea get_estimation();
 
-    ChoiceBox<String> getClassification();
+    ChoiceBox<String> get_classification();
 }

@@ -5,13 +5,13 @@ package misc;
  */
 public class TargetSpecification {
 
-    private String targetSpecification;
+    private String _targetSpecification;
 
     public TargetSpecification(String targetSpecification) {
-        this.targetSpecification = targetSpecification;
+        _targetSpecification = targetSpecification;
     }
 
     public void print() {
-        System.out.println("TargetSpecification:\n" + targetSpecification);
+        System.out.println("TargetSpecification:\n" + _targetSpecification);
     }
 }

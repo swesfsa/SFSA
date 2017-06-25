@@ -1,9 +1,7 @@
 package controller;
 
 import javafx.event.ActionEvent;
-import javafx.event.Event;
 import javafx.event.EventHandler;
-import javafx.scene.layout.AnchorPane;
 import model.IModel;
 import view.FunctionalRequirementsView;
 
@@ -12,18 +10,17 @@ import view.FunctionalRequirementsView;
  */
 public class FunctionalRequirementsController extends TabController {
 
-    private static FunctionalRequirementsController instance;
     private FunctionalRequirementsView _view;
 
     public FunctionalRequirementsController(IModel model) throws Exception {
 
         _model = model;
         _view = new FunctionalRequirementsView(_model);
-        anchorPane = _view.getAnchorPane();
+        _anchorPane = _view.get_anchorPane();
 
-        _view.getNewButton().setOnAction(new NewButtonEventHandler());
-        _view.getEditButton().setOnAction(new EditButtonEventHandler());
-        _view.getDeleteButton().setOnAction(new DeleteButtonEventHandler());
+        _view.get_newButton().setOnAction(new NewButtonEventHandler());
+        _view.get_editButton().setOnAction(new EditButtonEventHandler());
+        _view.get_deleteButton().setOnAction(new DeleteButtonEventHandler());
     }
 
     private class NewButtonEventHandler implements EventHandler<ActionEvent> {

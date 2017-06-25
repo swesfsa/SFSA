@@ -6,10 +6,10 @@ import javafx.stage.Stage;
  */
 public abstract class ViewTemplate {
 
-    protected String stageTitle;
+    protected String _stageTitle;
 
     protected ViewTemplate(String stageTitle) {
-        this.stageTitle = stageTitle;
+        _stageTitle = stageTitle;
     }
 
     abstract public void show(Stage stage);

@@ -12,29 +12,27 @@ import view.TargetSpecificationView;
  */
 public class TargetSpecificationController extends TabController {
 
-    private static TargetSpecificationController instance;
     private TargetSpecificationView _view;
 
-    private TargetSpecification targetSpecification;
-    private String targetSpecString;
+    private String _targetSpecString;
 
     public TargetSpecificationController(IModel model) throws Exception {
 
         _model = model;
         _view = new TargetSpecificationView(_model);
-        anchorPane = _view.getAnchorPane();
+        _anchorPane = _view.get_anchorPane();
 
-        _view.getSaveButton().setOnAction(new SaveButtonEventHandler());
-        _view.getEditButton().setOnAction(new EditButtonEventHandler());
-        _view.getDeleteButton().setOnAction(new DeleteButtonEventHandler());
+        _view.get_saveButton().setOnAction(new SaveButtonEventHandler());
+        _view.get_editButton().setOnAction(new EditButtonEventHandler());
+        _view.get_deleteButton().setOnAction(new DeleteButtonEventHandler());
     }
 
     private void getDataFromView() {
-        targetSpecString = _view.getTargetSpecification().getText();
+        _targetSpecString = _view.get_targetSpecification().getText();
     }
 
     private void checkForEmptyFields() throws EmptyTextFieldException {
-        if (targetSpecString.equals("")) {
+        if (_targetSpecString.equals("")) {
             throw new EmptyTextFieldException();
         }
     }
@@ -48,8 +46,8 @@ public class TargetSpecificationController extends TabController {
                 getDataFromView();
                 checkForEmptyFields();
 
-                targetSpecification = new TargetSpecification(targetSpecString);
-                _model.setTargetSpecification(targetSpecification);
+                TargetSpecification targetSpecification = new TargetSpecification(_targetSpecString);
+                _model.set_targetSpecification(targetSpecification);
                 targetSpecification.print();
             } catch (EmptyTextFieldException e) {
                 System.out.println("Error: " + e);

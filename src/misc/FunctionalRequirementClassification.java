@@ -9,13 +9,13 @@ public enum FunctionalRequirementClassification {
     OUTPUT("Ausgabe"),
     QUERY("Abfrage");
 
-    private final String classification;
+    private final String _classification;
 
     private FunctionalRequirementClassification(String classification) {
-        this.classification = classification;
+        _classification = classification;
     }
 
-    public String getClassification() {
-        return classification;
+    public String get_classification() {
+        return _classification;
     }
 }
