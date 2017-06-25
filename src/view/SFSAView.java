@@ -27,7 +27,10 @@ public class SFSAView extends ViewTemplate implements ISFSAView {
 
     private MenuBar menuBar;
     private Menu fileMenu;
+    private Menu _xml;
     private MenuItem closeItem;
+    private MenuItem _import;
+    private MenuItem _export;
 
     /**
      * @author 1030129
@@ -52,6 +55,11 @@ public class SFSAView extends ViewTemplate implements ISFSAView {
         menuBar = (MenuBar) root.lookup("#menuBar");
         fileMenu = menuBar.getMenus().get(0);
         closeItem = fileMenu.getItems().get(4);
+        _xml = menuBar.getMenus().get(2);
+        _import = _xml.getItems().get(0);
+        _export = _xml.getItems().get(1);
+
+
 
         scene = new Scene(root, 1000, 600);
     }
@@ -120,5 +128,13 @@ public class SFSAView extends ViewTemplate implements ISFSAView {
 
     public MenuItem getCloseItem() {
         return closeItem;
+    }
+
+    public MenuItem getImportItem() {
+        return _import;
+    }
+
+    public MenuItem getExportItem() {
+        return _export;
     }
 }

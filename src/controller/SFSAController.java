@@ -9,7 +9,7 @@ import misc.StageHandler;
 import model.IModel;
 import view.SFSAView;
 
-public abstract class SFSAController extends ControllerTemplate implements IController {
+public class SFSAController extends ControllerTemplate implements IController {
 
    private SFSAView _view;
 
@@ -28,6 +28,8 @@ public abstract class SFSAController extends ControllerTemplate implements ICont
        _view.getEstimationConfigTab().setOnSelectionChanged(new EstimationConfigTabEventHandler());
        _view.getCostEstimationTab().setOnSelectionChanged(new EffortEstimationTabEventHandler());
        _view.getCloseItem().setOnAction(new CloseItemEventHandler());
+       _view.getImportItem().setOnAction(new ImportItemEventHandler());
+       _view.getExportItem().setOnAction(new ExportItemEventHandler());
        StageHandler.getInstance().getPrimaryStage().setOnCloseRequest(new CloseRequestEventHandler());
    }
 
@@ -130,6 +132,22 @@ public abstract class SFSAController extends ControllerTemplate implements ICont
        @Override
        public void handle(ActionEvent event) {
            Platform.exit();
+       }
+   }
+
+   class ImportItemEventHandler implements EventHandler<ActionEvent> {
+
+       @Override
+       public void handle(ActionEvent event) {
+           System.out.println("import");
+       }
+   }
+
+   class ExportItemEventHandler implements EventHandler<ActionEvent> {
+
+       @Override
+       public void handle(ActionEvent event) {
+           System.out.println("export");
        }
    }
 

@@ -13,7 +13,6 @@ import view.EnvironmentView;
  */
 public class EnvironmentController extends TabController {
 
-    private static EnvironmentController instance;
     private EnvironmentView _view;
 
     private Environment environment;
@@ -42,7 +41,7 @@ public class EnvironmentController extends TabController {
         _view.getCancelButton().setOnAction(new CancelButtonEventHandler());
     }
 
-    public void getDataFromView() throws EmptyTextFieldException {
+    private void getDataFromView() throws EmptyTextFieldException {
         hardwareEnvironment = _view.getHardwareEnvironment().getText();
         softwareEnvironment = _view.getSoftwareEnvironment().getText();
         checkForEmptyFields();

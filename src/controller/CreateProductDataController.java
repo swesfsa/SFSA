@@ -17,17 +17,15 @@ public class CreateProductDataController extends ControllerTemplate {
     private Stage _stage;
     private CreateProductDataView _view;
 
-    private ProductData productData;
-
-    private String memoryContent;
-    private String references;
-    private String estimation;
+    private String _memoryContent;
+    private String _references;
+    private String _estimation;
   
-    private int id;
-    private int ret;
-    private int det;
+    private int _id;
+    private int _ret;
+    private int _det;
 
-    private ProductDataClassification classification = null;
+    private ProductDataClassification _classification = null;
   
     /**
      * @author 1030129
@@ -59,18 +57,18 @@ public class CreateProductDataController extends ControllerTemplate {
      * of the CreateProductDataView.
      * @author 1030129
      */
-    public void getDataFromView() throws EmptyTextFieldException, EmptyChoiceBoxException, NumberSmallerOneException {
-        memoryContent = _view.getMemoryContent().getText();
-        references = _view.getReferences().getText();
-        estimation = _view.getEstimation().getText();
+    private void getDataFromView() throws EmptyTextFieldException, EmptyChoiceBoxException, NumberSmallerOneException {
+        _memoryContent = _view.getMemoryContent().getText();
+        _references = _view.getReferences().getText();
+        _estimation = _view.getEstimation().getText();
         checkForEmptyFields();
 
-        classification = _view.getClassificationMap().get(_view.getClassification().getValue());
+        _classification = _view.getClassificationMap().get(_view.getClassification().getValue());
         checkForEmptyChoiceBox();
 
-        id = Integer.parseInt(_view.getId().getText());
-        ret = Integer.parseInt(_view.getRet().getText());
-        det = Integer.parseInt(_view.getDet().getText());
+        _id = Integer.parseInt(_view.getId().getText());
+        _ret = Integer.parseInt(_view.getRet().getText());
+        _det = Integer.parseInt(_view.getDet().getText());
         checkForNumbersSmallerOne();
     }
 
@@ -82,21 +80,21 @@ public class CreateProductDataController extends ControllerTemplate {
      */
     private void checkForEmptyFields() throws EmptyTextFieldException {
 
-        if (memoryContent.equals("") || references.equals("") || estimation.equals("")) {
+        if (_memoryContent.equals("") || _references.equals("") || _estimation.equals("")) {
             throw new EmptyTextFieldException();
         }
     }
 
     private void checkForEmptyChoiceBox() throws EmptyChoiceBoxException {
 
-        if (classification == null) {
+        if (_classification == null) {
             throw new EmptyChoiceBoxException();
         }
     }
 
     private void checkForNumbersSmallerOne() throws NumberSmallerOneException {
 
-        if (id < 1 || ret < 1 || det < 1) {
+        if (_id < 1 || _ret < 1 || _det < 1) {
             throw new NumberSmallerOneException();
         }
     }
@@ -125,7 +123,7 @@ public class CreateProductDataController extends ControllerTemplate {
             try {
                 getDataFromView();
 
-                productData = new ProductData(id, ret, det, memoryContent, estimation, references, classification);
+                ProductData productData = new ProductData(_id, _ret, _det, _memoryContent, _estimation, _references, _classification);
 
                 _model.addProductData(productData);
                 close();

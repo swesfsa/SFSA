@@ -9,7 +9,7 @@ import java.util.Optional;
 /**
  * Created by 1030129 on 12.05.17.
  */
-public abstract class TabController extends ControllerTemplate {
+public class TabController extends ControllerTemplate {
 
     protected AnchorPane anchorPane;
 

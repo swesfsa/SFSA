@@ -9,6 +9,5 @@ import view.IView;
  */
 public interface IController {
     void show();
-    void getDataFromView() throws EmptyTextFieldException, EmptyChoiceBoxException, NumberSmallerOneException;
     AnchorPane getAnchorPane();
 }

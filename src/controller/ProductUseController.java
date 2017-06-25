@@ -29,7 +29,7 @@ public class ProductUseController extends TabController {
         _view.getDeleteButton().setOnAction(new DeleteButtonEventHandler());
     }
 
-    public void getDataFromView() {
+    private void getDataFromView() {
         productUseString = _view.getProductUse().getText();
     }
 

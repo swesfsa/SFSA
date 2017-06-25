@@ -18,20 +18,19 @@ public class CreateFunctionalRequirementController extends ControllerTemplate {
 
     private Stage _stage;
     private CreateFunctionalRequirementView _view;
-    private FunctionalRequirement functionalRequirement;
 
-    private LocalDate date;
-    private String title;
-    private String function;
-    private String protagonist;
-    private String source;
-    private String references;
-    private String description;
-    private Priority priority = null;
-    private FunctionalRequirementClassification classification = null;
-    private int id;
-    private int ftr;
-    private int det;
+    private LocalDate _date;
+    private String _title;
+    private String _function;
+    private String _protagonist;
+    private String _source;
+    private String _references;
+    private String _description;
+    private Priority _priority = null;
+    private FunctionalRequirementClassification _classification = null;
+    private int _id;
+    private int _ftr;
+    private int _det;
 
     /**
      * @author 1030129
@@ -60,55 +59,55 @@ public class CreateFunctionalRequirementController extends ControllerTemplate {
     }
 
     /**
-     * This function gets the data out of the TextFields, TextArea and ChoiceBoxes
+     * This _function gets the data out of the TextFields, TextArea and ChoiceBoxes
      * of the CreateFunctionalRequirementView.
      * @author 1030129
      */
-    public void getDataFromView() throws EmptyTextFieldException, EmptyChoiceBoxException, NumberSmallerOneException {
+    private void getDataFromView() throws EmptyTextFieldException, EmptyChoiceBoxException, NumberSmallerOneException {
 
-        date = _view.getDate().getValue();
-        title = _view.getTitle().getText();
-        function = _view.getFunction().getText();
-        protagonist = _view.getProtagonist().getText();
-        source = _view.getSource().getText();
-        references = _view.getReferences().getText();
-        description = _view.getDescription().getText();
+        _date = _view.getDate().getValue();
+        _title = _view.getTitle().getText();
+        _function = _view.getFunction().getText();
+        _protagonist = _view.getProtagonist().getText();
+        _source = _view.getSource().getText();
+        _references = _view.getReferences().getText();
+        _description = _view.getDescription().getText();
         checkForEmptyFields();
 
-        priority = _view.getPriorityMap().get(_view.getPriority().getValue());
-        classification = _view.getClassificationMap().get(_view.getClassification().getValue());
+        _priority = _view.getPriorityMap().get(_view.getPriority().getValue());
+        _classification = _view.getClassificationMap().get(_view.getClassification().getValue());
         checkForEmptyChoiceBox();
 
-        id = Integer.parseInt(_view.getId().getText());
-        ftr = Integer.parseInt(_view.getFtr().getText());
-        det = Integer.parseInt(_view.getDet().getText());
+        _id = Integer.parseInt(_view.getId().getText());
+        _ftr = Integer.parseInt(_view.getFtr().getText());
+        _det = Integer.parseInt(_view.getDet().getText());
         checkForNumbersSmallerOne();
     }
 
     /**
-     * This function checks if any of the data elements gotten from the
+     * This _function checks if any of the data elements gotten from the
      * CreateFunctionalRequirementView is empty.
      * @author 1030129
      * @throws EmptyTextFieldException
      */
     private void checkForEmptyFields() throws EmptyTextFieldException {
 
-        if (date == null || title.equals("") || function.equals("") || protagonist.equals("")
-                || source.equals("") || references.equals("") || description.equals("")) {
+        if (_date == null || _title.equals("") || _function.equals("") || _protagonist.equals("")
+                || _source.equals("") || _references.equals("") || _description.equals("")) {
             throw new EmptyTextFieldException();
         }
     }
 
     private void checkForEmptyChoiceBox() throws EmptyChoiceBoxException {
 
-        if (priority == null || classification == null) {
+        if (_priority == null || _classification == null) {
             throw new EmptyChoiceBoxException();
         }
     }
 
     private void checkForNumbersSmallerOne() throws NumberSmallerOneException {
 
-        if (id < 1 || ftr < 1 || det < 1) {
+        if (_id < 1 || _ftr < 1 || _det < 1) {
             throw new NumberSmallerOneException();
         }
     }
@@ -137,8 +136,8 @@ public class CreateFunctionalRequirementController extends ControllerTemplate {
             try {
                 getDataFromView();
 
-                functionalRequirement = new FunctionalRequirement(id, ftr, det, date, title, function, protagonist,
-                        source, references, description, priority, classification);
+                FunctionalRequirement functionalRequirement = new FunctionalRequirement(_id, _ftr, _det, _date, _title, _function, _protagonist,
+                        _source, _references, _description, _priority, _classification);
 
                 _model.addFunctionalRequirement(functionalRequirement);
                 close();
