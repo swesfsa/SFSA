@@ -1,5 +1,7 @@
 package model;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import misc.*;
 
 import java.util.ArrayList;
@@ -13,7 +15,7 @@ public class Model implements IModel {
     private TargetSpecification _targetSpecification;
     private ProductUse _productUse;
     private Environment _environment;
-    private List<FunctionalRequirement> _functionalRequirementList;
+    private ObservableList<FunctionalRequirement> _functionalRequirementList;
     private List<ProductData> _productDataList;
     private Factors _factors;
 
@@ -21,7 +23,7 @@ public class Model implements IModel {
         _targetSpecification = new TargetSpecification("");
         _productUse = new ProductUse("");
         _environment = new Environment("", "");
-        _functionalRequirementList = new ArrayList<>();
+        _functionalRequirementList = FXCollections.observableArrayList();
         _productDataList = new ArrayList<>();
     }
 
@@ -149,7 +151,7 @@ public class Model implements IModel {
     public void addFunctionalRequirement(FunctionalRequirement functionalRequirement) {
         _functionalRequirementList.add(functionalRequirement);
     }
-    public List<FunctionalRequirement> get_functionalRequirementList() {
+    public ObservableList<FunctionalRequirement> get_functionalRequirementList() {
         return _functionalRequirementList;
     }
 

@@ -59,8 +59,6 @@ public class SFSAView extends ViewTemplate implements ISFSAView {
         _import = _xml.getItems().get(0);
         _export = _xml.getItems().get(1);
 
-
-
         _scene = new Scene(root, 1000, 600);
     }
 

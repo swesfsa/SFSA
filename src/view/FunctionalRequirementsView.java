@@ -30,6 +30,7 @@ public class FunctionalRequirementsView extends TabView implements IFunctionalRe
     private Label _protagonistLabel;
     private Label _sourceLabel;
     private Label _referencesLabel;
+    private Label _priorityLabel;
     private Label _ftrLabel;
     private Label _detLabel;
     private Label _classificationLabel;
@@ -65,6 +66,7 @@ public class FunctionalRequirementsView extends TabView implements IFunctionalRe
         _protagonistLabel = (Label) _rightSplitPane.lookup("#protagonist");
         _sourceLabel = (Label) _rightSplitPane.lookup("#source");
         _referencesLabel = (Label) _rightSplitPane.lookup("#references");
+        _priorityLabel = (Label) _rightSplitPane.lookup("#priority");
         _ftrLabel = (Label) _rightSplitPane.lookup("#ftr");
         _detLabel = (Label) _rightSplitPane.lookup("#det");
         _classificationLabel = (Label) _rightSplitPane.lookup("#classification");
@@ -140,6 +142,10 @@ public class FunctionalRequirementsView extends TabView implements IFunctionalRe
 
     public Label get_referencesLabel() {
         return _referencesLabel;
+    }
+
+    public Label get_priorityLabel() {
+        return _priorityLabel;
     }
 
     public Label get_ftrLabel() {

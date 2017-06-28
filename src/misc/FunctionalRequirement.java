@@ -1,5 +1,7 @@
 package misc;
 
+import javafx.beans.property.*;
+
 import java.time.LocalDate;
 
 /**
@@ -7,11 +9,12 @@ import java.time.LocalDate;
  */
 public class FunctionalRequirement {
 
-    private int _id;
+    private SimpleIntegerProperty _id;
     private int _ftr;
     private int _det;
-    private LocalDate _date;
-    private String _title;
+    //private LocalDate _date;
+    private SimpleObjectProperty<LocalDate> _date;
+    private SimpleStringProperty _title;
     private String _function;
     private String _protagonist;
     private String _source;
@@ -23,11 +26,11 @@ public class FunctionalRequirement {
     public FunctionalRequirement(int id, int ftr, int det, LocalDate date, String title, String function, String protagonist,
                                  String source, String references, String description, Priority priority,
                                  FunctionalRequirementClassification classification) {
-        _id = id;
+        _id = new SimpleIntegerProperty(id);
         _ftr = ftr;
         _det = det;
-        _date = date;
-        _title = title;
+        _date = new SimpleObjectProperty<>(date);
+        _title = new SimpleStringProperty(title);
         _function = function;
         _protagonist = protagonist;
         _source = source;
@@ -53,7 +56,7 @@ public class FunctionalRequirement {
     }
 
     public int get_id() {
-        return _id;
+        return _id.get();
     }
 
     public int get_ftr() {
@@ -65,11 +68,11 @@ public class FunctionalRequirement {
     }
 
     public LocalDate get_date() {
-        return _date;
+        return _date.get();
     }
 
     public String get_title() {
-        return _title;
+        return _title.get();
     }
 
     public String get_function() {

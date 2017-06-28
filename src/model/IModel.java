@@ -1,5 +1,6 @@
 package model;
 
+import javafx.collections.ObservableList;
 import misc.*;
 
 import java.util.List;
@@ -14,7 +15,7 @@ public interface IModel {
     void set_productUse(ProductUse _productUse);
     Environment get_environment();
     void set_environment(Environment _environment);
-    List<FunctionalRequirement> get_functionalRequirementList();
+    ObservableList<FunctionalRequirement> get_functionalRequirementList();
     List<ProductData> get_productDataList();
     void addFunctionalRequirement(FunctionalRequirement functionalRequirement);
     void addProductData(ProductData productData);
