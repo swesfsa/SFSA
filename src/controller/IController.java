@@ -1,8 +1,6 @@
 package controller;
 
 import javafx.scene.layout.AnchorPane;
-import view.EmptyTextFieldException;
-import view.IView;
 
 /**
  * @author 9459758

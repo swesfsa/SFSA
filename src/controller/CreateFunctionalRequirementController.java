@@ -8,7 +8,7 @@ import misc.FunctionalRequirementClassification;
 import misc.Priority;
 import model.IModel;
 import view.CreateFunctionalRequirementView;
-import view.EmptyTextFieldException;
+
 import java.time.LocalDate;
 
 /**

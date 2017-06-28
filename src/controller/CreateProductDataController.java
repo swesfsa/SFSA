@@ -7,7 +7,6 @@ import misc.ProductData;
 import misc.ProductDataClassification;
 import model.IModel;
 import view.CreateProductDataView;
-import view.EmptyTextFieldException;
 
 /**
  * Created by 1030129 on 29.04.17.

@@ -4,7 +4,6 @@ import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import misc.TargetSpecification;
 import model.IModel;
-import view.EmptyTextFieldException;
 import view.TargetSpecificationView;
 
 /**
