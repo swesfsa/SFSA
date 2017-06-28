@@ -18,9 +18,9 @@ public class FunctionalRequirementsController extends TabController {
         _view = new FunctionalRequirementsView(_model);
         _anchorPane = _view.get_anchorPane();
 
-        _view.get_newButton().setOnAction(new NewButtonEventHandler());
-        _view.get_editButton().setOnAction(new EditButtonEventHandler());
-        _view.get_deleteButton().setOnAction(new DeleteButtonEventHandler());
+        _view.getNewButton().setOnAction(new NewButtonEventHandler());
+        _view.getEditButton().setOnAction(new EditButtonEventHandler());
+        _view.getDeleteButton().setOnAction(new DeleteButtonEventHandler());
     }
 
     private class NewButtonEventHandler implements EventHandler<ActionEvent> {
