@@ -59,8 +59,24 @@ public class CreateFunctionalRequirementController extends ControllerTemplate {
         _view.close(_stage);
     }
 
+    public void loadData(FunctionalRequirement data) {
+
+        _view.getDate().setValue(data.get_date());
+        _view.getTitle().setText(data.get_title());
+        _view.get_function().setText(data.get_function());
+        _view.getProtagonist().setText(data.get_protagonist());
+        _view.getSource().setText(data.get_source());
+        _view.getReferences().setText(data.get_references());
+        _view.get_description().setText(data.get_description());
+        _view.get_priority().setValue(data.get_priority().get_priority());
+        _view.get_classification().setValue(data.get_classification().get_classification());
+        _view.getId().setText(Integer.toString(data.get_id()));
+        _view.get_ftr().setText(Integer.toString(data.get_ftr()));
+        _view.getDet().setText(Integer.toString(data.get_det()));
+    }
+
     /**
-     * This _function gets the data out of the TextFields, TextArea and ChoiceBoxes
+     * This function gets the data out of the TextFields, TextArea and ChoiceBoxes
      * of the CreateFunctionalRequirementView.
      * @author 1030129
      */
@@ -86,7 +102,7 @@ public class CreateFunctionalRequirementController extends ControllerTemplate {
     }
 
     /**
-     * This _function checks if any of the data elements gotten from the
+     * This function checks if any of the data elements gotten from the
      * CreateFunctionalRequirementView is empty.
      * @author 1030129
      * @throws EmptyTextFieldException

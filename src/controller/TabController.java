@@ -17,7 +17,7 @@ public class TabController extends ControllerTemplate {
         return _anchorPane;
     }
 
-    public void openDeleteQuery() {
+    public Boolean openDeleteQuery() {
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
         alert.setTitle("");
         alert.setHeaderText("Achtung Löschvorgang!");
@@ -28,8 +28,10 @@ public class TabController extends ControllerTemplate {
         Optional<ButtonType> choice = alert.showAndWait();
         if (choice.get() == ButtonType.YES) {
             System.out.println("Löschvorgang bestätigt");
+            return true;
         } else {
             System.out.println("Löschvorgang abgebrochen");
+            return false;
         }
     }
 }

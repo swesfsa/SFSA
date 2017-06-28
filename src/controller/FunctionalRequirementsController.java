@@ -1,16 +1,12 @@
 package controller;
 
-import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
-import javafx.scene.control.TableColumn;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
 import misc.FunctionalRequirement;
 import model.IModel;
 import view.FunctionalRequirementsView;
-
-import java.time.format.DateTimeFormatter;
 
 /**
  * Created by 1030129 on 02.05.17.
@@ -18,6 +14,7 @@ import java.time.format.DateTimeFormatter;
 public class FunctionalRequirementsController extends TabController {
 
     private FunctionalRequirementsView _view;
+    private Object _selectedTableViewItem;
 
     public FunctionalRequirementsController(IModel model) throws Exception {
 
@@ -38,9 +35,7 @@ public class FunctionalRequirementsController extends TabController {
 
     private void loadDetailView(Object itemToLoad) {
         FunctionalRequirement functionalRequirementToLoad;
-        Integer index;
-        index = _model.get_functionalRequirementList().indexOf(itemToLoad);
-        functionalRequirementToLoad = _model.get_functionalRequirementList().get(index);
+        functionalRequirementToLoad = getFunctionalRequirementFromTableViewItem(itemToLoad);
         _view.get_idLabel().setText(Integer.toString(functionalRequirementToLoad.get_id()));
         _view.get_dateLabel().setText(functionalRequirementToLoad.get_date().getDayOfMonth() + "."
             + functionalRequirementToLoad.get_date().getMonthValue() + "."
@@ -55,6 +50,30 @@ public class FunctionalRequirementsController extends TabController {
         _view.get_ftrLabel().setText(Integer.toString(functionalRequirementToLoad.get_ftr()));
         _view.get_detLabel().setText(Integer.toString(functionalRequirementToLoad.get_det()));
         _view.get_classificationLabel().setText(functionalRequirementToLoad.get_classification().get_classification());
+    }
+
+    private void clearDetailView() {
+        _view.get_idLabel().setText("");
+        _view.get_dateLabel().setText("");
+        _view.get_titleLabel().setText("");
+        _view.get_functionLabel().setText("");
+        _view.get_descriptionArea().setText("");
+        _view.get_protagonistLabel().setText("");
+        _view.get_sourceLabel().setText("");
+        _view.get_referencesLabel().setText("");
+        _view.get_priorityLabel().setText("");
+        _view.get_ftrLabel().setText("");
+        _view.get_detLabel().setText("");
+        _view.get_classificationLabel().setText("");
+    }
+
+    private FunctionalRequirement getFunctionalRequirementFromTableViewItem(Object itemToLoad) {
+        FunctionalRequirement functionalRequirement;
+        Integer index;
+        index = _model.get_functionalRequirementList().indexOf(itemToLoad);
+        functionalRequirement = _model.get_functionalRequirementList().get(index);
+
+        return functionalRequirement;
     }
 
     private class NewButtonEventHandler implements EventHandler<ActionEvent> {
@@ -75,6 +94,13 @@ public class FunctionalRequirementsController extends TabController {
         @Override
         public void handle(ActionEvent event) {
             System.out.println("EditButtonClicked");
+            try {
+                CreateFunctionalRequirementController controller = new CreateFunctionalRequirementController(_model);
+                controller.show();
+                controller.loadData(getFunctionalRequirementFromTableViewItem(_selectedTableViewItem));
+            } catch (Exception e) {
+                System.out.println(e);
+            }
         }
     }
 
@@ -82,8 +108,12 @@ public class FunctionalRequirementsController extends TabController {
 
         @Override
         public void handle(ActionEvent event) {
-            System.out.println("DeleteButtonClicked");
-            openDeleteQuery();
+            Boolean delete;
+            delete = openDeleteQuery();
+            if (delete) {
+                _model.get_functionalRequirementList().remove(_selectedTableViewItem);
+                clearDetailView();
+            }
         }
     }
 
@@ -91,8 +121,8 @@ public class FunctionalRequirementsController extends TabController {
 
         @Override
         public void handle(MouseEvent event) {
-            Object selectedItem = _view.get_tableView().getSelectionModel().getSelectedItem();
-            loadDetailView(selectedItem);
+            _selectedTableViewItem = _view.get_tableView().getSelectionModel().getSelectedItem();
+            loadDetailView(_selectedTableViewItem);
         }
     }
 
