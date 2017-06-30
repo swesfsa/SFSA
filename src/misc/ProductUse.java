@@ -7,11 +7,20 @@ public class ProductUse {
 
     private String _productUse;
 
+    public ProductUse() {}
     public ProductUse(String productUse) {
         this._productUse = productUse;
     }
 
     public void print() {
         System.out.println("ProductUse:\n" + _productUse);
+    }
+
+    public String getProductUse() {
+        return _productUse;
+    }
+
+    public void setProductUse(String productUse) {
+        this._productUse = productUse;
     }
 }

@@ -10,25 +10,25 @@ import view.ProductUseView;
 /**
  * Created by 1030129 on 02.05.17.
  */
-public class ProductUseController extends TabController {
+class ProductUseController extends TabController {
 
     private ProductUseView _view;
 
     private String _productUseString;
 
-    public ProductUseController(IModel model) throws Exception {
+    ProductUseController(IModel model) throws Exception {
 
         _model = model;
         _view = new ProductUseView(_model);
-        _anchorPane = _view.get_anchorPane();
+        _anchorPane = _view.getAnchorPane();
 
-        _view.get_saveButton().setOnAction(new SaveButtonEventHandler());
-        _view.get_editButton().setOnAction(new EditButtonEventHandler());
-        _view.get_deleteButton().setOnAction(new DeleteButtonEventHandler());
+        _view.getSaveButton().setOnAction(new SaveButtonEventHandler());
+        _view.getEditButton().setOnAction(new EditButtonEventHandler());
+        _view.getDeleteButton().setOnAction(new DeleteButtonEventHandler());
     }
 
     private void getDataFromView() {
-        _productUseString = _view.get_productUse().getText();
+        _productUseString = _view.getProductUse().getText();
     }
 
     private void checkForEmptyFields() throws EmptyTextFieldException {
@@ -47,7 +47,7 @@ public class ProductUseController extends TabController {
                 checkForEmptyFields();
 
                 ProductUse productUse = new ProductUse(_productUseString);
-                _model.set_productUse(productUse);
+                _model.setProductUse(productUse);
                 productUse.print();
             } catch (EmptyTextFieldException e) {
                 System.out.println("Error: " + e);

@@ -14,7 +14,7 @@ public enum Priority {
         _priority = priority;
     }
 
-    public String get_priority() {
+    public String getPriority() {
         return _priority;
     }
 }

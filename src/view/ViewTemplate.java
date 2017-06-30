@@ -1,16 +1,23 @@
 package view;
 
 import javafx.stage.Stage;
+import misc.IObserver;
+import misc.IState;
+import misc.StageHandler;
+import model.IModel;
+
+import java.util.Observer;
+
 /**
  * @author 9459758
  */
 public abstract class ViewTemplate {
 
-    protected String _stageTitle;
+    protected IModel _model;
 
-    protected ViewTemplate(String stageTitle) {
-        _stageTitle = stageTitle;
+    ViewTemplate() {}
+
+    public void setModel(IModel _model) {
+        this._model = _model;
     }
-
-    abstract public void show(Stage stage);
 }

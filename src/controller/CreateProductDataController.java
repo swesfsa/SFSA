@@ -15,7 +15,7 @@ import exception.EmptyTextFieldException;
 /**
  * Created by 1030129 on 29.04.17.
  */
-public class CreateProductDataController extends CreateItemController {
+public class CreateProductDataController extends StageController {
 
     private CreateProductDataView _view;
 
@@ -25,7 +25,7 @@ public class CreateProductDataController extends CreateItemController {
     private int _ret;
 
     private ProductDataClassification _classification = null;
-  
+
     /**
      * @author 1030129
      * @throws Exception
@@ -35,8 +35,8 @@ public class CreateProductDataController extends CreateItemController {
         _model = model;
         _view = new CreateProductDataView(model);
 
-        _view.get_saveButton().setOnAction(new SaveButtonEventHandler());
-        _view.get_cancelButton().setOnAction(new CancelButtonEventHandler());
+        _view.getSaveButton().setOnAction(new SaveButtonEventHandler());
+        _view.getCancelButton().setOnAction(new CancelButtonEventHandler());
 
         createNewItem();
     }
@@ -46,8 +46,8 @@ public class CreateProductDataController extends CreateItemController {
         _model = model;
         _view = new CreateProductDataView(model);
 
-        _view.get_saveButton().setOnAction(new SaveButtonEventHandler());
-        _view.get_cancelButton().setOnAction(new CancelButtonEventHandler());
+        _view.getSaveButton().setOnAction(new SaveButtonEventHandler());
+        _view.getCancelButton().setOnAction(new CancelButtonEventHandler());
 
         editItem();
         loadData(data);
@@ -68,15 +68,15 @@ public class CreateProductDataController extends CreateItemController {
     private void loadData(ProductData data) {
 
         if (_editMode) {
-            _oldId = data.get_id();
+            _oldId = data.getId();
         }
-        _view.get_memoryContent().setText(data.get_memoryContent());
-        _view.get_estimation().setText(data.get_estimation());
-        _view.get_references().setText(data.get_references());
-        _view.get_classification().setValue(data.get_classification().get_classification());
-        _view.get_id().setText(Integer.toString(data.get_id()));
-        _view.get_ret().setText(Integer.toString(data.get_ret()));
-        _view.get_det().setText(Integer.toString(data.get_det()));
+        _view.getMemoryContent().setText(data.getMemoryContent());
+        _view.getEstimation().setText(data.getEstimation());
+        _view.getReferences().setText(data.getReferences());
+        _view.getClassification().setValue(data.getClassification().getClassification());
+        _view.getId().setText(Integer.toString(data.getId()));
+        _view.getRet().setText(Integer.toString(data.getRet()));
+        _view.getDet().setText(Integer.toString(data.getDet()));
     }
 
     /**
@@ -85,17 +85,17 @@ public class CreateProductDataController extends CreateItemController {
      * @author 1030129
      */
     private void getDataFromView() throws EmptyTextFieldException, EmptyChoiceBoxException, NumberSmallerOneException {
-        _memoryContent = _view.get_memoryContent().getText();
-        _references = _view.get_references().getText();
-        _estimation = _view.get_estimation().getText();
+        _memoryContent = _view.getMemoryContent().getText();
+        _references = _view.getReferences().getText();
+        _estimation = _view.getEstimation().getText();
         checkForEmptyFields();
 
-        _classification = _view.get_classificationMap().get(_view.get_classification().getValue());
+        _classification = _view.getClassificationMap().get(_view.getClassification().getValue());
         checkForEmptyChoiceBox();
 
-        _id = Integer.parseInt(_view.get_id().getText());
-        _ret = Integer.parseInt(_view.get_ret().getText());
-        _det = Integer.parseInt(_view.get_det().getText());
+        _id = Integer.parseInt(_view.getId().getText());
+        _ret = Integer.parseInt(_view.getRet().getText());
+        _det = Integer.parseInt(_view.getDet().getText());
         checkForNumbersSmallerOne();
     }
 
@@ -127,8 +127,8 @@ public class CreateProductDataController extends CreateItemController {
     }
 
     private void checkIfIDAlreadyExists() throws IDAlreadyExistingException {
-        for (ProductData productData : _model.get_productDataList()) {
-            if (productData.get_id() == _id) {
+        for (ProductData productData : _model.getProductDataList()) {
+            if (productData.getId() == _id) {
                 throw new IDAlreadyExistingException();
             }
         }
@@ -137,12 +137,12 @@ public class CreateProductDataController extends CreateItemController {
     private void removeItemWithOldID() {
         ProductData toRemove = null;
 
-        for (ProductData productData : _model.get_productDataList()) {
-            if (productData.get_id() == _oldId) {
+        for (ProductData productData : _model.getProductDataList()) {
+            if (productData.getId() == _oldId) {
                 toRemove = productData;
             }
         }
-        _model.get_productDataList().remove(toRemove);
+        _model.getProductDataList().remove(toRemove);
     }
 
     private class CancelButtonEventHandler implements EventHandler<ActionEvent> {
@@ -180,7 +180,7 @@ public class CreateProductDataController extends CreateItemController {
                 _model.addProductData(productData);
                 close();
 
-                _model.get_productDataList().iterator().forEachRemaining(ProductData::print);
+                _model.getProductDataList().iterator().forEachRemaining(ProductData::print);
             }
             catch (NumberFormatException e) {
                 System.out.println("Error: " + e);

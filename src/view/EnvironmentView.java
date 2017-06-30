@@ -12,8 +12,6 @@ import model.IModel;
  */
 public class EnvironmentView extends TabView implements IEnvironmentView{
 
-    private IModel _model;
-
     private Button _saveButton;
     private Button _editButton;
     private Button _cancelButton;
@@ -43,7 +41,7 @@ public class EnvironmentView extends TabView implements IEnvironmentView{
      * @author 1030129
      * @return _saveButton
      */
-    public Button get_saveButton() {
+    public Button getSaveButton() {
         return _saveButton;
     }
 
@@ -51,7 +49,7 @@ public class EnvironmentView extends TabView implements IEnvironmentView{
      * @author 1030129
      * @return _editButton
      */
-    public Button get_editButton() {
+    public Button getEditButton() {
         return _editButton;
     }
 
@@ -59,7 +57,7 @@ public class EnvironmentView extends TabView implements IEnvironmentView{
      * @author 1030129
      * @return deleteButton
      */
-    public Button get_cancelButton() {
+    public Button getCancelButton() {
         return _cancelButton;
     }
 
@@ -67,7 +65,7 @@ public class EnvironmentView extends TabView implements IEnvironmentView{
      * @author 1030129
      * @return _hardwareEnvironment
      */
-    public TextArea get_hardwareEnvironment() {
+    public TextArea getHardwareEnvironment() {
         return _hardwareEnvironment;
     }
 
@@ -75,7 +73,7 @@ public class EnvironmentView extends TabView implements IEnvironmentView{
      * @author 1030129
      * @return _softwareEnvironment
      */
-    public TextArea get_softwareEnvironment() {
+    public TextArea getSoftwareEnvironment() {
         return _softwareEnvironment;
     }
 

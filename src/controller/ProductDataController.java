@@ -2,25 +2,66 @@ package controller;
 
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
+import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.input.MouseEvent;
+import misc.FunctionalRequirement;
+import misc.ProductData;
 import model.IModel;
 import view.ProductDataView;
 
 /**
  * Created by 1030129 on 02.05.17.
  */
-public class ProductDataController extends TabController {
-
+class ProductDataController extends TabController {
+//TODO change like FunctionalRequirementsController
     private ProductDataView _view;
+    private ProductData _selectedTableViewItem;
 
-    public ProductDataController(IModel model) throws Exception {
+    ProductDataController(IModel model) throws Exception {
 
         _model = model;
         _view = new ProductDataView(_model);
-        _anchorPane = _view.get_anchorPane();
+        _anchorPane = _view.getAnchorPane();
 
-        _view.get_newButton().setOnAction(new NewButtonEventHandler());
-        _view.get_editButton().setOnAction(new EditButtonEventHandler());
-        _view.get_deleteButton().setOnAction(new DeleteButtonEventHandler());
+        _view.getNewButton().setOnAction(new NewButtonEventHandler());
+        _view.getEditButton().setOnAction(new EditButtonEventHandler());
+        _view.getDeleteButton().setOnAction(new DeleteButtonEventHandler());
+
+        _view.getIdColumn().setCellValueFactory(new PropertyValueFactory<>("_id"));
+        _view.getMemoryContentColumn().setCellValueFactory(new PropertyValueFactory<>("_memoryContent"));
+        _view.getTableView().setItems(_model.getProductDataList());
+        _view.getTableView().setOnMouseClicked(new TableViewClickedHandler());
+    }
+
+    private void loadDetailView(ProductData itemToLoad) {
+        ProductData productDataToLoad;
+        productDataToLoad = getProductDataFromTableViewItem(itemToLoad);
+        _view.getIdLabel().setText(Integer.toString(productDataToLoad.getId()));
+        _view.getMemoryContentLabel().setText(productDataToLoad.getMemoryContent());
+        _view.getReferencesLabel().setText(productDataToLoad.getReferences());
+        _view.getEstimationLabel().setText(productDataToLoad.getEstimation());
+        _view.getRetLabel().setText(Integer.toString(productDataToLoad.getRet()));
+        _view.getDetLabel().setText(Integer.toString(productDataToLoad.getDet()));
+        _view.getClassificationLabel().setText(productDataToLoad.getClassification().getClassification());
+    }
+
+    private void clearDetailView() {
+        _view.getIdLabel().setText("");
+        _view.getMemoryContentLabel().setText("");
+        _view.getReferencesLabel().setText("");
+        _view.getEstimationLabel().setText("");
+        _view.getRetLabel().setText("");
+        _view.getDetLabel().setText("");
+        _view.getClassificationLabel().setText("");
+    }
+
+    private ProductData getProductDataFromTableViewItem(ProductData itemToLoad) {
+        ProductData productData;
+        Integer index;
+        index = _model.getFunctionalRequirementList().indexOf(itemToLoad);
+        productData = _model.getProductDataList().get(index);
+
+        return productData;
     }
 
     private class NewButtonEventHandler implements EventHandler<ActionEvent> {
@@ -28,7 +69,7 @@ public class ProductDataController extends TabController {
         @Override
         public void handle(ActionEvent event) {
             try {
-                IController controller = new CreateProductDataController(_model);
+                IStageController controller = new CreateProductDataController(_model);
                 controller.show();
             } catch (Exception e) {
                 System.out.println(e);
@@ -40,7 +81,13 @@ public class ProductDataController extends TabController {
 
         @Override
         public void handle(ActionEvent event) {
-            System.out.println("EditButtonClicked");
+            try {
+                IStageController controller = new CreateProductDataController(_model,
+                        getProductDataFromTableViewItem(_selectedTableViewItem));
+                controller.show();
+            } catch (Exception e) {
+                System.out.println(e);
+            }
         }
     }
 
@@ -48,8 +95,21 @@ public class ProductDataController extends TabController {
 
         @Override
         public void handle(ActionEvent event) {
-            System.out.println("DeleteButtonClicked");
-            openDeleteQuery();
+            Boolean delete;
+            delete = openDeleteQuery();
+            if (delete) {
+                _model.getProductDataList().remove(_selectedTableViewItem);
+                clearDetailView();
+            }
+        }
+    }
+
+    private class TableViewClickedHandler implements EventHandler<MouseEvent> {
+
+        @Override
+        public void handle(MouseEvent event) {
+            _selectedTableViewItem = (ProductData) _view.getTableView().getSelectionModel().getSelectedItem();
+            loadDetailView(_selectedTableViewItem);
         }
     }
 }

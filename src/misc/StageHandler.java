@@ -21,7 +21,7 @@ public class StageHandler {
      * Singleton pattern - new _instance if first call
      * Synchronized to be thread-secure
      */
-    public synchronized static StageHandler get_instance()
+    public synchronized static StageHandler getInstance()
     {
         if (_instance == null) {
             _instance = new StageHandler();

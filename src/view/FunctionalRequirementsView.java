@@ -12,8 +12,6 @@ import sun.plugin.javascript.navig.Anchor;
  */
 public class FunctionalRequirementsView extends TabView implements IFunctionalRequirementsView{
 
-    private IModel _model;
-
     private Button _newButton;
     private Button _editButton;
     private Button _deleteButton;
@@ -36,16 +34,15 @@ public class FunctionalRequirementsView extends TabView implements IFunctionalRe
     private Label _classificationLabel;
     private TextArea _descriptionArea;
 
-    private SplitPane _splitPane;
-    private AnchorPane _leftSplitPane;
-    private AnchorPane _rightSplitPane;
-
-
     /**
      * @author 1030129
      * @throws Exception
      */
     public FunctionalRequirementsView(IModel model) throws Exception {
+
+        SplitPane _splitPane;
+        AnchorPane _leftSplitPane;
+        AnchorPane _rightSplitPane;
 
         _model = model;
 
@@ -100,67 +97,67 @@ public class FunctionalRequirementsView extends TabView implements IFunctionalRe
         return _deleteButton;
     }
 
-    public TableView get_tableView() {
+    public TableView getTableView() {
         return _tableView;
     }
 
-    public TableColumn get_idColumn() {
+    public TableColumn getIdColumn() {
         return _idColumn;
     }
 
-    public TableColumn get_titleColumn() {
+    public TableColumn getTitleColumn() {
         return _titleColumn;
     }
 
-    public TableColumn get_dateColumn() {
+    public TableColumn getDateColumn() {
         return _dateColumn;
     }
 
-    public Label get_idLabel() {
+    public Label getIdLabel() {
         return _idLabel;
     }
 
-    public Label get_dateLabel() {
+    public Label getDateLabel() {
         return _dateLabel;
     }
 
-    public Label get_titleLabel() {
+    public Label getTitleLabel() {
         return _titleLabel;
     }
 
-    public Label get_functionLabel() {
+    public Label getFunctionLabel() {
         return _functionLabel;
     }
 
-    public Label get_protagonistLabel() {
+    public Label getProtagonistLabel() {
         return _protagonistLabel;
     }
 
-    public Label get_sourceLabel() {
+    public Label getSourceLabel() {
         return _sourceLabel;
     }
 
-    public Label get_referencesLabel() {
+    public Label getReferencesLabel() {
         return _referencesLabel;
     }
 
-    public Label get_priorityLabel() {
+    public Label getPriorityLabel() {
         return _priorityLabel;
     }
 
-    public Label get_ftrLabel() {
+    public Label getFtrLabel() {
         return _ftrLabel;
     }
 
-    public Label get_detLabel() {
+    public Label getDetLabel() {
         return _detLabel;
     }
 
-    public Label get_classificationLabel() {
+    public Label getClassificationLabel() {
         return _classificationLabel;
     }
 
-    public TextArea get_descriptionArea() {
+    public TextArea getDescriptionArea() {
         return _descriptionArea;
     }
 }

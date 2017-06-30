@@ -13,7 +13,7 @@ public enum ProductDataClassification {
         this._classification = classification;
     }
 
-    public String get_classification() {
+    public String getClassification() {
         return _classification;
     }
 }

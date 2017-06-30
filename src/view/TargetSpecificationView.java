@@ -11,9 +11,7 @@ import model.IModel;
  * Created by 1030129 on 28.04.17.
  */
 public class TargetSpecificationView extends TabView implements ITargetSpecificationView {
-
-    private IModel _model;
-
+    
     private Button _deleteButton;
     private Button _editButton;
     private Button _saveButton;
@@ -25,8 +23,7 @@ public class TargetSpecificationView extends TabView implements ITargetSpecifica
      * @throws Exception
      */
     public TargetSpecificationView(IModel model) throws Exception {
-
-        this._model = model;
+        _model = model;
 
         Parent root = FXMLLoader.load(getClass().getResource("../fxml/TargetSpecification.fxml"));
 
@@ -41,7 +38,7 @@ public class TargetSpecificationView extends TabView implements ITargetSpecifica
      * @author 1030129
      * @return _deleteButton
      */
-    public Button get_deleteButton() {
+    public Button getDeleteButton() {
         return _deleteButton;
     }
 
@@ -49,7 +46,7 @@ public class TargetSpecificationView extends TabView implements ITargetSpecifica
      * @author 1030129
      * @return _editButton
      */
-    public Button get_editButton() {
+    public Button getEditButton() {
         return _editButton;
     }
 
@@ -57,7 +54,7 @@ public class TargetSpecificationView extends TabView implements ITargetSpecifica
      * @author 1030129
      * @return _saveButton
      */
-    public Button get_saveButton() {
+    public Button getSaveButton() {
         return _saveButton;
     }
 
@@ -65,7 +62,7 @@ public class TargetSpecificationView extends TabView implements ITargetSpecifica
      * @author 1030129
      * @return _targetSpecification
      */
-    public TextArea get_targetSpecification() {
+    public TextArea getTargetSpecification() {
         return _targetSpecification;
     }
 }

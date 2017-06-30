@@ -7,22 +7,11 @@ import model.IModel;
 /**
  * Created by 1030129 on 10.05.17.
  */
-public class ControllerTemplate implements IController {
+public class ControllerTemplate {
 
     protected IModel _model;
 
-    @Override
-    public void show() {
-
-    }
-
-    @Override
-    public AnchorPane getAnchorPane() {
-        return null;
-    }
-
-    public void openEmptyTextFieldWarning() {
-
+    void openEmptyTextFieldWarning() {
         Alert alert = new Alert(Alert.AlertType.WARNING);
         alert.setTitle("Warnung");
         alert.setHeaderText("Leeres Textfeld");
@@ -30,20 +19,18 @@ public class ControllerTemplate implements IController {
         alert.showAndWait();
     }
 
-    public void openEmptyChoiceBoxWarning(String contentText) {
-
-        Alert alert = new Alert(Alert.AlertType.WARNING);
-        alert.setTitle("Warnung");
-        alert.setHeaderText("Leere Auswahlliste");
-        alert.setContentText(contentText);
-        alert.showAndWait();
-    }
-  
-    public void openNumberFormatWarning(String contentText) {
-
+    void openNumberFormatWarning(String contentText) {
         Alert alert = new Alert(Alert.AlertType.WARNING);
         alert.setTitle("Warnung");
         alert.setHeaderText("Falsches Eingabeformat");
+        alert.setContentText(contentText);
+        alert.showAndWait();
+    }
+
+    void openEmptyChoiceBoxWarning(String contentText) {
+        Alert alert = new Alert(Alert.AlertType.WARNING);
+        alert.setTitle("Warnung");
+        alert.setHeaderText("Leere Auswahlliste");
         alert.setContentText(contentText);
         alert.showAndWait();
     }

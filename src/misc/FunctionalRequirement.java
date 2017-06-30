@@ -12,7 +12,6 @@ public class FunctionalRequirement {
     private SimpleIntegerProperty _id;
     private int _ftr;
     private int _det;
-    //private LocalDate _date;
     private SimpleObjectProperty<LocalDate> _date;
     private SimpleStringProperty _title;
     private String _function;
@@ -22,6 +21,8 @@ public class FunctionalRequirement {
     private String _description;
     private Priority _priority;
     private FunctionalRequirementClassification _classification;
+
+    public FunctionalRequirement() {}
 
     public FunctionalRequirement(int id, int ftr, int det, LocalDate date, String title, String function, String protagonist,
                                  String source, String references, String description, Priority priority,
@@ -55,51 +56,99 @@ public class FunctionalRequirement {
         System.out.println("Classification: " + _classification);
     }
 
-    public int get_id() {
+    public int getId() {
         return _id.get();
     }
 
-    public int get_ftr() {
+    public int getFtr() {
         return _ftr;
     }
 
-    public int get_det() {
+    public int getDet() {
         return _det;
     }
 
-    public LocalDate get_date() {
+    public LocalDate getDate() {
         return _date.get();
     }
 
-    public String get_title() {
+    public String getTitle() {
         return _title.get();
     }
 
-    public String get_function() {
+    public String getFunction() {
         return _function;
     }
 
-    public String get_protagonist() {
+    public String getProtagonist() {
         return _protagonist;
     }
 
-    public String get_source() {
+    public String getSource() {
         return _source;
     }
 
-    public String get_references() {
+    public String getReferences() {
         return _references;
     }
 
-    public String get_description() {
+    public String getDescription() {
         return _description;
     }
 
-    public Priority get_priority() {
+    public Priority getPriority() {
         return _priority;
     }
 
-    public FunctionalRequirementClassification get_classification() {
+    public FunctionalRequirementClassification getClassification() {
         return _classification;
+    }
+
+    public void setId(int id) {
+        this._id.set(id);
+    }
+
+    public void setFtr(int ftr) {
+        this._ftr = ftr;
+    }
+
+    public void setDet(int det) {
+        this._det = det;
+    }
+
+    public void setDate(LocalDate date) {
+        this._date.set(date);
+    }
+
+    public void setTitle(String title) {
+        this._title.set(title);
+    }
+
+    public void setFunction(String function) {
+        this._function = function;
+    }
+
+    public void setProtagonist(String protagonist) {
+        this._protagonist = protagonist;
+    }
+
+    public void setSource(String source) {
+        this._source = source;
+    }
+
+    public void setReferences(String references) {
+        this._references = references;
+    }
+
+    public void setDescription(String description) {
+        this._description = description;
+    }
+
+    public void setPriority(Priority priority) {
+        this._priority = priority;
+    }
+
+    public void setClassification(FunctionalRequirementClassification classification) {
+        this._classification = classification;
     }
 }

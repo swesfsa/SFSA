@@ -1,25 +1,28 @@
 package misc;
 
 
+import javafx.beans.property.SimpleIntegerProperty;
+import javafx.beans.property.SimpleStringProperty;
+
 /**
  * Created by 1030129 on 03.05.17.
  */
 public class ProductData {
 
-    private int _id;
+    private SimpleIntegerProperty _id;
     private int _ret;
     private int _det;
-    private String _memoryContent;
+    private SimpleStringProperty _memoryContent;
     private String _references;
     private String _estimation;
     private ProductDataClassification _classification;
 
     public ProductData(int id, int ret, int det, String memoryContent, String references, String estimation,
                        ProductDataClassification classification) {
-        _id = id;
+        _id = new SimpleIntegerProperty(id);
         _ret = ret;
         _det = det;
-        _memoryContent = memoryContent;
+        _memoryContent = new SimpleStringProperty(memoryContent);
         _references = references;
         _estimation = estimation;
         _classification = classification;
@@ -35,31 +38,59 @@ public class ProductData {
         System.out.println("Classification: " + _classification);
     }
 
-    public int get_id() {
-        return _id;
+    public int getId() {
+        return _id.get();
     }
 
-    public int get_ret() {
+    public int getRet() {
         return _ret;
     }
 
-    public int get_det() {
+    public int getDet() {
         return _det;
     }
 
-    public String get_memoryContent() {
-        return _memoryContent;
+    public String getMemoryContent() {
+        return _memoryContent.get();
     }
 
-    public String get_references() {
+    public String getReferences() {
         return _references;
     }
 
-    public String get_estimation() {
+    public String getEstimation() {
         return _estimation;
     }
 
-    public ProductDataClassification get_classification() {
+    public ProductDataClassification getClassification() {
         return _classification;
+    }
+
+    public void setId(int id) {
+        this._id.set(id);
+    }
+
+    public void setRet(int ret) {
+        this._ret = ret;
+    }
+
+    public void setDet(int det) {
+        this._det = det;
+    }
+
+    public void setMemoryContent(String memoryContent) {
+        this._memoryContent.set(memoryContent);
+    }
+
+    public void setReferences(String references) {
+        this._references = references;
+    }
+
+    public void setEstimation(String estimation) {
+        this._estimation = estimation;
+    }
+
+    public void setClassification(ProductDataClassification classification) {
+        this._classification = classification;
     }
 }

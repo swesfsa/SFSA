@@ -17,9 +17,7 @@ import java.util.Map;
 /**
  * Created by 1030129 on 29.04.17.
  */
-public class CreateProductDataView extends ViewTemplate implements ICreateProductDataView{
-
-    private IModel _model;
+public class CreateProductDataView extends CreateItemView implements ICreateProductDataView {
 
     private Scene _scene;
 
@@ -60,8 +58,8 @@ public class CreateProductDataView extends ViewTemplate implements ICreateProduc
 
         _classificationMap = new HashMap<>();
         for (ProductDataClassification iterate : ProductDataClassification.values()) {
-            _classification.getItems().add(iterate.get_classification());
-            _classificationMap.put(iterate.get_classification(), iterate);
+            _classification.getItems().add(iterate.getClassification());
+            _classificationMap.put(iterate.getClassification(), iterate);
         }
 
         _scene = new Scene(root, 600, 400);
@@ -87,7 +85,7 @@ public class CreateProductDataView extends ViewTemplate implements ICreateProduc
      * @author 1030129
      * @return
      */
-    public Button get_saveButton() {
+    public Button getSaveButton() {
         return _saveButton;
     }
 
@@ -95,7 +93,7 @@ public class CreateProductDataView extends ViewTemplate implements ICreateProduc
      * @author 1030129
      * @return
      */
-    public Button get_cancelButton() {
+    public Button getCancelButton() {
         return _cancelButton;
     }
 
@@ -103,7 +101,7 @@ public class CreateProductDataView extends ViewTemplate implements ICreateProduc
      * @author 1030129
      * @return
      */
-    public TextField get_id() {
+    public TextField getId() {
         return _id;
     }
 
@@ -111,7 +109,7 @@ public class CreateProductDataView extends ViewTemplate implements ICreateProduc
      * @author 1030129
      * @return
      */
-    public TextField get_memoryContent() {
+    public TextField getMemoryContent() {
         return _memoryContent;
     }
 
@@ -119,7 +117,7 @@ public class CreateProductDataView extends ViewTemplate implements ICreateProduc
      * @author 1030129
      * @return
      */
-    public TextField get_references() {
+    public TextField getReferences() {
         return _references;
     }
 
@@ -127,7 +125,7 @@ public class CreateProductDataView extends ViewTemplate implements ICreateProduc
      * @author 1030129
      * @return
      */
-    public TextField get_ret() {
+    public TextField getRet() {
         return _ret;
     }
 
@@ -135,7 +133,7 @@ public class CreateProductDataView extends ViewTemplate implements ICreateProduc
      * @author 1030129
      * @return
      */
-    public TextField get_det() {
+    public TextField getDet() {
         return _det;
     }
 
@@ -143,7 +141,7 @@ public class CreateProductDataView extends ViewTemplate implements ICreateProduc
      * @author 1030129
      * @return
      */
-    public TextArea get_estimation() {
+    public TextArea getEstimation() {
         return _estimation;
     }
 
@@ -151,11 +149,11 @@ public class CreateProductDataView extends ViewTemplate implements ICreateProduc
      * @author 1030129
      * @return
      */
-    public ChoiceBox<String> get_classification() {
+    public ChoiceBox<String> getClassification() {
         return _classification;
     }
 
-    public Map<String, ProductDataClassification> get_classificationMap() {
+    public Map<String, ProductDataClassification> getClassificationMap() {
         return _classificationMap;
     }
 }

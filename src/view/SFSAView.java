@@ -5,14 +5,11 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.stage.Stage;
-import model.IModel;
 
 /**
  * Created by 1030129 on 28.04.17.
  */
 public class SFSAView extends ViewTemplate implements ISFSAView {
-
-    private IModel _model;
 
     private Scene _scene;
 
@@ -29,17 +26,20 @@ public class SFSAView extends ViewTemplate implements ISFSAView {
     private Menu _fileMenu;
     private Menu _xml;
     private MenuItem _closeItem;
-    private MenuItem _import;
-    private MenuItem _export;
+    private MenuItem _xmlImportItem;
+    private MenuItem _xmlExportItem;
+    private MenuItem _aboutItem;
+    private MenuItem _saveItem;
+    private MenuItem _newItem;
+    private MenuItem _openItem;
+    private MenuItem _saveAsItem;
+
 
     /**
-     * @author 1030129
      * @throws Exception
+     * @author 1030129
      */
-    public SFSAView(IModel model) throws Exception{
-
-        super("SFSA");
-        _model = model;
+    public SFSAView() throws Exception {
 
         Parent root = FXMLLoader.load(getClass().getResource("../fxml/SFSA.fxml"));
 
@@ -54,17 +54,26 @@ public class SFSAView extends ViewTemplate implements ISFSAView {
 
         _menuBar = (MenuBar) root.lookup("#menuBar");
         _fileMenu = _menuBar.getMenus().get(0);
+        _newItem = _fileMenu.getItems().get(0);
+        _openItem = _fileMenu.getItems().get(1);
+        _saveItem = _fileMenu.getItems().get(2);
+        _saveAsItem = _fileMenu.getItems().get(3);
+        _closeItem = _fileMenu.getItems().get(4);
+
         _closeItem = _fileMenu.getItems().get(4);
         _xml = _menuBar.getMenus().get(2);
-        _import = _xml.getItems().get(0);
-        _export = _xml.getItems().get(1);
+        _xmlImportItem = _xml.getItems().get(0);
+        _xmlExportItem = _xml.getItems().get(1);
+
+        _aboutItem = _menuBar.getMenus().get(3).getItems().get(0);
+
 
         _scene = new Scene(root, 1000, 600);
     }
 
     /**
-     * @author 1030129
      * @param stage
+     * @author 1030129
      */
     public void show(Stage stage) {
         stage.setScene(_scene);
@@ -72,67 +81,103 @@ public class SFSAView extends ViewTemplate implements ISFSAView {
         stage.show();
     }
 
-    public void close(Stage stage) {
-        stage.close();
-    }
-
     /**
-     * @author 1030129
      * @return _targetSpecificationTab
+     * @author 1030129
      */
-    public Tab get_targetSpecificationTab() {
+    public Tab getTargetSpecificationTab() {
         return _targetSpecificationTab;
     }
 
     /**
-     * @author 1030129
      * @return _productUseTab
+     * @author 1030129
      */
-    public Tab get_productUseTab() {
+    public Tab getProductUseTab() {
         return _productUseTab;
     }
 
     /**
-     * @author 1030129
      * @return _functionalRequirementsTab
+     * @author 1030129
      */
-    public Tab get_functionalRequirementsTab() {
+    public Tab getFunctionalRequirementsTab() {
         return _functionalRequirementsTab;
     }
 
     /**
-     * @author 1030129
      * @return _productDataTab
+     * @author 1030129
      */
-    public Tab get_productDataTab() {
+    public Tab getProductDataTab() {
         return _productDataTab;
     }
 
     /**
-     * @author 1030129
      * @return _environmentTab
+     * @author 1030129
      */
-    public Tab get_environmentTab() {
+    public Tab getEnvironmentTab() {
         return _environmentTab;
     }
 
-    public Tab get_estimationConfigTab() {
+    public Tab getEstimationConfigTab() {
         return _estimationConfigTab;
     }
 
-    public Tab get_costEstimationTab() {
+    public Tab getCostEstimationTab() {
         return _costEstimationTab;
     }
 
-    public MenuItem get_closeItem() {
+    public MenuItem getCloseItem() {
         return _closeItem;
     }
 
-    public MenuItem getImportItem() {
-        return _import;
+    public MenuItem getXMLImportItem() {
+        return _xmlImportItem;
     }
 
-    public MenuItem getExportItem() {
-        return _export;
+    public MenuItem getXMLExportItem() {
+        return _xmlExportItem;
+    }
+
+    public MenuItem getAboutItem() {
+        return _aboutItem;
+    }
+
+    public void setAboutItem(MenuItem _aboutItem) {
+        this._aboutItem = _aboutItem;
+    }
+
+    public MenuItem getNewItem() {
+        return _newItem;
+    }
+
+    public void setNewItem(MenuItem newItem) {
+        this._newItem = newItem;
+    }
+
+    public MenuItem getSaveItem() {
+        return _saveItem;
+    }
+
+    public void setSaveItem(MenuItem _saveItem) {
+        this._saveItem = _saveItem;
+    }
+
+    public MenuItem getOpenItem() {
+        return _openItem;
+    }
+
+    public void setOpenItem(MenuItem _openItem) {
+        this._openItem = _openItem;
+    }
+
+    public MenuItem getSaveAsItem() {
+        return _saveAsItem;
+    }
+
+    public void setSaveAsItem(MenuItem _saveAsItem) {
+        this._saveAsItem = _saveAsItem;
     }
 }

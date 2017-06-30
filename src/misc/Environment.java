@@ -8,17 +8,27 @@ public class Environment {
     private String _hardwareEnvironment;
     private String _softwareEnvironment;
 
+    public Environment() {}
+
     public Environment(String hardwareEnvironment, String softwareEnvironment) {
-        _hardwareEnvironment = hardwareEnvironment;
-        _softwareEnvironment = softwareEnvironment;
+        this._hardwareEnvironment = hardwareEnvironment;
+        this._softwareEnvironment = softwareEnvironment;
     }
 
-    public String get_hardwareEnvironment() {
+    public String getHardwareEnvironment() {
         return _hardwareEnvironment;
     }
 
-    public String get_softwareEnvironment() {
+    public String getSoftwareEnvironment() {
         return _softwareEnvironment;
+    }
+
+    public void setHardwareEnvironment(String hardwareEnvironment) {
+        this._hardwareEnvironment = hardwareEnvironment;
+    }
+
+    public void setSoftwareEnvironment(String softwareEnvironment) {
+        this._softwareEnvironment = softwareEnvironment;
     }
 
     public void print() {

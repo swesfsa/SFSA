@@ -8,10 +8,10 @@ import javafx.scene.control.TextArea;
  */
 public interface IEnvironmentView {
 
-    Button get_saveButton();
-    Button get_editButton();
-    Button get_cancelButton();
+    Button getSaveButton();
+    Button getEditButton();
+    Button getCancelButton();
 
-    TextArea get_hardwareEnvironment();
-    TextArea get_softwareEnvironment();
+    TextArea getHardwareEnvironment();
+    TextArea getSoftwareEnvironment();
 }

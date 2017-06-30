@@ -10,25 +10,25 @@ import view.TargetSpecificationView;
 /**
  * Created by marcostierle on 28.04.17.
  */
-public class TargetSpecificationController extends TabController {
+class TargetSpecificationController extends TabController {
 
     private TargetSpecificationView _view;
 
     private String _targetSpecString;
 
-    public TargetSpecificationController(IModel model) throws Exception {
+    TargetSpecificationController(IModel model) throws Exception {
 
         _model = model;
         _view = new TargetSpecificationView(_model);
-        _anchorPane = _view.get_anchorPane();
+        _anchorPane = _view.getAnchorPane();
 
-        _view.get_saveButton().setOnAction(new SaveButtonEventHandler());
-        _view.get_editButton().setOnAction(new EditButtonEventHandler());
-        _view.get_deleteButton().setOnAction(new DeleteButtonEventHandler());
+        _view.getSaveButton().setOnAction(new SaveButtonEventHandler());
+        _view.getEditButton().setOnAction(new EditButtonEventHandler());
+        _view.getDeleteButton().setOnAction(new DeleteButtonEventHandler());
     }
 
     private void getDataFromView() {
-        _targetSpecString = _view.get_targetSpecification().getText();
+        _targetSpecString = _view.getTargetSpecification().getText();
     }
 
     private void checkForEmptyFields() throws EmptyTextFieldException {
@@ -47,7 +47,7 @@ public class TargetSpecificationController extends TabController {
                 checkForEmptyFields();
 
                 TargetSpecification targetSpecification = new TargetSpecification(_targetSpecString);
-                _model.set_targetSpecification(targetSpecification);
+                _model.setTargetSpecification(targetSpecification);
                 targetSpecification.print();
             } catch (EmptyTextFieldException e) {
                 System.out.println("Error: " + e);

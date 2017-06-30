@@ -9,15 +9,15 @@ import java.util.Optional;
 /**
  * Created by 1030129 on 12.05.17.
  */
-public class TabController extends ControllerTemplate {
+public abstract class TabController extends ControllerTemplate implements ITabController {
 
-    protected AnchorPane _anchorPane;
+    AnchorPane _anchorPane;
 
     public AnchorPane getAnchorPane(){
         return _anchorPane;
     }
 
-    public Boolean openDeleteQuery() {
+    Boolean openDeleteQuery() {
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
         alert.setTitle("");
         alert.setHeaderText("Achtung Löschvorgang!");
@@ -26,7 +26,7 @@ public class TabController extends ControllerTemplate {
         alert.getButtonTypes().setAll(ButtonType.NO, ButtonType.YES);
 
         Optional<ButtonType> choice = alert.showAndWait();
-        if (choice.get() == ButtonType.YES) {
+        if (choice.isPresent() && choice.get() == ButtonType.YES) {
             System.out.println("Löschvorgang bestätigt");
             return true;
         } else {

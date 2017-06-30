@@ -1,9 +1,6 @@
 package view;
 
 import javafx.scene.control.*;
-import misc.Priority;
-
-import java.time.LocalDate;
 
 /**
  * Created by 1030129 on 02.05.17.
@@ -17,14 +14,14 @@ public interface ICreateFunctionalRequirementView extends IView{
 
     TextField getId();
     TextField getTitle();
-    ChoiceBox<String> get_priority();
-    TextField get_function();
+    ChoiceBox<String> getPriority();
+    TextField getFunction();
     TextField getProtagonist();
     TextField getSource();
     TextField getReferences();
-    TextField get_ftr();
+    TextField getFtr();
     TextField getDet();
-    ChoiceBox<String> get_classification();
+    ChoiceBox<String> getClassification();
 
-    TextArea get_description();
+    TextArea getDescription();
 }

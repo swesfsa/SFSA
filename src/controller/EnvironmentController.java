@@ -11,38 +11,38 @@ import view.EnvironmentView;
 /**
  * Created by 1030129 on 02.05.17.
  */
-public class EnvironmentController extends TabController {
+class EnvironmentController extends TabController {
 
     private EnvironmentView _view;
 
     private String _hardwareEnvironment;
     private String _softwareEnvironment;
 
-    public EnvironmentController(IModel model) throws Exception{
+    EnvironmentController(IModel model) throws Exception{
 
         _model = model;
         _view = new EnvironmentView(model);
-        _anchorPane = _view.get_anchorPane();
+        _anchorPane = _view.getAnchorPane();
 
-        Environment savedEnvironment = model.get_environment();
-        String hardwareEnvironment = savedEnvironment.get_hardwareEnvironment();
-        String softwareEnvironment = savedEnvironment.get_softwareEnvironment();
+        Environment savedEnvironment = model.getEnvironment();
+        String hardwareEnvironment = savedEnvironment.getHardwareEnvironment();
+        String softwareEnvironment = savedEnvironment.getSoftwareEnvironment();
 
-        _view.get_hardwareEnvironment().setText(hardwareEnvironment);
-        _view.get_softwareEnvironment().setText(softwareEnvironment);
+        _view.getHardwareEnvironment().setText(hardwareEnvironment);
+        _view.getSoftwareEnvironment().setText(softwareEnvironment);
 
-        _view.get_cancelButton().setDisable(true);
-        _view.get_hardwareEnvironment().setEditable(false);
-        _view.get_softwareEnvironment().setEditable(false);
+        _view.getCancelButton().setDisable(true);
+        _view.getHardwareEnvironment().setEditable(false);
+        _view.getSoftwareEnvironment().setEditable(false);
 
-        _view.get_saveButton().setOnAction(new SaveButtonEventHandler());
-        _view.get_editButton().setOnAction(new EditButtonEventHandler());
-        _view.get_cancelButton().setOnAction(new CancelButtonEventHandler());
+        _view.getSaveButton().setOnAction(new SaveButtonEventHandler());
+        _view.getEditButton().setOnAction(new EditButtonEventHandler());
+        _view.getCancelButton().setOnAction(new CancelButtonEventHandler());
     }
 
     private void getDataFromView() throws EmptyTextFieldException {
-        _hardwareEnvironment = _view.get_hardwareEnvironment().getText();
-        _softwareEnvironment = _view.get_softwareEnvironment().getText();
+        _hardwareEnvironment = _view.getHardwareEnvironment().getText();
+        _softwareEnvironment = _view.getSoftwareEnvironment().getText();
         checkForEmptyFields();
     }
 
@@ -62,15 +62,15 @@ public class EnvironmentController extends TabController {
 
                 Environment environment = new Environment(_hardwareEnvironment, _softwareEnvironment);
 
-                _model.set_environment(environment);
+                _model.setEnvironment(environment);
 
-                _view.get_hardwareEnvironment().setEditable(false);
-                _view.get_softwareEnvironment().setEditable(false);
-                _view.get_editButton().setDisable(false);
-                _view.get_cancelButton().setDisable(true);
+                _view.getHardwareEnvironment().setEditable(false);
+                _view.getSoftwareEnvironment().setEditable(false);
+                _view.getEditButton().setDisable(false);
+                _view.getCancelButton().setDisable(true);
 
                 // DEBUG
-                _model.get_environment().print();
+                _model.getEnvironment().print();
             }
             catch (EmptyTextFieldException e) {
                 openEmptyTextFieldWarning();
@@ -83,10 +83,10 @@ public class EnvironmentController extends TabController {
         @Override
         public void handle(ActionEvent event) {
 
-            _view.get_hardwareEnvironment().setEditable(true);
-            _view.get_softwareEnvironment().setEditable(true);
-            _view.get_editButton().setDisable(true);
-            _view.get_cancelButton().setDisable(false);
+            _view.getHardwareEnvironment().setEditable(true);
+            _view.getSoftwareEnvironment().setEditable(true);
+            _view.getEditButton().setDisable(true);
+            _view.getCancelButton().setDisable(false);
         }
     }
 
@@ -95,17 +95,17 @@ public class EnvironmentController extends TabController {
         @Override
         public void handle(ActionEvent event) {
 
-            Environment savedEnvironment = _model.get_environment();
-            String hardwareEnvironment = savedEnvironment.get_hardwareEnvironment();
-            String softwareEnvironment = savedEnvironment.get_softwareEnvironment();
+            Environment savedEnvironment = _model.getEnvironment();
+            String hardwareEnvironment = savedEnvironment.getHardwareEnvironment();
+            String softwareEnvironment = savedEnvironment.getSoftwareEnvironment();
 
-            _view.get_hardwareEnvironment().setText(hardwareEnvironment);
-            _view.get_softwareEnvironment().setText(softwareEnvironment);
+            _view.getHardwareEnvironment().setText(hardwareEnvironment);
+            _view.getSoftwareEnvironment().setText(softwareEnvironment);
 
-            _view.get_hardwareEnvironment().setEditable(false);
-            _view.get_softwareEnvironment().setEditable(false);
-            _view.get_editButton().setDisable(false);
-            _view.get_cancelButton().setDisable(true);
+            _view.getHardwareEnvironment().setEditable(false);
+            _view.getSoftwareEnvironment().setEditable(false);
+            _view.getEditButton().setDisable(false);
+            _view.getCancelButton().setDisable(true);
         }
     }
 }

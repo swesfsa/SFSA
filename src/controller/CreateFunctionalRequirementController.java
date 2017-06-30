@@ -18,7 +18,7 @@ import java.time.LocalDate;
 /**
  * Created by 1030129 on 02.05.17.
  */
-public class CreateFunctionalRequirementController extends CreateItemController {
+public class CreateFunctionalRequirementController extends StageController {
 
     private CreateFunctionalRequirementView _view;
 
@@ -36,18 +36,18 @@ public class CreateFunctionalRequirementController extends CreateItemController 
      * @author 1030129
      * @throws Exception
      */
-    public CreateFunctionalRequirementController(IModel model) throws Exception {
+    CreateFunctionalRequirementController(IModel model) throws Exception {
 
         _model = model;
         _view = new CreateFunctionalRequirementView(_model);
-        
+
         _view.getSaveButton().setOnAction(new SaveButtonEventHandler());
         _view.getCancelButton().setOnAction(new CancelButtonEventHandler());
 
         createNewItem();
     }
 
-    public CreateFunctionalRequirementController(IModel model, FunctionalRequirement data) throws Exception {
+    CreateFunctionalRequirementController(IModel model, FunctionalRequirement data) throws Exception {
 
         _model = model;
         _view = new CreateFunctionalRequirementView(_model);
@@ -74,20 +74,20 @@ public class CreateFunctionalRequirementController extends CreateItemController 
     private void loadData(FunctionalRequirement data) {
 
         if (_editMode) {
-            _oldId = data.get_id();
+            _oldId = data.getId();
         }
-        _view.getDate().setValue(data.get_date());
-        _view.getTitle().setText(data.get_title());
-        _view.get_function().setText(data.get_function());
-        _view.getProtagonist().setText(data.get_protagonist());
-        _view.getSource().setText(data.get_source());
-        _view.getReferences().setText(data.get_references());
-        _view.get_description().setText(data.get_description());
-        _view.get_priority().setValue(data.get_priority().get_priority());
-        _view.get_classification().setValue(data.get_classification().get_classification());
-        _view.getId().setText(Integer.toString(data.get_id()));
-        _view.get_ftr().setText(Integer.toString(data.get_ftr()));
-        _view.getDet().setText(Integer.toString(data.get_det()));
+        _view.getDate().setValue(data.getDate());
+        _view.getTitle().setText(data.getTitle());
+        _view.getFunction().setText(data.getFunction());
+        _view.getProtagonist().setText(data.getProtagonist());
+        _view.getSource().setText(data.getSource());
+        _view.getReferences().setText(data.getReferences());
+        _view.getDescription().setText(data.getDescription());
+        _view.getPriority().setValue(data.getPriority().getPriority());
+        _view.getClassification().setValue(data.getClassification().getClassification());
+        _view.getId().setText(Integer.toString(data.getId()));
+        _view.getFtr().setText(Integer.toString(data.getFtr()));
+        _view.getDet().setText(Integer.toString(data.getDet()));
     }
 
     /**
@@ -99,19 +99,19 @@ public class CreateFunctionalRequirementController extends CreateItemController 
 
         _date = _view.getDate().getValue();
         _title = _view.getTitle().getText();
-        _function = _view.get_function().getText();
+        _function = _view.getFunction().getText();
         _protagonist = _view.getProtagonist().getText();
         _source = _view.getSource().getText();
         _references = _view.getReferences().getText();
-        _description = _view.get_description().getText();
+        _description = _view.getDescription().getText();
         checkForEmptyFields();
 
-        _priority = _view.get_priorityMap().get(_view.get_priority().getValue());
-        _classification = _view.get_classificationMap().get(_view.get_classification().getValue());
+        _priority = _view.getPriorityMap().get(_view.getPriority().getValue());
+        _classification = _view.getClassificationMap().get(_view.getClassification().getValue());
         checkForEmptyChoiceBox();
 
         _id = Integer.parseInt(_view.getId().getText());
-        _ftr = Integer.parseInt(_view.get_ftr().getText());
+        _ftr = Integer.parseInt(_view.getFtr().getText());
         _det = Integer.parseInt(_view.getDet().getText());
         checkForNumbersSmallerOne();
     }
@@ -145,8 +145,8 @@ public class CreateFunctionalRequirementController extends CreateItemController 
     }
 
     private void checkIfIDAlreadyExists() throws IDAlreadyExistingException {
-        for (FunctionalRequirement functionalRequirement : _model.get_functionalRequirementList()) {
-            if (functionalRequirement.get_id() == _id) {
+        for (FunctionalRequirement functionalRequirement : _model.getFunctionalRequirementList()) {
+            if (functionalRequirement.getId() == _id) {
                 throw new IDAlreadyExistingException();
             }
         }
@@ -155,12 +155,12 @@ public class CreateFunctionalRequirementController extends CreateItemController 
     private void removeItemWithOldID() {
         FunctionalRequirement toRemove = null;
 
-        for (FunctionalRequirement functionalRequirement : _model.get_functionalRequirementList()) {
-            if (functionalRequirement.get_id() == _oldId) {
+        for (FunctionalRequirement functionalRequirement : _model.getFunctionalRequirementList()) {
+            if (functionalRequirement.getId() == _oldId) {
                 toRemove = functionalRequirement;
             }
         }
-        _model.get_functionalRequirementList().remove(toRemove);
+        _model.getFunctionalRequirementList().remove(toRemove);
     }
 
     private class CancelButtonEventHandler implements EventHandler<ActionEvent> {
@@ -200,7 +200,7 @@ public class CreateFunctionalRequirementController extends CreateItemController 
                 close();
 
                 // DEBUG
-                _model.get_functionalRequirementList().iterator().forEachRemaining(FunctionalRequirement::print);
+                _model.getFunctionalRequirementList().iterator().forEachRemaining(FunctionalRequirement::print);
             }
             catch (NumberFormatException e) {
                 System.out.println("Error: " + e);

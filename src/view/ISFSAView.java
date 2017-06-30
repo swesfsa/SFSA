@@ -1,5 +1,6 @@
 package view;
 
+import javafx.scene.control.MenuItem;
 import javafx.scene.control.Tab;
 
 /**
@@ -7,9 +8,21 @@ import javafx.scene.control.Tab;
  */
 public interface ISFSAView extends IView {
 
-    Tab get_targetSpecificationTab();
-    Tab get_productUseTab();
-    Tab get_environmentTab();
-    Tab get_functionalRequirementsTab();
-    Tab get_productDataTab();
-}
+    Tab getTargetSpecificationTab();
+    Tab getProductUseTab();
+    Tab getEnvironmentTab();
+    Tab getFunctionalRequirementsTab();
+    Tab getProductDataTab();
+    Tab getEstimationConfigTab();
+    Tab getCostEstimationTab();
+    MenuItem getCloseItem();
+    MenuItem getXMLImportItem();
+    MenuItem getXMLExportItem();
+    MenuItem getAboutItem();
+    MenuItem getNewItem();
+    MenuItem getOpenItem();
+    MenuItem getSaveItem();
+    MenuItem getSaveAsItem();
+
+
+    }

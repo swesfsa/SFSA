@@ -1,6 +1,6 @@
 package sfsa;
 
-import controller.*;
+import controller.SFSAController;
 import javafx.application.Application;
 import javafx.stage.Stage;
 import misc.StageHandler;
@@ -45,7 +45,7 @@ public class Main extends Application {
  */
 
         // store Stage instance in Singleton Pattern to be accessed by views
-        StageHandler.get_instance().setPrimaryStage(primaryStage);
+        StageHandler.getInstance().setPrimaryStage(primaryStage);
 
         IModel model = new Model();
 

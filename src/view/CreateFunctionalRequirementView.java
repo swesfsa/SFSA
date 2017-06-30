@@ -15,9 +15,7 @@ import java.util.Map;
 /**
  * Created by 1030129 on 27.04.17.
  */
-public class CreateFunctionalRequirementView extends ViewTemplate implements ICreateFunctionalRequirementView {
-
-    private IModel _model;
+public class CreateFunctionalRequirementView extends CreateItemView implements ICreateFunctionalRequirementView {
 
     private Scene _scene;
 
@@ -70,17 +68,17 @@ public class CreateFunctionalRequirementView extends ViewTemplate implements ICr
 
         _priorityMap = new HashMap<>();
         for (Priority iterate : Priority.values()) {
-            _priority.getItems().add(iterate.get_priority());
-            _priorityMap.put(iterate.get_priority(), iterate);
+            _priority.getItems().add(iterate.getPriority());
+            _priorityMap.put(iterate.getPriority(), iterate);
         }
 
         _classificationMap = new HashMap<>();
         for (FunctionalRequirementClassification iterate : FunctionalRequirementClassification.values()) {
-            _classification.getItems().add(iterate.get_classification());
-            _classificationMap.put(iterate.get_classification(), iterate);
+            _classification.getItems().add(iterate.getClassification());
+            _classificationMap.put(iterate.getClassification(), iterate);
         }
 
-                _scene = new Scene(root, 600, 450);
+        _scene = new Scene(root, 600, 450);
         System.out.println("CreatedFRView Constructor finished");
     }
 
@@ -144,7 +142,7 @@ public class CreateFunctionalRequirementView extends ViewTemplate implements ICr
      * @author 1030129
      * @return priotity
      */
-    public ChoiceBox<String> get_priority() {
+    public ChoiceBox<String> getPriority() {
         return _priority;
     }
 
@@ -152,7 +150,7 @@ public class CreateFunctionalRequirementView extends ViewTemplate implements ICr
      * @author 1030129
      * @return _function
      */
-    public TextField get_function() {
+    public TextField getFunction() {
         return _function;
     }
 
@@ -184,7 +182,7 @@ public class CreateFunctionalRequirementView extends ViewTemplate implements ICr
      * @author 1030129
      * @return _description
      */
-    public TextArea get_description() {
+    public TextArea getDescription() {
         return _description;
     }
 
@@ -192,7 +190,7 @@ public class CreateFunctionalRequirementView extends ViewTemplate implements ICr
      * @author 1030129
      * @return _ftr
      */
-    public TextField get_ftr() {
+    public TextField getFtr() {
         return _ftr;
     }
 
@@ -208,15 +206,15 @@ public class CreateFunctionalRequirementView extends ViewTemplate implements ICr
      * @author 1030129
      * @return _classification
      */
-    public ChoiceBox<String> get_classification() {
+    public ChoiceBox<String> getClassification() {
         return _classification;
     }
 
-    public Map<String, Priority> get_priorityMap() {
+    public Map<String, Priority> getPriorityMap() {
         return _priorityMap;
     }
 
-    public Map<String, FunctionalRequirementClassification> get_classificationMap() {
+    public Map<String, FunctionalRequirementClassification> getClassificationMap() {
         return _classificationMap;
     }
 }

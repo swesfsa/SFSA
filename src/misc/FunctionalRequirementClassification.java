@@ -11,11 +11,11 @@ public enum FunctionalRequirementClassification {
 
     private final String _classification;
 
-    private FunctionalRequirementClassification(String classification) {
-        _classification = classification;
+    FunctionalRequirementClassification(String classification) {
+        this._classification = classification;
     }
 
-    public String get_classification() {
+    public String getClassification() {
         return _classification;
     }
 }
