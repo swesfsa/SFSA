@@ -1,5 +1,7 @@
 package controller;
 
+import exception.EmptyChoiceBoxException;
+import exception.NumberSmallerOneException;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.stage.Stage;
@@ -7,7 +9,7 @@ import misc.ProductData;
 import misc.ProductDataClassification;
 import model.IModel;
 import view.CreateProductDataView;
-import view.EmptyTextFieldException;
+import exception.EmptyTextFieldException;
 
 /**
  * Created by 1030129 on 29.04.17.

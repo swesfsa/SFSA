@@ -4,7 +4,7 @@ import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import misc.ProductUse;
 import model.IModel;
-import view.EmptyTextFieldException;
+import exception.EmptyTextFieldException;
 import view.ProductUseView;
 
 /**

@@ -1,6 +1,8 @@
 package controller;
 
+import exception.EmptyChoiceBoxException;
 import exception.IDAlreadyExistingException;
+import exception.NumberSmallerOneException;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.stage.Stage;
@@ -9,7 +11,7 @@ import misc.FunctionalRequirementClassification;
 import misc.Priority;
 import model.IModel;
 import view.CreateFunctionalRequirementView;
-import view.EmptyTextFieldException;
+import exception.EmptyTextFieldException;
 
 import java.time.LocalDate;
 
