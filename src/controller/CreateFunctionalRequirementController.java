@@ -1,5 +1,6 @@
 package controller;
 
+import exception.IDAlreadyExistingException;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.stage.Stage;
@@ -33,6 +34,9 @@ public class CreateFunctionalRequirementController extends ControllerTemplate {
     private int _ftr;
     private int _det;
 
+    private boolean _editMode;
+    private int _oldId;
+
     /**
      * @author 1030129
      * @throws Exception
@@ -45,6 +49,20 @@ public class CreateFunctionalRequirementController extends ControllerTemplate {
         _view.getSaveButton().setOnAction(new SaveButtonEventHandler());
         _view.getCancelButton().setOnAction(new CancelButtonEventHandler());
 
+        _editMode = false;
+
+    }
+
+    public CreateFunctionalRequirementController(IModel model, FunctionalRequirement data) throws Exception {
+
+        _model = model;
+        _view = new CreateFunctionalRequirementView(_model);
+
+        _view.getSaveButton().setOnAction(new SaveButtonEventHandler());
+        _view.getCancelButton().setOnAction(new CancelButtonEventHandler());
+
+        _editMode = true;
+        loadData(data);
     }
 
     /**
@@ -59,8 +77,11 @@ public class CreateFunctionalRequirementController extends ControllerTemplate {
         _view.close(_stage);
     }
 
-    public void loadData(FunctionalRequirement data) {
+    private void loadData(FunctionalRequirement data) {
 
+        if (_editMode) {
+            _oldId = data.get_id();
+        }
         _view.getDate().setValue(data.get_date());
         _view.getTitle().setText(data.get_title());
         _view.get_function().setText(data.get_function());
@@ -129,6 +150,26 @@ public class CreateFunctionalRequirementController extends ControllerTemplate {
         }
     }
 
+    private void checkIfIDAlreadyExists() throws IDAlreadyExistingException {
+        for (FunctionalRequirement functionalRequirement : _model.get_functionalRequirementList()) {
+            if (functionalRequirement.get_id() == _id) {
+                throw new IDAlreadyExistingException();
+            }
+        }
+    }
+
+    private void removeItemWithOldID() {
+        FunctionalRequirement toRemove = null;
+
+        for (FunctionalRequirement functionalRequirement : _model.get_functionalRequirementList()) {
+            if (functionalRequirement.get_id() == _oldId) {
+                toRemove = functionalRequirement;
+            }
+        }
+
+        _model.get_functionalRequirementList().remove(toRemove);
+    }
+
     private class CancelButtonEventHandler implements EventHandler<ActionEvent> {
 
         /**
@@ -153,10 +194,18 @@ public class CreateFunctionalRequirementController extends ControllerTemplate {
             try {
                 getDataFromView();
 
+                if (!_editMode) {
+                    checkIfIDAlreadyExists();
+                } else {
+                    removeItemWithOldID();
+                }
+                System.out.println("old item removed");
+
                 FunctionalRequirement functionalRequirement = new FunctionalRequirement(_id, _ftr, _det, _date, _title, _function, _protagonist,
                         _source, _references, _description, _priority, _classification);
-
+                System.out.println("new item created");
                 _model.addFunctionalRequirement(functionalRequirement);
+                System.out.println("new item added");
                 close();
 
                 // DEBUG
@@ -177,6 +226,10 @@ public class CreateFunctionalRequirementController extends ControllerTemplate {
             catch (NumberSmallerOneException e) {
                 System.out.println("Error: " + e);
                 openNumberFormatWarning("Die Textfelder 'ID', 'FTR' und 'DET' erlauben nur Ganzzahlen > 0 als Eingabe!");
+            }
+            catch (IDAlreadyExistingException e) {
+                System.out.println("Error: " + e);
+                openIDAlreadyExistingWarning(_id);
             }
         }
     }

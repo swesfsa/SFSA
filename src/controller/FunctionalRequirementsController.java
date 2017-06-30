@@ -95,9 +95,9 @@ public class FunctionalRequirementsController extends TabController {
         public void handle(ActionEvent event) {
             System.out.println("EditButtonClicked");
             try {
-                CreateFunctionalRequirementController controller = new CreateFunctionalRequirementController(_model);
+                CreateFunctionalRequirementController controller = new CreateFunctionalRequirementController(_model,
+                        getFunctionalRequirementFromTableViewItem(_selectedTableViewItem));
                 controller.show();
-                controller.loadData(getFunctionalRequirementFromTableViewItem(_selectedTableViewItem));
             } catch (Exception e) {
                 System.out.println(e);
             }

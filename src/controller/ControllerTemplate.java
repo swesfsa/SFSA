@@ -47,4 +47,13 @@ public class ControllerTemplate implements IController {
         alert.setContentText(contentText);
         alert.showAndWait();
     }
+
+    public void openIDAlreadyExistingWarning(int id) {
+
+        Alert alert = new Alert(Alert.AlertType.WARNING);
+        alert.setTitle("Warnung");
+        alert.setHeaderText("ID bereits vergeben");
+        alert.setContentText("Die von Ihnen gewählte ID mit dem Wert: " + id + " ist bereits vergeben.");
+        alert.showAndWait();
+    }
 }
