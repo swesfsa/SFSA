@@ -1,6 +1,7 @@
 package controller;
 
 import exception.EmptyChoiceBoxException;
+import exception.IDAlreadyExistingException;
 import exception.NumberSmallerOneException;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -14,18 +15,14 @@ import exception.EmptyTextFieldException;
 /**
  * Created by 1030129 on 29.04.17.
  */
-public class CreateProductDataController extends ControllerTemplate {
+public class CreateProductDataController extends CreateItemController {
 
-    private Stage _stage;
     private CreateProductDataView _view;
 
     private String _memoryContent;
-    private String _references;
     private String _estimation;
-  
-    private int _id;
+
     private int _ret;
-    private int _det;
 
     private ProductDataClassification _classification = null;
   
@@ -33,13 +30,27 @@ public class CreateProductDataController extends ControllerTemplate {
      * @author 1030129
      * @throws Exception
      */
-    public CreateProductDataController(IModel model) throws Exception {
+    CreateProductDataController(IModel model) throws Exception {
 
         _model = model;
         _view = new CreateProductDataView(model);
 
         _view.get_saveButton().setOnAction(new SaveButtonEventHandler());
         _view.get_cancelButton().setOnAction(new CancelButtonEventHandler());
+
+        createNewItem();
+    }
+
+    CreateProductDataController(IModel model, ProductData data) throws Exception {
+
+        _model = model;
+        _view = new CreateProductDataView(model);
+
+        _view.get_saveButton().setOnAction(new SaveButtonEventHandler());
+        _view.get_cancelButton().setOnAction(new CancelButtonEventHandler());
+
+        editItem();
+        loadData(data);
     }
 
     /**
@@ -50,8 +61,22 @@ public class CreateProductDataController extends ControllerTemplate {
         _view.show(_stage);
     }
 
-    public void close() {
+    private void close() {
         _view.close(_stage);
+    }
+
+    private void loadData(ProductData data) {
+
+        if (_editMode) {
+            _oldId = data.get_id();
+        }
+        _view.get_memoryContent().setText(data.get_memoryContent());
+        _view.get_estimation().setText(data.get_estimation());
+        _view.get_references().setText(data.get_references());
+        _view.get_classification().setValue(data.get_classification().get_classification());
+        _view.get_id().setText(Integer.toString(data.get_id()));
+        _view.get_ret().setText(Integer.toString(data.get_ret()));
+        _view.get_det().setText(Integer.toString(data.get_det()));
     }
 
     /**
@@ -101,6 +126,25 @@ public class CreateProductDataController extends ControllerTemplate {
         }
     }
 
+    private void checkIfIDAlreadyExists() throws IDAlreadyExistingException {
+        for (ProductData productData : _model.get_productDataList()) {
+            if (productData.get_id() == _id) {
+                throw new IDAlreadyExistingException();
+            }
+        }
+    }
+
+    private void removeItemWithOldID() {
+        ProductData toRemove = null;
+
+        for (ProductData productData : _model.get_productDataList()) {
+            if (productData.get_id() == _oldId) {
+                toRemove = productData;
+            }
+        }
+        _model.get_productDataList().remove(toRemove);
+    }
+
     private class CancelButtonEventHandler implements EventHandler<ActionEvent> {
 
         /**
@@ -125,6 +169,12 @@ public class CreateProductDataController extends ControllerTemplate {
             try {
                 getDataFromView();
 
+                if (!_editMode) {
+                    checkIfIDAlreadyExists();
+                } else {
+                    removeItemWithOldID();
+                }
+
                 ProductData productData = new ProductData(_id, _ret, _det, _memoryContent, _estimation, _references, _classification);
 
                 _model.addProductData(productData);
@@ -147,6 +197,10 @@ public class CreateProductDataController extends ControllerTemplate {
             catch (NumberSmallerOneException e) {
                 System.out.println("Error: " + e);
                 openNumberFormatWarning("Die Textfelder 'ID', 'RET' und 'DET' erlauben nur Ganzzahlen > 0 als Eingabe!");
+            }
+            catch (IDAlreadyExistingException e) {
+                System.out.println("Error: " + e);
+                openIDAlreadyExistingWarning(_id);
             }
         }
     }

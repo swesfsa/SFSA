@@ -18,9 +18,8 @@ import java.time.LocalDate;
 /**
  * Created by 1030129 on 02.05.17.
  */
-public class CreateFunctionalRequirementController extends ControllerTemplate {
+public class CreateFunctionalRequirementController extends CreateItemController {
 
-    private Stage _stage;
     private CreateFunctionalRequirementView _view;
 
     private LocalDate _date;
@@ -28,16 +27,10 @@ public class CreateFunctionalRequirementController extends ControllerTemplate {
     private String _function;
     private String _protagonist;
     private String _source;
-    private String _references;
     private String _description;
     private Priority _priority = null;
     private FunctionalRequirementClassification _classification = null;
-    private int _id;
     private int _ftr;
-    private int _det;
-
-    private boolean _editMode;
-    private int _oldId;
 
     /**
      * @author 1030129
@@ -51,8 +44,7 @@ public class CreateFunctionalRequirementController extends ControllerTemplate {
         _view.getSaveButton().setOnAction(new SaveButtonEventHandler());
         _view.getCancelButton().setOnAction(new CancelButtonEventHandler());
 
-        _editMode = false;
-
+        createNewItem();
     }
 
     public CreateFunctionalRequirementController(IModel model, FunctionalRequirement data) throws Exception {
@@ -63,7 +55,7 @@ public class CreateFunctionalRequirementController extends ControllerTemplate {
         _view.getSaveButton().setOnAction(new SaveButtonEventHandler());
         _view.getCancelButton().setOnAction(new CancelButtonEventHandler());
 
-        _editMode = true;
+        editItem();
         loadData(data);
     }
 
@@ -168,7 +160,6 @@ public class CreateFunctionalRequirementController extends ControllerTemplate {
                 toRemove = functionalRequirement;
             }
         }
-
         _model.get_functionalRequirementList().remove(toRemove);
     }
 
@@ -201,13 +192,11 @@ public class CreateFunctionalRequirementController extends ControllerTemplate {
                 } else {
                     removeItemWithOldID();
                 }
-                System.out.println("old item removed");
 
                 FunctionalRequirement functionalRequirement = new FunctionalRequirement(_id, _ftr, _det, _date, _title, _function, _protagonist,
                         _source, _references, _description, _priority, _classification);
-                System.out.println("new item created");
+
                 _model.addFunctionalRequirement(functionalRequirement);
-                System.out.println("new item added");
                 close();
 
                 // DEBUG
