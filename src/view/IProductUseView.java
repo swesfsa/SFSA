@@ -6,7 +6,7 @@ import javafx.scene.control.TextArea;
 /**
  * Created by 1030129 on 02.05.17.
  */
-public interface IProductUseView {
+public interface IProductUseView extends ITabView {
 
     Button getSaveButton();
     Button getEditButton();

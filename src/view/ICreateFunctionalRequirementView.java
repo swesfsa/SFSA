@@ -1,11 +1,21 @@
 package view;
 
 import javafx.scene.control.*;
+import javafx.stage.Stage;
+import misc.FunctionalRequirementClassification;
+import misc.Priority;
+
+import java.util.Map;
 
 /**
  * Created by 1030129 on 02.05.17.
  */
-public interface ICreateFunctionalRequirementView extends IView{
+public interface ICreateFunctionalRequirementView extends IStageView {
+
+    void close(Stage stage);
+
+    Map<String, Priority> getPriorityMap();
+    Map<String, FunctionalRequirementClassification> getClassificationMap();
 
     Button getSaveButton();
     Button getCancelButton();

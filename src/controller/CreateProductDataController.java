@@ -15,7 +15,7 @@ import exception.EmptyTextFieldException;
 /**
  * Created by 1030129 on 29.04.17.
  */
-public class CreateProductDataController extends StageController {
+public class CreateProductDataController extends CreateItemController {
 
     private CreateProductDataView _view;
 

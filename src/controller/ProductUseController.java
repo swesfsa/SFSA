@@ -5,6 +5,7 @@ import javafx.event.EventHandler;
 import misc.ProductUse;
 import model.IModel;
 import exception.EmptyTextFieldException;
+import view.IProductUseView;
 import view.ProductUseView;
 
 /**
@@ -12,7 +13,7 @@ import view.ProductUseView;
  */
 class ProductUseController extends TabController {
 
-    private ProductUseView _view;
+    private IProductUseView _view;
 
     private String _productUseString;
 

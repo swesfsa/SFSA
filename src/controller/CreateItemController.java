@@ -6,7 +6,7 @@ import javafx.stage.Stage;
 /**
  * Created by 1030129 on 29.06.17.
  */
-public abstract class StageController extends ControllerTemplate implements IStageController {
+public abstract class CreateItemController extends ControllerTemplate implements IStageController {
 
     Stage _stage;
 

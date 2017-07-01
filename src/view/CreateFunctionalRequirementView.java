@@ -15,7 +15,7 @@ import java.util.Map;
 /**
  * Created by 1030129 on 27.04.17.
  */
-public class CreateFunctionalRequirementView extends CreateItemView implements ICreateFunctionalRequirementView {
+public class CreateFunctionalRequirementView extends StageView implements ICreateFunctionalRequirementView {
 
     private Scene _scene;
 

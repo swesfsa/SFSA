@@ -6,8 +6,11 @@ import model.IModel;
  * Created by tmonn on 25.06.2017.
  */
 class ControllerFactory {
+
     static ITabController create(java.lang.Class controller, IModel model) {
+
         ITabController iController = null;
+
         try{
             if(controller.equals(EnvironmentController.class))
                 iController = new EnvironmentController(model);

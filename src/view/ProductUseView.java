@@ -28,7 +28,7 @@ public class ProductUseView extends TabView implements IProductUseView{
 
         Parent root = FXMLLoader.load(getClass().getResource("../fxml/ProductUse.fxml"));
 
-        _deleteButton = (Button) root.lookup("#_eleteButton");
+        _deleteButton = (Button) root.lookup("#deleteButton");
         _editButton = (Button) root.lookup("#editButton");
         _saveButton = (Button) root.lookup("#saveButton");
         _productUse = (TextArea) root.lookup("#textArea");

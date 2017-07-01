@@ -13,7 +13,7 @@ import view.ProductDataView;
  * Created by 1030129 on 02.05.17.
  */
 class ProductDataController extends TabController {
-//TODO change like FunctionalRequirementsController
+
     private ProductDataView _view;
     private ProductData _selectedTableViewItem;
 
@@ -27,8 +27,8 @@ class ProductDataController extends TabController {
         _view.getEditButton().setOnAction(new EditButtonEventHandler());
         _view.getDeleteButton().setOnAction(new DeleteButtonEventHandler());
 
-        _view.getIdColumn().setCellValueFactory(new PropertyValueFactory<>("_id"));
-        _view.getMemoryContentColumn().setCellValueFactory(new PropertyValueFactory<>("_memoryContent"));
+        _view.getIdColumn().setCellValueFactory(new PropertyValueFactory<>("Id"));
+        _view.getMemoryContentColumn().setCellValueFactory(new PropertyValueFactory<>("MemoryContent"));
         _view.getTableView().setItems(_model.getProductDataList());
         _view.getTableView().setOnMouseClicked(new TableViewClickedHandler());
     }
@@ -58,7 +58,7 @@ class ProductDataController extends TabController {
     private ProductData getProductDataFromTableViewItem(ProductData itemToLoad) {
         ProductData productData;
         Integer index;
-        index = _model.getFunctionalRequirementList().indexOf(itemToLoad);
+        index = _model.getProductDataList().indexOf(itemToLoad);
         productData = _model.getProductDataList().get(index);
 
         return productData;

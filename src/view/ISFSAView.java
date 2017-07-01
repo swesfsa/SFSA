@@ -6,7 +6,7 @@ import javafx.scene.control.Tab;
 /**
  * Created by 1030129 on 02.05.17.
  */
-public interface ISFSAView extends IView {
+public interface ISFSAView extends IStageView {
 
     Tab getTargetSpecificationTab();
     Tab getProductUseTab();
@@ -24,5 +24,4 @@ public interface ISFSAView extends IView {
     MenuItem getSaveItem();
     MenuItem getSaveAsItem();
 
-
-    }
+}

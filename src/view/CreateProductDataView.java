@@ -17,7 +17,7 @@ import java.util.Map;
 /**
  * Created by 1030129 on 29.04.17.
  */
-public class CreateProductDataView extends CreateItemView implements ICreateProductDataView {
+public class CreateProductDataView extends StageView implements ICreateProductDataView {
 
     private Scene _scene;
 

@@ -1,5 +1,6 @@
 package sfsa;
 
+import controller.IStageController;
 import controller.SFSAController;
 import javafx.application.Application;
 import javafx.stage.Stage;
@@ -49,7 +50,7 @@ public class Main extends Application {
 
         IModel model = new Model();
 
-        IController controller = new SFSAController(model);
+        IStageController controller = new SFSAController(model);
         //IController controller = new CreateProductDataController(model);
         //IController controller = new CreateFunctionalRequirementController(model);
         controller.show();

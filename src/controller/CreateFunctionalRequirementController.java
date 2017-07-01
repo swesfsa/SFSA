@@ -12,15 +12,16 @@ import misc.Priority;
 import model.IModel;
 import view.CreateFunctionalRequirementView;
 import exception.EmptyTextFieldException;
+import view.ICreateFunctionalRequirementView;
 
 import java.time.LocalDate;
 
 /**
  * Created by 1030129 on 02.05.17.
  */
-public class CreateFunctionalRequirementController extends StageController {
+public class CreateFunctionalRequirementController extends CreateItemController {
 
-    private CreateFunctionalRequirementView _view;
+    private ICreateFunctionalRequirementView _view;
 
     private LocalDate _date;
     private String _title;

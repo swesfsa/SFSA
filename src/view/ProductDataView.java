@@ -48,16 +48,16 @@ public class ProductDataView extends TabView implements IProductDataView{
         _tableView = (TableView) _leftSplitPane.lookup("#tableView");
         _idColumn = (TableColumn) _tableView.getColumns().get(0);
         _memoryContentColumn = (TableColumn) _tableView.getColumns().get(1);
-        _idLabel = (Label) _rightSplitPane.lookup("idLabel");
-        _memoryContentLabel = (Label) _rightSplitPane.lookup("memoryContentLabel");
-        _referencesLabel = (Label) _rightSplitPane.lookup("referencesLabel");
-        _estimationLabel = (Label) _rightSplitPane.lookup("estimationLabel");
-        _retLabel = (Label) _rightSplitPane.lookup("retLabel");
-        _detLabel = (Label) _rightSplitPane.lookup("detLabel");
-        _classificationLabel = (Label) _rightSplitPane.lookup("classificationLabel");
-        _newButton = (Button) root.lookup("#newButton");
-        _editButton = (Button) root.lookup("#editButton");
-        _deleteButton = (Button) root.lookup("#deleteButton");
+        _idLabel = (Label) _rightSplitPane.lookup("#id");
+        _memoryContentLabel = (Label) _rightSplitPane.lookup("#memoryContent");
+        _referencesLabel = (Label) _rightSplitPane.lookup("#references");
+        _estimationLabel = (Label) _rightSplitPane.lookup("#estimation");
+        _retLabel = (Label) _rightSplitPane.lookup("#ret");
+        _detLabel = (Label) _rightSplitPane.lookup("#det");
+        _classificationLabel = (Label) _rightSplitPane.lookup("#classification");
+        _newButton = (Button) _rightSplitPane.lookup("#newButton");
+        _editButton = (Button) _rightSplitPane.lookup("#editButton");
+        _deleteButton = (Button) _rightSplitPane.lookup("#deleteButton");
     }
 
     /**

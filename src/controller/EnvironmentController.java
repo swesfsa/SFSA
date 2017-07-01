@@ -6,6 +6,7 @@ import misc.Environment;
 import model.IModel;
 import exception.EmptyTextFieldException;
 import view.EnvironmentView;
+import view.IEnvironmentView;
 
 
 /**
@@ -13,7 +14,7 @@ import view.EnvironmentView;
  */
 class EnvironmentController extends TabController {
 
-    private EnvironmentView _view;
+    private IEnvironmentView _view;
 
     private String _hardwareEnvironment;
     private String _softwareEnvironment;

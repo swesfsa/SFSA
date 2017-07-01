@@ -5,6 +5,7 @@ import javafx.event.EventHandler;
 import misc.TargetSpecification;
 import model.IModel;
 import exception.EmptyTextFieldException;
+import view.ITargetSpecificationView;
 import view.TargetSpecificationView;
 
 /**
@@ -12,7 +13,7 @@ import view.TargetSpecificationView;
  */
 class TargetSpecificationController extends TabController {
 
-    private TargetSpecificationView _view;
+    private ITargetSpecificationView _view;
 
     private String _targetSpecString;
 

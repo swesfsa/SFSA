@@ -7,16 +7,17 @@ import javafx.scene.input.MouseEvent;
 import misc.FunctionalRequirement;
 import model.IModel;
 import view.FunctionalRequirementsView;
+import view.IFunctionalRequirementsView;
 
 /**
  * Created by 1030129 on 02.05.17.
  */
-public class FunctionalRequirementsController extends TabController {
+class FunctionalRequirementsController extends TabController {
 
-    private FunctionalRequirementsView _view;
+    private IFunctionalRequirementsView _view;
     private FunctionalRequirement _selectedTableViewItem;
 
-    public FunctionalRequirementsController(IModel model) throws Exception {
+    FunctionalRequirementsController(IModel model) throws Exception {
 
         _model = model;
         _view = new FunctionalRequirementsView(_model);
@@ -26,14 +27,14 @@ public class FunctionalRequirementsController extends TabController {
         _view.getEditButton().setOnAction(new EditButtonEventHandler());
         _view.getDeleteButton().setOnAction(new DeleteButtonEventHandler());
 
-        _view.getIdColumn().setCellValueFactory(new PropertyValueFactory<>("_id"));
-        _view.getTitleColumn().setCellValueFactory(new PropertyValueFactory<>("_title"));
-        _view.getDateColumn().setCellValueFactory(new PropertyValueFactory<>("_date"));
+        _view.getIdColumn().setCellValueFactory(new PropertyValueFactory<>("Id"));
+        _view.getTitleColumn().setCellValueFactory(new PropertyValueFactory<>("Title"));
+        _view.getDateColumn().setCellValueFactory(new PropertyValueFactory<>("Date"));
         _view.getTableView().setItems(_model.getFunctionalRequirementList());
         _view.getTableView().setOnMouseClicked(new TableViewClickedHandler());
     }
 
-    private void loadDetailView(Object itemToLoad) {
+    private void loadDetailView(FunctionalRequirement itemToLoad) {
         FunctionalRequirement functionalRequirementToLoad;
         functionalRequirementToLoad = getFunctionalRequirementFromTableViewItem(itemToLoad);
         _view.getIdLabel().setText(Integer.toString(functionalRequirementToLoad.getId()));
@@ -67,7 +68,7 @@ public class FunctionalRequirementsController extends TabController {
         _view.getClassificationLabel().setText("");
     }
 
-    private FunctionalRequirement getFunctionalRequirementFromTableViewItem(Object itemToLoad) {
+    private FunctionalRequirement getFunctionalRequirementFromTableViewItem(FunctionalRequirement itemToLoad) {
         FunctionalRequirement functionalRequirement;
         Integer index;
         index = _model.getFunctionalRequirementList().indexOf(itemToLoad);
@@ -93,6 +94,7 @@ public class FunctionalRequirementsController extends TabController {
 
         @Override
         public void handle(ActionEvent event) {
+            System.out.println("EditButtonClicked");
             try {
                 CreateFunctionalRequirementController controller = new CreateFunctionalRequirementController(_model,
                         getFunctionalRequirementFromTableViewItem(_selectedTableViewItem));
