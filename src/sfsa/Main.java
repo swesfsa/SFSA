@@ -1,58 +1,37 @@
 package sfsa;
 
 import controller.IStageController;
-import controller.SFSAController;
+import controller.StageControllerFactory;
 import javafx.application.Application;
 import javafx.stage.Stage;
+import misc.Log;
 import misc.StageHandler;
 import model.IModel;
 import model.Model;
+
+import java.util.logging.Level;
+
+import static controller.EStageController.SFSA_CONTROLLER;
 
 public class Main extends Application {
 
     public static void main(String[] args) {
         launch(args);
     }
+    /**
+     * @author 9459758
+     * Start application with creation of iModel and launcher
+     */
 
     @Override
-    public void start(Stage primaryStage) throws Exception {
-      /*  Parent root = FXMLLoader.load(getClass().getResource("../fxml/SFSA.fxml"));
-        primaryStage.setTitle("SFSA - Software für standardisierte Anforderungssammlung");
-        Scene scene = new Scene(root, 900, 500);
-        primaryStage.setScene(scene);
-        primaryStage.show();*/
+    public void start(Stage primaryStage) {
 
-        //DeleteWindowView deleteWindow = new DeleteWindowView();
-        //Stage deleteStage = new Stage();
-        //deleteWindow.show(primaryStage);
+        Log.setUp(Level.ALL);
 
-      /*  CreateFunctionalRequirementView fa = new CreateFunctionalRequirementView();
-        Stage faStage = new Stage();
-        fa.show(faStage);*/
-
-        //DeleteWindowController controller = new DeleteWindowController();
-        //controller.show(primaryStage);
-
-        //SFSAController sfsaController = new SFSAController();
-        //sfsaController.show(primaryStage);
-
-        //CreateProductDataController createProductDataController = new CreateProductDataController();
-        //createProductDataController.show(primaryStage);
-
-/**
- * @author 9459758
- * example using mvc model
- * todo: adding fxml import to view classes
- */
-
-        // store Stage instance in Singleton Pattern to be accessed by views
+        // store Stage instance in Singleton Pattern to be accessed by iViews
         StageHandler.getInstance().setPrimaryStage(primaryStage);
-
-        IModel model = new Model();
-
-        IStageController controller = new SFSAController(model);
-        //IController controller = new CreateProductDataController(model);
-        //IController controller = new CreateFunctionalRequirementController(model);
+        IModel iModel = new Model();
+        IStageController controller = StageControllerFactory.create(SFSA_CONTROLLER, iModel);
         controller.show();
 
     }

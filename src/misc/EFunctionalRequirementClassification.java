@@ -3,7 +3,7 @@ package misc;
 /**
  * @author 1030129
  */
-public enum FunctionalRequirementClassification {
+public enum EFunctionalRequirementClassification {
 
     INPUT("Eingabe"),
     OUTPUT("Ausgabe"),
@@ -11,7 +11,7 @@ public enum FunctionalRequirementClassification {
 
     private final String _classification;
 
-    FunctionalRequirementClassification(String classification) {
+    EFunctionalRequirementClassification(String classification) {
         this._classification = classification;
     }
 

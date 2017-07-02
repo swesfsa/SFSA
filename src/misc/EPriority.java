@@ -3,14 +3,14 @@ package misc;
 /**
  * @author 9459758
  */
-public enum Priority {
+public enum EPriority {
     LOW("Niedrig"),
     MIDDLE("Mittel"),
     HIGH("Hoch");
 
     public final String _priority;
 
-    private Priority(String priority) {
+    private EPriority(String priority) {
         _priority = priority;
     }
 

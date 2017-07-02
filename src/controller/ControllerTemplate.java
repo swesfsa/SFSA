@@ -1,7 +1,6 @@
 package controller;
 
 import javafx.scene.control.Alert;
-import javafx.scene.layout.AnchorPane;
 import model.IModel;
 
 /**
@@ -9,13 +8,21 @@ import model.IModel;
  */
 public class ControllerTemplate {
 
-    protected IModel _model;
+    protected IModel _iModel;
 
     void openEmptyTextFieldWarning() {
         Alert alert = new Alert(Alert.AlertType.WARNING);
         alert.setTitle("Warnung");
         alert.setHeaderText("Leeres Textfeld");
         alert.setContentText("Bitte füllen Sie alle Textfelder aus.");
+        alert.showAndWait();
+    }
+
+    void openEmptyTextFieldWarning(String contentText) {
+        Alert alert = new Alert(Alert.AlertType.WARNING);
+        alert.setTitle("Warnung");
+        alert.setHeaderText("Leeres Textfeld");
+        alert.setContentText(contentText);
         alert.showAndWait();
     }
 

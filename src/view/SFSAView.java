@@ -6,6 +6,8 @@ import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.stage.Stage;
 
+import java.io.IOException;
+
 /**
  * Created by 1030129 on 28.04.17.
  */
@@ -39,7 +41,7 @@ public class SFSAView extends ViewTemplate implements ISFSAView {
      * @throws Exception
      * @author 1030129
      */
-    public SFSAView() throws Exception {
+    public SFSAView() throws IOException {
 
         Parent root = FXMLLoader.load(getClass().getResource("../fxml/SFSA.fxml"));
 
@@ -61,11 +63,11 @@ public class SFSAView extends ViewTemplate implements ISFSAView {
         _closeItem = _fileMenu.getItems().get(4);
 
         _closeItem = _fileMenu.getItems().get(4);
-        _xml = _menuBar.getMenus().get(2);
+        _xml = _menuBar.getMenus().get(1);
         _xmlImportItem = _xml.getItems().get(0);
         _xmlExportItem = _xml.getItems().get(1);
 
-        _aboutItem = _menuBar.getMenus().get(3).getItems().get(0);
+        _aboutItem = _menuBar.getMenus().get(2).getItems().get(0);
 
 
         _scene = new Scene(root, 1000, 600);
@@ -145,8 +147,8 @@ public class SFSAView extends ViewTemplate implements ISFSAView {
         return _aboutItem;
     }
 
-    public void setAboutItem(MenuItem _aboutItem) {
-        this._aboutItem = _aboutItem;
+    public void setAboutItem(MenuItem aboutItem) {
+        this._aboutItem = aboutItem;
     }
 
     public MenuItem getNewItem() {
@@ -161,23 +163,23 @@ public class SFSAView extends ViewTemplate implements ISFSAView {
         return _saveItem;
     }
 
-    public void setSaveItem(MenuItem _saveItem) {
-        this._saveItem = _saveItem;
+    public void setSaveItem(MenuItem saveItem) {
+        this._saveItem = saveItem;
     }
 
     public MenuItem getOpenItem() {
         return _openItem;
     }
 
-    public void setOpenItem(MenuItem _openItem) {
-        this._openItem = _openItem;
+    public void setOpenItem(MenuItem openItem) {
+        this._openItem = openItem;
     }
 
     public MenuItem getSaveAsItem() {
         return _saveAsItem;
     }
 
-    public void setSaveAsItem(MenuItem _saveAsItem) {
-        this._saveAsItem = _saveAsItem;
+    public void setSaveAsItem(MenuItem saveAsItem) {
+        this._saveAsItem = saveAsItem;
     }
 }

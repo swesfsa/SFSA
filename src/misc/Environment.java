@@ -1,5 +1,7 @@
 package misc;
 
+import exception.EmptyTextFieldException;
+
 /**
  * Created by 1030129 on 03.05.17.
  */
@@ -15,6 +17,11 @@ public class Environment {
         this._softwareEnvironment = softwareEnvironment;
     }
 
+    public void check() throws EmptyTextFieldException {
+        if (_hardwareEnvironment.equals("") || _softwareEnvironment.equals("")) {
+            throw new EmptyTextFieldException();
+        }
+    }
     public String getHardwareEnvironment() {
         return _hardwareEnvironment;
     }

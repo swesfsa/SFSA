@@ -1,7 +1,10 @@
 package view;
 
 import javafx.scene.control.Button;
-import javafx.scene.control.TextArea;
+import misc.TargetSpecification;
+
+
+import java.util.Observable;
 
 /**
  * Created by 1030129 on 02.05.17.
@@ -12,6 +15,9 @@ public interface ITargetSpecificationView extends ITabView {
     Button getEditButton();
     Button getSaveButton();
 
-    TextArea getTargetSpecification();
+    TargetSpecification getTargetSpecification();
+    void setTargetSpecification(TargetSpecification targetSpecification);
 
+    void setEditable(boolean editable);
+    void update(Observable o, Object arg);
 }

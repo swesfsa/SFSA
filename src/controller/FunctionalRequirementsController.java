@@ -1,92 +1,67 @@
 package controller;
 
+import exception.EmptyListException;
+import exception.NoListViewRowSelectedException;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
 import misc.FunctionalRequirement;
 import model.IModel;
-import view.FunctionalRequirementsView;
 import view.IFunctionalRequirementsView;
+
+import static controller.EStageController.CREATE_FUNCTIONAL_REQUIREMENT_CONTROLLER;
+import static misc.Log.LOGGER;
 
 /**
  * Created by 1030129 on 02.05.17.
  */
 class FunctionalRequirementsController extends TabController {
 
-    private IFunctionalRequirementsView _view;
+    private IFunctionalRequirementsView _iView;
     private FunctionalRequirement _selectedTableViewItem;
 
-    FunctionalRequirementsController(IModel model) throws Exception {
+    FunctionalRequirementsController(IModel iModel, IFunctionalRequirementsView iView) {
 
-        _model = model;
-        _view = new FunctionalRequirementsView(_model);
-        _anchorPane = _view.getAnchorPane();
+        _iModel = iModel;
+        _iView = iView;
+        _anchorPane = _iView.getAnchorPane();
 
-        _view.getNewButton().setOnAction(new NewButtonEventHandler());
-        _view.getEditButton().setOnAction(new EditButtonEventHandler());
-        _view.getDeleteButton().setOnAction(new DeleteButtonEventHandler());
+        _iView.getNewButton().setOnAction(new NewButtonEventHandler());
+        _iView.getEditButton().setOnAction(new EditButtonEventHandler());
+        _iView.getDeleteButton().setOnAction(new DeleteButtonEventHandler());
 
-        _view.getIdColumn().setCellValueFactory(new PropertyValueFactory<>("Id"));
-        _view.getTitleColumn().setCellValueFactory(new PropertyValueFactory<>("Title"));
-        _view.getDateColumn().setCellValueFactory(new PropertyValueFactory<>("Date"));
-        _view.getTableView().setItems(_model.getFunctionalRequirementList());
-        _view.getTableView().setOnMouseClicked(new TableViewClickedHandler());
-    }
-
-    private void loadDetailView(FunctionalRequirement itemToLoad) {
-        FunctionalRequirement functionalRequirementToLoad;
-        functionalRequirementToLoad = getFunctionalRequirementFromTableViewItem(itemToLoad);
-        _view.getIdLabel().setText(Integer.toString(functionalRequirementToLoad.getId()));
-        _view.getDateLabel().setText(functionalRequirementToLoad.getDate().getDayOfMonth() + "."
-                + functionalRequirementToLoad.getDate().getMonthValue() + "."
-                + functionalRequirementToLoad.getDate().getYear());
-        _view.getTitleLabel().setText(functionalRequirementToLoad.getTitle());
-        _view.getFunctionLabel().setText(functionalRequirementToLoad.getFunction());
-        _view.getDescriptionArea().setText(functionalRequirementToLoad.getDescription());
-        _view.getProtagonistLabel().setText(functionalRequirementToLoad.getProtagonist());
-        _view.getSourceLabel().setText(functionalRequirementToLoad.getSource());
-        _view.getReferencesLabel().setText(functionalRequirementToLoad.getReferences());
-        _view.getPriorityLabel().setText(functionalRequirementToLoad.getPriority().getPriority());
-        _view.getFtrLabel().setText(Integer.toString(functionalRequirementToLoad.getFtr()));
-        _view.getDetLabel().setText(Integer.toString(functionalRequirementToLoad.getDet()));
-        _view.getClassificationLabel().setText(functionalRequirementToLoad.getClassification().getClassification());
-    }
-
-    private void clearDetailView() {
-        _view.getIdLabel().setText("");
-        _view.getDateLabel().setText("");
-        _view.getTitleLabel().setText("");
-        _view.getFunctionLabel().setText("");
-        _view.getDescriptionArea().setText("");
-        _view.getProtagonistLabel().setText("");
-        _view.getSourceLabel().setText("");
-        _view.getReferencesLabel().setText("");
-        _view.getPriorityLabel().setText("");
-        _view.getFtrLabel().setText("");
-        _view.getDetLabel().setText("");
-        _view.getClassificationLabel().setText("");
+        _iView.getIdColumn().setCellValueFactory(new PropertyValueFactory<>("Id"));
+        _iView.getTitleColumn().setCellValueFactory(new PropertyValueFactory<>("Title"));
+        _iView.getDateColumn().setCellValueFactory(new PropertyValueFactory<>("Test"));
+        _iView.getTableView().setItems(_iModel.getFunctionalRequirementList());
+        _iView.getTableView().setOnMouseClicked(new TableViewClickedHandler());
     }
 
     private FunctionalRequirement getFunctionalRequirementFromTableViewItem(FunctionalRequirement itemToLoad) {
-        FunctionalRequirement functionalRequirement;
-        Integer index;
-        index = _model.getFunctionalRequirementList().indexOf(itemToLoad);
-        functionalRequirement = _model.getFunctionalRequirementList().get(index);
+        int index = _iModel.getFunctionalRequirementList().indexOf(itemToLoad);
+        return _iModel.getFunctionalRequirementList().get(index);
+    }
 
-        return functionalRequirement;
+    private void checkForEmptyList(IModel iModel) throws EmptyListException {
+        if (iModel.getFunctionalRequirementList().isEmpty()) {
+            throw new EmptyListException();
+        }
+    }
+
+    private void checkForSelection() throws NoListViewRowSelectedException {
+        if (_iView.getTableView().getSelectionModel().getSelectedItem() == null) {
+            throw new NoListViewRowSelectedException();
+        }
     }
 
     private class NewButtonEventHandler implements EventHandler<ActionEvent> {
 
         @Override
         public void handle(ActionEvent event) {
-            try {
-                IStageController controller = new CreateFunctionalRequirementController(_model);
-                controller.show();
-            } catch (Exception e) {
-                System.out.println(e);
-            }
+            IStageController controller = StageControllerFactory.create(
+                    CREATE_FUNCTIONAL_REQUIREMENT_CONTROLLER, _iModel);
+            controller.show();
         }
     }
 
@@ -94,14 +69,21 @@ class FunctionalRequirementsController extends TabController {
 
         @Override
         public void handle(ActionEvent event) {
-            System.out.println("EditButtonClicked");
             try {
-                CreateFunctionalRequirementController controller = new CreateFunctionalRequirementController(_model,
+                checkForEmptyList(_iModel);
+                checkForSelection();
+                IStageController controller = StageControllerFactory.createWArg(
+                        CREATE_FUNCTIONAL_REQUIREMENT_CONTROLLER, _iModel,
                         getFunctionalRequirementFromTableViewItem(_selectedTableViewItem));
                 controller.show();
-            } catch (Exception e) {
-                System.out.println(e);
+            } catch (EmptyListException e) {
+                LOGGER.warning(e.toString());
+                openEmptyListWarning("bearbeiten");
+            } catch (NoListViewRowSelectedException e) {
+                LOGGER.warning(e.toString());
+                openNoListViewRowSelectedWarning("bearbeiten");
             }
+            _iView.clearDetailView();
         }
     }
 
@@ -109,11 +91,22 @@ class FunctionalRequirementsController extends TabController {
 
         @Override
         public void handle(ActionEvent event) {
-            Boolean delete;
-            delete = openDeleteQuery();
-            if (delete) {
-                _model.getFunctionalRequirementList().remove(_selectedTableViewItem);
-                clearDetailView();
+            try {
+                checkForEmptyList(_iModel);
+                checkForSelection();
+                Boolean delete;
+                delete = openDeleteQuery();
+                if (delete) {
+                    _iModel.getFunctionalRequirementList().remove(_selectedTableViewItem);
+                    LOGGER.info("Functional Requirement deleted from Model");
+                    _iView.clearDetailView();
+                }
+            } catch (EmptyListException e) {
+                LOGGER.warning(e.toString());
+                openEmptyListWarning("löschen");
+            } catch (NoListViewRowSelectedException e) {
+                LOGGER.warning(e.toString());
+                openNoListViewRowSelectedWarning("löschen");
             }
         }
     }
@@ -122,8 +115,8 @@ class FunctionalRequirementsController extends TabController {
 
         @Override
         public void handle(MouseEvent event) {
-            _selectedTableViewItem = (FunctionalRequirement) _view.getTableView().getSelectionModel().getSelectedItem();
-            loadDetailView(_selectedTableViewItem);
+            _selectedTableViewItem = (FunctionalRequirement) _iView.getTableView().getSelectionModel().getSelectedItem();
+            _iView.loadDetailView(_selectedTableViewItem);
         }
     }
 

@@ -17,7 +17,7 @@ public class StageHandler {
     }
 
     /**
-     * Static method "get_instance()" returns _instance of StageHandler
+     * Static method "getInstance()" returns instance of StageHandler
      * Singleton pattern - new _instance if first call
      * Synchronized to be thread-secure
      */

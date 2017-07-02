@@ -4,7 +4,11 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.control.*;
 import javafx.scene.layout.AnchorPane;
+import misc.ProductData;
 import model.IModel;
+
+import java.io.IOException;
+import java.util.Observable;
 
 /**
  * Created by 1030129 on 28.04.17.
@@ -31,13 +35,13 @@ public class ProductDataView extends TabView implements IProductDataView{
      * @author 1030129
      * @throws Exception
      */
-    public ProductDataView(IModel model) throws Exception {
+    public ProductDataView(IModel iModel) throws IOException {
 
         SplitPane _splitPane;
         AnchorPane _leftSplitPane;
         AnchorPane _rightSplitPane;
 
-        _model = model;
+        _iModel = iModel;
 
         Parent root = FXMLLoader.load(getClass().getResource("../fxml/ProductData.fxml"));
 
@@ -58,6 +62,7 @@ public class ProductDataView extends TabView implements IProductDataView{
         _newButton = (Button) _rightSplitPane.lookup("#newButton");
         _editButton = (Button) _rightSplitPane.lookup("#editButton");
         _deleteButton = (Button) _rightSplitPane.lookup("#deleteButton");
+
     }
 
     /**
@@ -96,31 +101,33 @@ public class ProductDataView extends TabView implements IProductDataView{
         return _memoryContentColumn;
     }
 
-    public Label getIdLabel() {
-        return _idLabel;
+    public void loadDetailView(ProductData productData) {
+        _idLabel.setText(Integer.toString(productData.getId()));
+        _memoryContentLabel.setText(productData.getMemoryContent());
+        _referencesLabel.setText(productData.getReferences());
+        _estimationLabel.setText(productData.getEstimation());
+        _retLabel.setText(Integer.toString(productData.getRet()));
+        _detLabel.setText(Integer.toString(productData.getDet()));
+        _classificationLabel.setText(productData.getClassification().getClassification());
     }
 
-    public Label getMemoryContentLabel() {
-        return _memoryContentLabel;
+    public void clearDetailView() {
+        _idLabel.setText("");
+        _memoryContentLabel.setText("");
+        _referencesLabel.setText("");
+        _estimationLabel.setText("");
+        _retLabel.setText("");
+        _detLabel.setText("");
+        _classificationLabel.setText("");
     }
 
-    public Label getReferencesLabel() {
-        return _referencesLabel;
+    @Override
+    public void update(Observable o, Object arg) {
+
     }
 
-    public Label getEstimationLabel() {
-        return _estimationLabel;
-    }
+    @Override
+    public void setEditable(boolean editable) {
 
-    public Label getRetLabel() {
-        return _retLabel;
-    }
-
-    public Label getDetLabel() {
-        return _detLabel;
-    }
-
-    public Label getClassificationLabel() {
-        return _classificationLabel;
     }
 }

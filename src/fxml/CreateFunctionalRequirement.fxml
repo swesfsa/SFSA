@@ -25,9 +25,9 @@
       <ChoiceBox fx:id="priority" layoutX="134.0" layoutY="108.0" prefHeight="27.0" prefWidth="87.0" />
       <TextField fx:id="functionField" layoutX="300.0" layoutY="108.0" prefHeight="27.0" prefWidth="266.0" />
       <TextField fx:id="protagonistField" layoutX="134.0" layoutY="145.0" />
-      <TextField fx:id="sourceField" layoutX="399.0" layoutY="145.0" />
+      <TextField fx:id="sourceField" layoutX="399.0" layoutY="145.0" promptText="optional" />
       <TextArea fx:id="descriptionArea" layoutX="134.0" layoutY="186.0" prefHeight="119.0" prefWidth="432.0" wrapText="true" />
-      <TextField fx:id="referencesField" layoutX="134.0" layoutY="319.0" prefHeight="27.0" prefWidth="432.0" />
+      <TextField fx:id="referencesField" layoutX="134.0" layoutY="319.0" prefHeight="27.0" prefWidth="432.0" promptText="optional" />
       <Button fx:id="saveButton" layoutX="480.0" layoutY="359.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="86.0" text="Speichern" AnchorPane.bottomAnchor="14.0" AnchorPane.rightAnchor="34.0" />
       <Button fx:id="cancelButton" layoutX="384.0" layoutY="359.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="86.0" text="Abbrechen" AnchorPane.bottomAnchor="14.0" AnchorPane.rightAnchor="130.0" />
       <Label layoutX="95.0" layoutY="365.0" text="FTR:" />

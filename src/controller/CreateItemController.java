@@ -6,13 +6,9 @@ import javafx.stage.Stage;
 /**
  * Created by 1030129 on 29.06.17.
  */
-public abstract class CreateItemController extends ControllerTemplate implements IStageController {
+public abstract class CreateItemController extends ControllerTemplate implements ICreateItemController {
 
     Stage _stage;
-
-    int _id;
-    int _det;
-    String _references;
 
     boolean _editMode;
     int _oldId;
@@ -25,12 +21,12 @@ public abstract class CreateItemController extends ControllerTemplate implements
         _editMode = true;
     }
 
-    void openIDAlreadyExistingWarning(int id) {
+    void openIDAlreadyExistingWarning() {
 
         Alert alert = new Alert(Alert.AlertType.WARNING);
         alert.setTitle("Warnung");
         alert.setHeaderText("ID bereits vergeben");
-        alert.setContentText("Die von Ihnen gewählte ID mit dem Wert " + id + " ist bereits vergeben.");
+        alert.setContentText("Die von Ihnen gewählte ID ist bereits vergeben.");
         alert.showAndWait();
     }
 }

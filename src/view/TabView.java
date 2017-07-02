@@ -1,25 +1,17 @@
 package view;
 
 import javafx.scene.layout.AnchorPane;
-import misc.IObserver;
-import misc.IState;
-import model.IModel;
+
+import java.util.Observer;
 
 /**
  * Created by 1030129 on 12.05.17.
  */
-public class TabView extends ViewTemplate implements IObserver {
+public abstract class TabView extends ViewTemplate implements Observer {
 
     protected AnchorPane _anchorPane;
 
     public AnchorPane getAnchorPane() {
         return _anchorPane;
-    }
-
-    public void update(IState state) {
-        if(state.getClass() == IModel.class)
-            this._model = (IModel) state.getState();
-        else
-            System.out.println("Wrong state class received");
     }
 }

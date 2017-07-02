@@ -14,11 +14,13 @@ import java.io.File;
  */
 public class XML {
 
+    private XML() {}
+
     public static void xmlExport(Model model, File file) throws JAXBException {
         JAXBContext jc = JAXBContext.newInstance(Model.class);
         Marshaller marshaller = jc.createMarshaller();
         marshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true);
-        marshaller.marshal( model, file );  // XML root is instance of Model
+        marshaller.marshal(model, file );  // XML root is instance of Model
     }
 
     public static Model xmlImport(File file) throws JAXBException, SAXException {

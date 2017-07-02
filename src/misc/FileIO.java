@@ -2,10 +2,7 @@ package misc;
 
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
-import model.IModel;
-import model.Model;
 
-import javax.xml.bind.JAXBException;
 import java.io.File;
 
 /**
@@ -18,22 +15,24 @@ public class FileIO
     private static FileChooser.ExtensionFilter xmlExtensionFilter =
             new FileChooser.ExtensionFilter("XML", "*.xml");
 
-    public static File openFileChooser(FileExtension fileExtension) {
+    private FileIO() {}
+
+    public static File openFileChooser(EFileExtension eFileExtension) {
         FileChooser fileChooser = new FileChooser();
         fileChooser.setTitle("SFSA-Datei öffnen");
-        if(fileExtension == FileExtension.XML)
+        if(eFileExtension == eFileExtension.XML)
             fileChooser.getExtensionFilters().add(xmlExtensionFilter);
-        else if(fileExtension == FileExtension.SFSA)
+        else if(eFileExtension == eFileExtension.SFSA)
             fileChooser.getExtensionFilters().add(sfsaExtensionFilter);
         return fileChooser.showOpenDialog(new Stage());
     }
 
-    public static File saveAsFileChooser(FileExtension fileExtension) {
+    public static File saveAsFileChooser(EFileExtension eFileExtension) {
         FileChooser fileChooser = new FileChooser();
         fileChooser.setTitle("SFSA-Datei speichern");
-        if(fileExtension == FileExtension.XML)
+        if(eFileExtension == eFileExtension.XML)
             fileChooser.getExtensionFilters().add(xmlExtensionFilter);
-        else if(fileExtension == FileExtension.SFSA)
+        else if(eFileExtension == eFileExtension.SFSA)
             fileChooser.getExtensionFilters().add(sfsaExtensionFilter);
         return fileChooser.showSaveDialog(new Stage());
     }

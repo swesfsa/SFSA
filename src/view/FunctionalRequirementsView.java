@@ -4,8 +4,11 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.control.*;
 import javafx.scene.layout.AnchorPane;
+import misc.FunctionalRequirement;
 import model.IModel;
-import sun.plugin.javascript.navig.Anchor;
+
+import java.io.IOException;
+import java.util.Observable;
 
 /**
  * Created by 1030129 on 28.04.17.
@@ -38,13 +41,13 @@ public class FunctionalRequirementsView extends TabView implements IFunctionalRe
      * @author 1030129
      * @throws Exception
      */
-    public FunctionalRequirementsView(IModel model) throws Exception {
+    public FunctionalRequirementsView(IModel iModel) throws IOException {
 
         SplitPane _splitPane;
         AnchorPane _leftSplitPane;
         AnchorPane _rightSplitPane;
 
-        _model = model;
+        _iModel = iModel;
 
         Parent root = FXMLLoader.load(getClass().getResource("../fxml/FunctionalRequirements.fxml"));
 
@@ -71,6 +74,38 @@ public class FunctionalRequirementsView extends TabView implements IFunctionalRe
         _newButton = (Button) _rightSplitPane.lookup("#newButton");
         _editButton = (Button) _rightSplitPane.lookup("#editButton");
         _deleteButton = (Button) _rightSplitPane.lookup("#deleteButton");
+    }
+
+    public void loadDetailView(FunctionalRequirement functionalRequirement) {
+        _idLabel.setText(Integer.toString(functionalRequirement.getId()));
+        _dateLabel.setText(functionalRequirement.getDate().getDay() + "."
+                + functionalRequirement.getDate().getMonth() + "."
+                + functionalRequirement.getDate().getYear());
+        _titleLabel.setText(functionalRequirement.getTitle());
+        _functionLabel.setText(functionalRequirement.getFunction());
+        _descriptionArea.setText(functionalRequirement.getDescription());
+        _protagonistLabel.setText(functionalRequirement.getProtagonist());
+        _sourceLabel.setText(functionalRequirement.getSource());
+        _referencesLabel.setText(functionalRequirement.getReferences());
+        _priorityLabel.setText(functionalRequirement.getPriority().getPriority());
+        _ftrLabel.setText(Integer.toString(functionalRequirement.getFtr()));
+        _detLabel.setText(Integer.toString(functionalRequirement.getDet()));
+        _classificationLabel.setText(functionalRequirement.getClassification().getClassification());
+    }
+
+    public void clearDetailView() {
+        _idLabel.setText("");
+        _dateLabel.setText("");
+        _titleLabel.setText("");
+        _functionLabel.setText("");
+        _descriptionArea.setText("");
+        _protagonistLabel.setText("");
+        _sourceLabel.setText("");
+        _referencesLabel.setText("");
+        _priorityLabel.setText("");
+        _ftrLabel.setText("");
+        _detLabel.setText("");
+        _classificationLabel.setText("");
     }
 
     /**
@@ -113,51 +148,13 @@ public class FunctionalRequirementsView extends TabView implements IFunctionalRe
         return _dateColumn;
     }
 
-    public Label getIdLabel() {
-        return _idLabel;
+    @Override
+    public void update(Observable o, Object arg) {
+
     }
 
-    public Label getDateLabel() {
-        return _dateLabel;
-    }
+    @Override
+    public void setEditable(boolean editable) {
 
-    public Label getTitleLabel() {
-        return _titleLabel;
-    }
-
-    public Label getFunctionLabel() {
-        return _functionLabel;
-    }
-
-    public Label getProtagonistLabel() {
-        return _protagonistLabel;
-    }
-
-    public Label getSourceLabel() {
-        return _sourceLabel;
-    }
-
-    public Label getReferencesLabel() {
-        return _referencesLabel;
-    }
-
-    public Label getPriorityLabel() {
-        return _priorityLabel;
-    }
-
-    public Label getFtrLabel() {
-        return _ftrLabel;
-    }
-
-    public Label getDetLabel() {
-        return _detLabel;
-    }
-
-    public Label getClassificationLabel() {
-        return _classificationLabel;
-    }
-
-    public TextArea getDescriptionArea() {
-        return _descriptionArea;
     }
 }

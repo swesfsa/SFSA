@@ -1,6 +1,10 @@
 package misc;
 
 
+import exception.EmptyChoiceBoxException;
+import exception.EmptyTextFieldException;
+import exception.IDAlreadyExistingException;
+import exception.NumberSmallerOneException;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
 
@@ -15,10 +19,15 @@ public class ProductData {
     private SimpleStringProperty _memoryContent;
     private String _references;
     private String _estimation;
-    private ProductDataClassification _classification;
+    private EProductDataClassification _classification;
+
+    public ProductData() {
+        _id = new SimpleIntegerProperty();
+        _memoryContent = new SimpleStringProperty();
+    }
 
     public ProductData(int id, int ret, int det, String memoryContent, String references, String estimation,
-                       ProductDataClassification classification) {
+                       EProductDataClassification classification) {
         _id = new SimpleIntegerProperty(id);
         _ret = ret;
         _det = det;
@@ -28,6 +37,21 @@ public class ProductData {
         _classification = classification;
     }
 
+    public void check() throws EmptyTextFieldException, EmptyChoiceBoxException, NumberSmallerOneException, IDAlreadyExistingException {
+
+        if (_memoryContent.equals("") || _estimation.equals("")) {
+            throw new EmptyTextFieldException();
+        }
+
+        if (_classification == null) {
+            throw new EmptyChoiceBoxException();
+        }
+
+        if (_id.getValue() < 1 || _ret < 1 || _det < 1) {
+            throw new NumberSmallerOneException();
+        }
+
+    }
     public void print() {
         System.out.println("ID: " + _id);
         System.out.println("MemoryContent: " + _memoryContent);
@@ -62,7 +86,7 @@ public class ProductData {
         return _estimation;
     }
 
-    public ProductDataClassification getClassification() {
+    public EProductDataClassification getClassification() {
         return _classification;
     }
 
@@ -90,7 +114,7 @@ public class ProductData {
         this._estimation = estimation;
     }
 
-    public void setClassification(ProductDataClassification classification) {
+    public void setClassification(EProductDataClassification classification) {
         this._classification = classification;
     }
 }

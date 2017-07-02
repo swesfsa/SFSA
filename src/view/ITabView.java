@@ -9,4 +9,5 @@ public interface ITabView {
 
     AnchorPane getAnchorPane();
 
+    void setEditable(boolean editable);
 }

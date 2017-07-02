@@ -3,10 +3,12 @@ package misc;
 /**
  * Created by tmonn on 22.06.2017.
  */
-class FunctionPoints {
+public class FunctionPoints {
     private long _functionPoints;
 
-    FunctionPoints(long functionPoints) {
+    public FunctionPoints() {}
+
+    public FunctionPoints(long functionPoints) {
         _functionPoints = functionPoints;
     }
 
@@ -14,7 +16,7 @@ class FunctionPoints {
         _functionPoints = functionPoints._functionPoints;
     }
 
-    long getFunctionPoints() {
+    public long getFunctionPoints() {
         return _functionPoints;
     }
 
@@ -28,5 +30,13 @@ class FunctionPoints {
 
     void add(FunctionPoints functionPoints) {
         _functionPoints += functionPoints.getFunctionPoints();
+    }
+
+    public long get_functionPoints() {
+        return _functionPoints;
+    }
+
+    public void set_functionPoints(long _functionPoints) {
+        this._functionPoints = _functionPoints;
     }
 }

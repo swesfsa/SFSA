@@ -20,11 +20,6 @@
               <MenuItem fx:id="close" mnemonicParsing="false" text="Schließen" />
             </items>
           </Menu>
-          <Menu mnemonicParsing="false" text="Bearbeiten">
-            <items>
-              <MenuItem mnemonicParsing="false" text="Löschen" />
-            </items>
-          </Menu>
             <Menu mnemonicParsing="false" text="XML">
               <items>
                 <MenuItem mnemonicParsing="false" text="Import" />
@@ -32,10 +27,9 @@
               </items>
             </Menu>
           <Menu mnemonicParsing="false" text="Hilfe">
-            <items>
-              <MenuItem mnemonicParsing="false" text="Über" />
-            </items>
-          </Menu>
+               <items>
+                  <MenuItem mnemonicParsing="false" text="Über" />
+               </items></Menu>
         </menus>
       </MenuBar>
       <TabPane fx:id="tabPane" layoutX="-5.0" layoutY="27.0" prefHeight="200.0" prefWidth="200.0" tabClosingPolicy="UNAVAILABLE" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="29.0">

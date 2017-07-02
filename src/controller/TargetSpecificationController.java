@@ -1,61 +1,55 @@
 package controller;
 
+import exception.EmptyTextFieldException;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import misc.TargetSpecification;
 import model.IModel;
-import exception.EmptyTextFieldException;
 import view.ITargetSpecificationView;
-import view.TargetSpecificationView;
+
+import static misc.Log.LOGGER;
 
 /**
  * Created by marcostierle on 28.04.17.
  */
 class TargetSpecificationController extends TabController {
 
-    private ITargetSpecificationView _view;
+    private ITargetSpecificationView _iView;
 
-    private String _targetSpecString;
+    TargetSpecificationController(IModel iModel, ITargetSpecificationView iView) {
 
-    TargetSpecificationController(IModel model) throws Exception {
+        _iModel = iModel;
+        _iView = iView;
+        _anchorPane = _iView.getAnchorPane();
 
-        _model = model;
-        _view = new TargetSpecificationView(_model);
-        _anchorPane = _view.getAnchorPane();
+        _iView.getSaveButton().setOnAction(new SaveButtonEventHandler());
+        _iView.getEditButton().setOnAction(new EditButtonEventHandler());
+        _iView.getDeleteButton().setOnAction(new DeleteButtonEventHandler());
 
-        _view.getSaveButton().setOnAction(new SaveButtonEventHandler());
-        _view.getEditButton().setOnAction(new EditButtonEventHandler());
-        _view.getDeleteButton().setOnAction(new DeleteButtonEventHandler());
+        _editable = false;
     }
 
-    private void getDataFromView() {
-        _targetSpecString = _view.getTargetSpecification().getText();
-    }
-
-    private void checkForEmptyFields() throws EmptyTextFieldException {
-        if (_targetSpecString.equals("")) {
-            throw new EmptyTextFieldException();
-        }
+    private void toggleEditMode(boolean editable) {
+        _iView.setEditable(editable);
+        _editable = editable;
     }
 
     private class SaveButtonEventHandler implements EventHandler<ActionEvent> {
 
         @Override
         public void handle(ActionEvent event) {
-            try {
-                System.out.println("saveButtonClicked");
-                getDataFromView();
-                checkForEmptyFields();
 
-                TargetSpecification targetSpecification = new TargetSpecification(_targetSpecString);
-                _model.setTargetSpecification(targetSpecification);
-                targetSpecification.print();
+            try {
+                TargetSpecification targetSpecification = _iView.getTargetSpecification();
+                targetSpecification.check();
+                _iModel.setTargetSpecification(targetSpecification);
+                toggleEditMode(false);
+                LOGGER.info("Target Specification saved in Model");
             } catch (EmptyTextFieldException e) {
                 System.out.println("Error: " + e);
                 openEmptyTextFieldWarning();
-            } catch (Exception e) {
-                System.out.println(e);
             }
+            toggleEditMode(false);
         }
     }
 
@@ -63,7 +57,12 @@ class TargetSpecificationController extends TabController {
 
         @Override
         public void handle(ActionEvent event) {
-            System.out.println("EditButtonClicked");
+            if (!_editable) {
+                toggleEditMode(true);
+            } else {
+                toggleEditMode(false);
+                _iView.update(null, null);
+            }
         }
     }
 
@@ -71,8 +70,11 @@ class TargetSpecificationController extends TabController {
 
         @Override
         public void handle(ActionEvent event) {
-            System.out.println("DeleteButtonClicked");
-            openDeleteQuery();
+            boolean delete;
+            delete = openDeleteQuery();
+            if (delete) {
+                _iModel.setTargetSpecification(new TargetSpecification(""));
+            }
         }
     }
 }

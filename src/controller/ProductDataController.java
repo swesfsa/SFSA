@@ -1,79 +1,65 @@
 package controller;
 
+import exception.*;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
-import misc.FunctionalRequirement;
 import misc.ProductData;
 import model.IModel;
-import view.ProductDataView;
+import view.IProductDataView;
+
+import static controller.EStageController.CREATE_PRODUCT_DATA_CONTROLLER;
+import static misc.Log.LOGGER;
 
 /**
  * Created by 1030129 on 02.05.17.
  */
 class ProductDataController extends TabController {
 
-    private ProductDataView _view;
+    private IProductDataView _iView;
     private ProductData _selectedTableViewItem;
 
-    ProductDataController(IModel model) throws Exception {
+    ProductDataController(IModel iModel, IProductDataView iView) {
 
-        _model = model;
-        _view = new ProductDataView(_model);
-        _anchorPane = _view.getAnchorPane();
+        _iModel = iModel;
+        _iView = iView;
+        _anchorPane = _iView.getAnchorPane();
 
-        _view.getNewButton().setOnAction(new NewButtonEventHandler());
-        _view.getEditButton().setOnAction(new EditButtonEventHandler());
-        _view.getDeleteButton().setOnAction(new DeleteButtonEventHandler());
+        _iView.getNewButton().setOnAction(new NewButtonEventHandler());
+        _iView.getEditButton().setOnAction(new EditButtonEventHandler());
+        _iView.getDeleteButton().setOnAction(new DeleteButtonEventHandler());
 
-        _view.getIdColumn().setCellValueFactory(new PropertyValueFactory<>("Id"));
-        _view.getMemoryContentColumn().setCellValueFactory(new PropertyValueFactory<>("MemoryContent"));
-        _view.getTableView().setItems(_model.getProductDataList());
-        _view.getTableView().setOnMouseClicked(new TableViewClickedHandler());
-    }
-
-    private void loadDetailView(ProductData itemToLoad) {
-        ProductData productDataToLoad;
-        productDataToLoad = getProductDataFromTableViewItem(itemToLoad);
-        _view.getIdLabel().setText(Integer.toString(productDataToLoad.getId()));
-        _view.getMemoryContentLabel().setText(productDataToLoad.getMemoryContent());
-        _view.getReferencesLabel().setText(productDataToLoad.getReferences());
-        _view.getEstimationLabel().setText(productDataToLoad.getEstimation());
-        _view.getRetLabel().setText(Integer.toString(productDataToLoad.getRet()));
-        _view.getDetLabel().setText(Integer.toString(productDataToLoad.getDet()));
-        _view.getClassificationLabel().setText(productDataToLoad.getClassification().getClassification());
-    }
-
-    private void clearDetailView() {
-        _view.getIdLabel().setText("");
-        _view.getMemoryContentLabel().setText("");
-        _view.getReferencesLabel().setText("");
-        _view.getEstimationLabel().setText("");
-        _view.getRetLabel().setText("");
-        _view.getDetLabel().setText("");
-        _view.getClassificationLabel().setText("");
+        _iView.getIdColumn().setCellValueFactory(new PropertyValueFactory<>("Id"));
+        _iView.getMemoryContentColumn().setCellValueFactory(new PropertyValueFactory<>("MemoryContent"));
+        _iView.getTableView().setItems(_iModel.getProductDataList());
+        _iView.getTableView().setOnMouseClicked(new TableViewClickedHandler());
     }
 
     private ProductData getProductDataFromTableViewItem(ProductData itemToLoad) {
-        ProductData productData;
-        Integer index;
-        index = _model.getProductDataList().indexOf(itemToLoad);
-        productData = _model.getProductDataList().get(index);
+        int index = _iModel.getProductDataList().indexOf(itemToLoad);
+        return _iModel.getProductDataList().get(index);
+    }
 
-        return productData;
+    private void checkForEmptyList(IModel iModel) throws EmptyListException {
+        if (iModel.getProductDataList().isEmpty()) {
+            throw new EmptyListException();
+        }
+    }
+
+    private void checkForSelection() throws NoListViewRowSelectedException {
+        if (_iView.getTableView().getSelectionModel().getSelectedItem() == null) {
+            throw new NoListViewRowSelectedException();
+        }
     }
 
     private class NewButtonEventHandler implements EventHandler<ActionEvent> {
 
         @Override
         public void handle(ActionEvent event) {
-            try {
-                IStageController controller = new CreateProductDataController(_model);
-                controller.show();
-            } catch (Exception e) {
-                System.out.println(e);
-            }
+            IStageController iController = StageControllerFactory.create
+                    (CREATE_PRODUCT_DATA_CONTROLLER, _iModel);
+            iController.show();
         }
     }
 
@@ -82,12 +68,20 @@ class ProductDataController extends TabController {
         @Override
         public void handle(ActionEvent event) {
             try {
-                IStageController controller = new CreateProductDataController(_model,
-                        getProductDataFromTableViewItem(_selectedTableViewItem));
+                checkForEmptyList(_iModel);
+                checkForSelection();
+                IStageController controller = StageControllerFactory.createWArg
+                        (CREATE_PRODUCT_DATA_CONTROLLER, _iModel,
+                                getProductDataFromTableViewItem(_selectedTableViewItem));
                 controller.show();
-            } catch (Exception e) {
-                System.out.println(e);
+            } catch (EmptyListException e) {
+                LOGGER.warning(e.toString());
+                openEmptyListWarning("bearbeiten");
+            } catch (NoListViewRowSelectedException e) {
+                LOGGER.warning(e.toString());
+                openNoListViewRowSelectedWarning("bearbeiten");
             }
+            _iView.clearDetailView();
         }
     }
 
@@ -95,11 +89,22 @@ class ProductDataController extends TabController {
 
         @Override
         public void handle(ActionEvent event) {
-            Boolean delete;
-            delete = openDeleteQuery();
-            if (delete) {
-                _model.getProductDataList().remove(_selectedTableViewItem);
-                clearDetailView();
+            try {
+                checkForEmptyList(_iModel);
+                checkForSelection();
+                Boolean delete;
+                delete = openDeleteQuery();
+                if (delete) {
+                    _iModel.getProductDataList().remove(_selectedTableViewItem);
+                    LOGGER.info("Product Data deleted from Model");
+                    _iView.clearDetailView();
+                }
+            } catch (EmptyListException e) {
+                LOGGER.warning(e.toString());
+                openEmptyListWarning("löschen");
+            } catch (NoListViewRowSelectedException e) {
+                LOGGER.warning(e.toString());
+                openNoListViewRowSelectedWarning("löschen");
             }
         }
     }
@@ -108,8 +113,8 @@ class ProductDataController extends TabController {
 
         @Override
         public void handle(MouseEvent event) {
-            _selectedTableViewItem = (ProductData) _view.getTableView().getSelectionModel().getSelectedItem();
-            loadDetailView(_selectedTableViewItem);
+            _selectedTableViewItem = (ProductData) _iView.getTableView().getSelectionModel().getSelectedItem();
+            _iView.loadDetailView(_selectedTableViewItem);
         }
     }
 }

@@ -6,12 +6,12 @@ import org.xml.sax.SAXException;
 
 import javax.xml.bind.JAXBException;
 import java.io.File;
-import java.util.List;
+import java.util.Observer;
 
 /**
  * @author 9459758
  */
-public interface IModel extends IState {
+public interface IModel {
     TargetSpecification getTargetSpecification();
     void setTargetSpecification(TargetSpecification targetSpecification);
     ProductUse getProductUse();
@@ -22,12 +22,15 @@ public interface IModel extends IState {
     ObservableList<ProductData> getProductDataList();
     void addFunctionalRequirement(FunctionalRequirement functionalRequirement);
     void addProductData(ProductData productData);
-    Factors getFactors();
-    void setFactors(Factors factors);
+    EstimationConfiguration getEstimationConfiguration();
+    void setEstimationConfiguration(EstimationConfiguration estimationConfiguration);
+    CostEstimation getCostEstimation();
+    void setCostEstimation(CostEstimation costEstimation);
     File getFile();
     void setFile(File file);
     void xmlImport(File file) throws JAXBException, SAXException;
     void xmlExport(File file) throws JAXBException;
     void reset();
-    List<IObserver> getObserverList();
+    void addObserver(Observer observer);
+    CostEstimation costEstimationCalculation();
 }

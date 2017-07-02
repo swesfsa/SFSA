@@ -1,12 +1,13 @@
 package controller;
 
+import exception.EmptyTextFieldException;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import misc.Environment;
 import model.IModel;
-import exception.EmptyTextFieldException;
-import view.EnvironmentView;
 import view.IEnvironmentView;
+
+import static misc.Log.LOGGER;
 
 
 /**
@@ -14,43 +15,22 @@ import view.IEnvironmentView;
  */
 class EnvironmentController extends TabController {
 
-    private IEnvironmentView _view;
+    private IEnvironmentView _iView;
 
-    private String _hardwareEnvironment;
-    private String _softwareEnvironment;
+    EnvironmentController(IModel iModel, IEnvironmentView iView) {
 
-    EnvironmentController(IModel model) throws Exception{
+        _iModel = iModel;
+        _iView = iView;
+        _anchorPane = _iView.getAnchorPane();
 
-        _model = model;
-        _view = new EnvironmentView(model);
-        _anchorPane = _view.getAnchorPane();
-
-        Environment savedEnvironment = model.getEnvironment();
-        String hardwareEnvironment = savedEnvironment.getHardwareEnvironment();
-        String softwareEnvironment = savedEnvironment.getSoftwareEnvironment();
-
-        _view.getHardwareEnvironment().setText(hardwareEnvironment);
-        _view.getSoftwareEnvironment().setText(softwareEnvironment);
-
-        _view.getCancelButton().setDisable(true);
-        _view.getHardwareEnvironment().setEditable(false);
-        _view.getSoftwareEnvironment().setEditable(false);
-
-        _view.getSaveButton().setOnAction(new SaveButtonEventHandler());
-        _view.getEditButton().setOnAction(new EditButtonEventHandler());
-        _view.getCancelButton().setOnAction(new CancelButtonEventHandler());
+        _iView.getSaveButton().setOnAction(new SaveButtonEventHandler());
+        _iView.getEditButton().setOnAction(new EditButtonEventHandler());
+        _iView.getDeleteButton().setOnAction(new DeleteButtonEventHandler());
     }
 
-    private void getDataFromView() throws EmptyTextFieldException {
-        _hardwareEnvironment = _view.getHardwareEnvironment().getText();
-        _softwareEnvironment = _view.getSoftwareEnvironment().getText();
-        checkForEmptyFields();
-    }
-
-    private void checkForEmptyFields() throws EmptyTextFieldException {
-        if (_hardwareEnvironment.equals("") || _softwareEnvironment.equals("")) {
-            throw new EmptyTextFieldException();
-        }
+    private void toggleEditMode(boolean editable) {
+        _iView.setEditable(editable);
+        _editable = editable;
     }
 
     public class SaveButtonEventHandler implements EventHandler<ActionEvent> {
@@ -59,23 +39,15 @@ class EnvironmentController extends TabController {
         public void handle(ActionEvent event) {
 
             try {
-                getDataFromView();
-
-                Environment environment = new Environment(_hardwareEnvironment, _softwareEnvironment);
-
-                _model.setEnvironment(environment);
-
-                _view.getHardwareEnvironment().setEditable(false);
-                _view.getSoftwareEnvironment().setEditable(false);
-                _view.getEditButton().setDisable(false);
-                _view.getCancelButton().setDisable(true);
-
-                // DEBUG
-                _model.getEnvironment().print();
+                Environment environment = _iView.getEnvironment();
+                environment.check();
+                _iModel.setEnvironment(environment);
+                LOGGER.info("Environment saved in Model");
             }
             catch (EmptyTextFieldException e) {
                 openEmptyTextFieldWarning();
             }
+            toggleEditMode(false);
         }
     }
 
@@ -83,30 +55,24 @@ class EnvironmentController extends TabController {
 
         @Override
         public void handle(ActionEvent event) {
-
-            _view.getHardwareEnvironment().setEditable(true);
-            _view.getSoftwareEnvironment().setEditable(true);
-            _view.getEditButton().setDisable(true);
-            _view.getCancelButton().setDisable(false);
+            if (!_editable) {
+                toggleEditMode(true);
+            } else {
+                toggleEditMode(false);
+                _iView.update(null, null);
+            }
         }
     }
 
-    public class CancelButtonEventHandler implements EventHandler<ActionEvent> {
+    public class DeleteButtonEventHandler implements EventHandler<ActionEvent> {
 
         @Override
         public void handle(ActionEvent event) {
-
-            Environment savedEnvironment = _model.getEnvironment();
-            String hardwareEnvironment = savedEnvironment.getHardwareEnvironment();
-            String softwareEnvironment = savedEnvironment.getSoftwareEnvironment();
-
-            _view.getHardwareEnvironment().setText(hardwareEnvironment);
-            _view.getSoftwareEnvironment().setText(softwareEnvironment);
-
-            _view.getHardwareEnvironment().setEditable(false);
-            _view.getSoftwareEnvironment().setEditable(false);
-            _view.getEditButton().setDisable(false);
-            _view.getCancelButton().setDisable(true);
+            boolean delete;
+            delete = openDeleteQuery();
+            if (delete) {
+                _iView.setEnvironment(new Environment("", ""));
+            }
         }
     }
 }

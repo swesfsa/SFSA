@@ -13,6 +13,8 @@ public abstract class TabController extends ControllerTemplate implements ITabCo
 
     AnchorPane _anchorPane;
 
+    boolean _editable;
+
     public AnchorPane getAnchorPane(){
         return _anchorPane;
     }
@@ -33,5 +35,21 @@ public abstract class TabController extends ControllerTemplate implements ITabCo
             System.out.println("Löschvorgang abgebrochen");
             return false;
         }
+    }
+
+    void openEmptyListWarning(String requestedAction) {
+        Alert alert = new Alert(Alert.AlertType.WARNING);
+        alert.setTitle("Warnung");
+        alert.setHeaderText("Achtung leere Liste!");
+        alert.setContentText("Sie können kein Element " + requestedAction + ", da die Liste leer ist.");
+        alert.showAndWait();
+    }
+
+    void openNoListViewRowSelectedWarning(String requestedAction) {
+        Alert alert = new Alert(Alert.AlertType.WARNING);
+        alert.setTitle("Warnung");
+        alert.setHeaderText("Achtung kein Listenelement ausgewählt!");
+        alert.setContentText("Um ein Element zu " + requestedAction + ", müssen Sie ein Element in der Liste auswählen.");
+        alert.showAndWait();
     }
 }

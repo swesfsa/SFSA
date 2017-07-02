@@ -1,63 +1,42 @@
 package controller;
 
 import exception.EmptyChoiceBoxException;
+import exception.EmptyTextFieldException;
 import exception.IDAlreadyExistingException;
 import exception.NumberSmallerOneException;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.stage.Stage;
+import misc.EFunctionalRequirementClassification;
+import misc.EPriority;
 import misc.FunctionalRequirement;
-import misc.FunctionalRequirementClassification;
-import misc.Priority;
 import model.IModel;
-import view.CreateFunctionalRequirementView;
-import exception.EmptyTextFieldException;
 import view.ICreateFunctionalRequirementView;
 
 import java.time.LocalDate;
+
+import static misc.Log.LOGGER;
 
 /**
  * Created by 1030129 on 02.05.17.
  */
 public class CreateFunctionalRequirementController extends CreateItemController {
 
-    private ICreateFunctionalRequirementView _view;
-
-    private LocalDate _date;
-    private String _title;
-    private String _function;
-    private String _protagonist;
-    private String _source;
-    private String _description;
-    private Priority _priority = null;
-    private FunctionalRequirementClassification _classification = null;
-    private int _ftr;
+    private ICreateFunctionalRequirementView _iView;
 
     /**
      * @author 1030129
      * @throws Exception
      */
-    CreateFunctionalRequirementController(IModel model) throws Exception {
+    CreateFunctionalRequirementController(IModel iModel, ICreateFunctionalRequirementView iView) {
 
-        _model = model;
-        _view = new CreateFunctionalRequirementView(_model);
+        _iModel = iModel;
+        _iView = iView;
 
-        _view.getSaveButton().setOnAction(new SaveButtonEventHandler());
-        _view.getCancelButton().setOnAction(new CancelButtonEventHandler());
+        _iView.getSaveButton().setOnAction(new SaveButtonEventHandler());
+        _iView.getCancelButton().setOnAction(new CancelButtonEventHandler());
 
         createNewItem();
-    }
-
-    CreateFunctionalRequirementController(IModel model, FunctionalRequirement data) throws Exception {
-
-        _model = model;
-        _view = new CreateFunctionalRequirementView(_model);
-
-        _view.getSaveButton().setOnAction(new SaveButtonEventHandler());
-        _view.getCancelButton().setOnAction(new CancelButtonEventHandler());
-
-        editItem();
-        loadData(data);
     }
 
     /**
@@ -65,89 +44,25 @@ public class CreateFunctionalRequirementController extends CreateItemController 
      */
     public void show() {
         _stage = new Stage();
-        _view.show(_stage);
+        _iView.show(_stage);
     }
 
     private void close() {
-        _view.close(_stage);
+        _iView.close(_stage);
     }
 
-    private void loadData(FunctionalRequirement data) {
-
+    public void setArg(Object arg) {
+        FunctionalRequirement data = (FunctionalRequirement) arg;
+        editItem();
         if (_editMode) {
             _oldId = data.getId();
         }
-        _view.getDate().setValue(data.getDate());
-        _view.getTitle().setText(data.getTitle());
-        _view.getFunction().setText(data.getFunction());
-        _view.getProtagonist().setText(data.getProtagonist());
-        _view.getSource().setText(data.getSource());
-        _view.getReferences().setText(data.getReferences());
-        _view.getDescription().setText(data.getDescription());
-        _view.getPriority().setValue(data.getPriority().getPriority());
-        _view.getClassification().setValue(data.getClassification().getClassification());
-        _view.getId().setText(Integer.toString(data.getId()));
-        _view.getFtr().setText(Integer.toString(data.getFtr()));
-        _view.getDet().setText(Integer.toString(data.getDet()));
+        _iView.setFunctionalRequirement(data);
     }
 
-    /**
-     * This function gets the data out of the TextFields, TextArea and ChoiceBoxes
-     * of the CreateFunctionalRequirementView.
-     * @author 1030129
-     */
-    private void getDataFromView() throws EmptyTextFieldException, EmptyChoiceBoxException, NumberSmallerOneException {
-
-        _date = _view.getDate().getValue();
-        _title = _view.getTitle().getText();
-        _function = _view.getFunction().getText();
-        _protagonist = _view.getProtagonist().getText();
-        _source = _view.getSource().getText();
-        _references = _view.getReferences().getText();
-        _description = _view.getDescription().getText();
-        checkForEmptyFields();
-
-        _priority = _view.getPriorityMap().get(_view.getPriority().getValue());
-        _classification = _view.getClassificationMap().get(_view.getClassification().getValue());
-        checkForEmptyChoiceBox();
-
-        _id = Integer.parseInt(_view.getId().getText());
-        _ftr = Integer.parseInt(_view.getFtr().getText());
-        _det = Integer.parseInt(_view.getDet().getText());
-        checkForNumbersSmallerOne();
-    }
-
-    /**
-     * This function checks if any of the data elements gotten from the
-     * CreateFunctionalRequirementView is empty.
-     * @author 1030129
-     * @throws EmptyTextFieldException
-     */
-    private void checkForEmptyFields() throws EmptyTextFieldException {
-
-        if (_date == null || _title.equals("") || _function.equals("") || _protagonist.equals("")
-                || _source.equals("") || _references.equals("") || _description.equals("")) {
-            throw new EmptyTextFieldException();
-        }
-    }
-
-    private void checkForEmptyChoiceBox() throws EmptyChoiceBoxException {
-
-        if (_priority == null || _classification == null) {
-            throw new EmptyChoiceBoxException();
-        }
-    }
-
-    private void checkForNumbersSmallerOne() throws NumberSmallerOneException {
-
-        if (_id < 1 || _ftr < 1 || _det < 1) {
-            throw new NumberSmallerOneException();
-        }
-    }
-
-    private void checkIfIDAlreadyExists() throws IDAlreadyExistingException {
-        for (FunctionalRequirement functionalRequirement : _model.getFunctionalRequirementList()) {
-            if (functionalRequirement.getId() == _id) {
+    private void checkIfIDAlreadyExists(int id) throws IDAlreadyExistingException {
+        for (FunctionalRequirement functionalRequirement : _iModel.getFunctionalRequirementList()) {
+            if (functionalRequirement.getId() == id) {
                 throw new IDAlreadyExistingException();
             }
         }
@@ -156,12 +71,12 @@ public class CreateFunctionalRequirementController extends CreateItemController 
     private void removeItemWithOldID() {
         FunctionalRequirement toRemove = null;
 
-        for (FunctionalRequirement functionalRequirement : _model.getFunctionalRequirementList()) {
+        for (FunctionalRequirement functionalRequirement : _iModel.getFunctionalRequirementList()) {
             if (functionalRequirement.getId() == _oldId) {
                 toRemove = functionalRequirement;
             }
         }
-        _model.getFunctionalRequirementList().remove(toRemove);
+        _iModel.getFunctionalRequirementList().remove(toRemove);
     }
 
     private class CancelButtonEventHandler implements EventHandler<ActionEvent> {
@@ -184,24 +99,17 @@ public class CreateFunctionalRequirementController extends CreateItemController 
          */
         @Override
         public void handle(ActionEvent event) {
-
             try {
-                getDataFromView();
-
+                FunctionalRequirement functionalRequirement = _iView.getFunctionalRequirement();
+                functionalRequirement.check();
                 if (!_editMode) {
-                    checkIfIDAlreadyExists();
+                    checkIfIDAlreadyExists(functionalRequirement.getId());
                 } else {
                     removeItemWithOldID();
                 }
-
-                FunctionalRequirement functionalRequirement = new FunctionalRequirement(_id, _ftr, _det, _date, _title, _function, _protagonist,
-                        _source, _references, _description, _priority, _classification);
-
-                _model.addFunctionalRequirement(functionalRequirement);
+                _iModel.addFunctionalRequirement(functionalRequirement);
+                LOGGER.info("New Functional Requirement saved in Model");
                 close();
-
-                // DEBUG
-                _model.getFunctionalRequirementList().iterator().forEachRemaining(FunctionalRequirement::print);
             }
             catch (NumberFormatException e) {
                 System.out.println("Error: " + e);
@@ -209,7 +117,7 @@ public class CreateFunctionalRequirementController extends CreateItemController 
             }
             catch (EmptyTextFieldException e) {
                 System.out.println("Error: " + e);
-                openEmptyTextFieldWarning();
+                openEmptyTextFieldWarning("Bitte füllen Sie alle erforderlichen Textfelder aus. ('Quelle' und 'Verweise' sind optional)");
             }
             catch (EmptyChoiceBoxException e) {
                 System.out.println("Error: " + e);
@@ -221,8 +129,9 @@ public class CreateFunctionalRequirementController extends CreateItemController 
             }
             catch (IDAlreadyExistingException e) {
                 System.out.println("Error: " + e);
-                openIDAlreadyExistingWarning(_id);
+                openIDAlreadyExistingWarning();
             }
+
         }
     }
 }

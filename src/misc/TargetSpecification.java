@@ -1,5 +1,7 @@
 package misc;
 
+import exception.EmptyTextFieldException;
+
 /**
  * Created by 1030129 on 03.05.17.
  */
@@ -13,6 +15,11 @@ public class TargetSpecification {
         this._targetSpecification = targetSpecification;
     }
 
+    public void check() throws EmptyTextFieldException {
+        if (_targetSpecification.equals("")) {
+            throw new EmptyTextFieldException();
+        }
+    }
     public void print() {
         System.out.println("TargetSpecification:\n" + _targetSpecification);
     }

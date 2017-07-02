@@ -8,9 +8,11 @@ import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
-import misc.ProductDataClassification;
+import misc.EProductDataClassification;
+import misc.ProductData;
 import model.IModel;
 
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -33,16 +35,16 @@ public class CreateProductDataView extends StageView implements ICreateProductDa
     private TextArea _estimation;
 
     private ChoiceBox<String> _classification;
-    private Map<String, ProductDataClassification> _classificationMap;
+    private Map<String, EProductDataClassification> _classificationMap;
 
     /**
      * @author 1030129
      * @throws Exception
      */
-    public CreateProductDataView(IModel model) throws Exception{
+    public CreateProductDataView(IModel iModel) throws IOException {
 
         super("CreateProductData");
-        _model = model;
+        _iModel = iModel;
 
         Parent root = FXMLLoader.load(getClass().getResource("../fxml/CreateProductData.fxml"));
 
@@ -57,12 +59,38 @@ public class CreateProductDataView extends StageView implements ICreateProductDa
         _classification = (ChoiceBox<String>) root.lookup("#classificationChoiceBox");
 
         _classificationMap = new HashMap<>();
-        for (ProductDataClassification iterate : ProductDataClassification.values()) {
+        for (EProductDataClassification iterate : EProductDataClassification.values()) {
             _classification.getItems().add(iterate.getClassification());
             _classificationMap.put(iterate.getClassification(), iterate);
         }
+        _classification.setValue(EProductDataClassification.ILF.getClassification());
 
         _scene = new Scene(root, 600, 400);
+    }
+
+    public ProductData getProductData() {
+
+        ProductData productData = new ProductData();
+        productData.setId(Integer.parseInt(_id.getText()));
+        productData.setMemoryContent(_memoryContent.getText());
+        productData.setReferences(_references.getText());
+        productData.setRet(Integer.parseInt(_ret.getText()));
+        productData.setDet(Integer.parseInt(_det.getText()));
+        productData.setEstimation(_estimation.getText());
+        productData.setClassification(_classificationMap.get(_classification.getValue()));
+
+        return productData;
+    }
+
+    public void setProductData(ProductData productData) {
+
+        _memoryContent.setText(productData.getMemoryContent());
+        _estimation.setText(productData.getEstimation());
+        _references.setText(productData.getReferences());
+        _classification.setValue(productData.getClassification().getClassification());
+        _id.setText(Integer.toString(productData.getId()));
+        _ret.setText(Integer.toString(productData.getRet()));
+        _det.setText(Integer.toString(productData.getDet()));
     }
 
     /**
@@ -95,65 +123,5 @@ public class CreateProductDataView extends StageView implements ICreateProductDa
      */
     public Button getCancelButton() {
         return _cancelButton;
-    }
-
-    /**
-     * @author 1030129
-     * @return
-     */
-    public TextField getId() {
-        return _id;
-    }
-
-    /**
-     * @author 1030129
-     * @return
-     */
-    public TextField getMemoryContent() {
-        return _memoryContent;
-    }
-
-    /**
-     * @author 1030129
-     * @return
-     */
-    public TextField getReferences() {
-        return _references;
-    }
-
-    /**
-     * @author 1030129
-     * @return
-     */
-    public TextField getRet() {
-        return _ret;
-    }
-
-    /**
-     * @author 1030129
-     * @return
-     */
-    public TextField getDet() {
-        return _det;
-    }
-
-    /**
-     * @author 1030129
-     * @return
-     */
-    public TextArea getEstimation() {
-        return _estimation;
-    }
-
-    /**
-     * @author 1030129
-     * @return
-     */
-    public ChoiceBox<String> getClassification() {
-        return _classification;
-    }
-
-    public Map<String, ProductDataClassification> getClassificationMap() {
-        return _classificationMap;
     }
 }

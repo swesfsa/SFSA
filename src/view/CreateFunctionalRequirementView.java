@@ -5,12 +5,21 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.stage.Stage;
-import misc.FunctionalRequirementClassification;
-import misc.Priority;
+import misc.EFunctionalRequirementClassification;
+import misc.EPriority;
+import misc.FunctionalRequirement;
 import model.IModel;
+import sun.util.calendar.BaseCalendar;
 
+import java.io.IOException;
+import java.time.LocalDate;
+import java.time.ZoneId;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.function.Function;
+
+import static misc.Log.LOGGER;
 
 /**
  * Created by 1030129 on 27.04.17.
@@ -37,17 +46,17 @@ public class CreateFunctionalRequirementView extends StageView implements ICreat
 
     private ChoiceBox<String> _priority;
     private ChoiceBox<String> _classification;
-    private Map<String, Priority> _priorityMap;
-    private Map<String, FunctionalRequirementClassification> _classificationMap;
+    private Map<String, EPriority> _priorityMap;
+    private Map<String, EFunctionalRequirementClassification> _classificationMap;
 
     /**
      * @author 1030129
      * @throws Exception
      */
-    public CreateFunctionalRequirementView(IModel model) throws Exception {
+    public CreateFunctionalRequirementView(IModel iModel) throws IOException {
 
         super("CreateFunctionalRequirement");
-        _model = model;
+        _iModel = iModel;
 
         Parent root = FXMLLoader.load(getClass().getResource("../fxml/CreateFunctionalRequirement.fxml"));
 
@@ -67,16 +76,18 @@ public class CreateFunctionalRequirementView extends StageView implements ICreat
         _classification = (ChoiceBox<String>) root.lookup("#classification");
 
         _priorityMap = new HashMap<>();
-        for (Priority iterate : Priority.values()) {
+        for (EPriority iterate : EPriority.values()) {
             _priority.getItems().add(iterate.getPriority());
             _priorityMap.put(iterate.getPriority(), iterate);
         }
+        _priority.setValue(EPriority.MIDDLE.getPriority());
 
         _classificationMap = new HashMap<>();
-        for (FunctionalRequirementClassification iterate : FunctionalRequirementClassification.values()) {
+        for (EFunctionalRequirementClassification iterate : EFunctionalRequirementClassification.values()) {
             _classification.getItems().add(iterate.getClassification());
             _classificationMap.put(iterate.getClassification(), iterate);
         }
+        _classification.setValue(EFunctionalRequirementClassification.INPUT.getClassification());
 
         _scene = new Scene(root, 600, 450);
         System.out.println("CreatedFRView Constructor finished");
@@ -114,107 +125,41 @@ public class CreateFunctionalRequirementView extends StageView implements ICreat
         return _cancelButton;
     }
 
-    /**
-     * @author 1030129
-     * @return _date
-     */
-    public DatePicker getDate() {
-        return _date;
+    public FunctionalRequirement getFunctionalRequirement() {
+        Date date = Date.from(_date.getValue().atStartOfDay(ZoneId.systemDefault()).toInstant());
+        FunctionalRequirement functionalRequirement = new FunctionalRequirement();
+        functionalRequirement.setDate(date);
+        functionalRequirement.setId(Integer.parseInt(_id.getText()));
+        functionalRequirement.setTitle(_title.getText());
+        functionalRequirement.setPriority(_priorityMap.get(_priority.getValue()));
+        functionalRequirement.setFunction(_function.getText());
+        functionalRequirement.setProtagonist(_protagonist.getText());
+        functionalRequirement.setSource(_source.getText());
+        functionalRequirement.setReferences(_references.getText());
+        functionalRequirement.setDescription(_description.getText());
+        functionalRequirement.setFtr(Integer.parseInt(_ftr.getText()));
+        functionalRequirement.setDet(Integer.parseInt(_det.getText()));
+        functionalRequirement.setClassification(_classificationMap.get(_classification.getValue()));
+
+        return functionalRequirement;
+
     }
 
-    /**
-     * @author 1030129
-     * @return _id
-     */
-    public TextField getId() {
-        return _id;
+    public void setFunctionalRequirement(FunctionalRequirement functionalRequirement) {
+        LocalDate date = functionalRequirement.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+        _date.setValue(date);
+        _id.setText(Integer.toString(functionalRequirement.getId()));
+        _title.setText(functionalRequirement.getTitle());
+        _priority.setValue(functionalRequirement.getPriority().getPriority());
+        _function.setText(functionalRequirement.getFunction());
+        _protagonist.setText(functionalRequirement.getProtagonist());
+        _source.setText(functionalRequirement.getSource());
+        _references.setText(functionalRequirement.getReferences());
+        _ftr.setText(Integer.toString(functionalRequirement.getFtr()));
+        _det.setText(Integer.toString(functionalRequirement.getDet()));
+        _classification.setValue(functionalRequirement.getClassification().getClassification());
+        _description.setText(functionalRequirement.getDescription());
+
     }
 
-    /**
-     * @author 1030129
-     * @return _title
-     */
-    public TextField getTitle() {
-        return _title;
-    }
-
-    /**
-     * @author 1030129
-     * @return priotity
-     */
-    public ChoiceBox<String> getPriority() {
-        return _priority;
-    }
-
-    /**
-     * @author 1030129
-     * @return _function
-     */
-    public TextField getFunction() {
-        return _function;
-    }
-
-    /**
-     * @author 1030129
-     * @return _protagonist
-     */
-    public TextField getProtagonist() {
-        return _protagonist;
-    }
-
-    /**
-     * @author 1030129
-     * @return _source
-     */
-    public TextField getSource() {
-        return _source;
-    }
-
-    /**
-     * @author 1030129
-     * @return _references
-     */
-    public TextField getReferences() {
-        return _references;
-    }
-
-    /**
-     * @author 1030129
-     * @return _description
-     */
-    public TextArea getDescription() {
-        return _description;
-    }
-
-    /**
-     * @author 1030129
-     * @return _ftr
-     */
-    public TextField getFtr() {
-        return _ftr;
-    }
-
-    /**
-     * @author 1030129
-     * @return _det
-     */
-    public TextField getDet() {
-        return _det;
-    }
-
-    /**
-     * @author 1030129
-     * @return _classification
-     */
-    public ChoiceBox<String> getClassification() {
-        return _classification;
-    }
-
-    public Map<String, Priority> getPriorityMap() {
-        return _priorityMap;
-    }
-
-    public Map<String, FunctionalRequirementClassification> getClassificationMap() {
-        return _classificationMap;
-    }
 }

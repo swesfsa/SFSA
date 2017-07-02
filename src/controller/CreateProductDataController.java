@@ -1,56 +1,40 @@
 package controller;
 
 import exception.EmptyChoiceBoxException;
+import exception.EmptyTextFieldException;
 import exception.IDAlreadyExistingException;
 import exception.NumberSmallerOneException;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.stage.Stage;
+import misc.EProductDataClassification;
+import misc.FunctionalRequirement;
 import misc.ProductData;
-import misc.ProductDataClassification;
 import model.IModel;
-import view.CreateProductDataView;
-import exception.EmptyTextFieldException;
+import view.ICreateProductDataView;
+
+import static misc.Log.LOGGER;
 
 /**
  * Created by 1030129 on 29.04.17.
  */
 public class CreateProductDataController extends CreateItemController {
 
-    private CreateProductDataView _view;
-
-    private String _memoryContent;
-    private String _estimation;
-
-    private int _ret;
-
-    private ProductDataClassification _classification = null;
+    private ICreateProductDataView _iView;
 
     /**
      * @author 1030129
      * @throws Exception
      */
-    CreateProductDataController(IModel model) throws Exception {
+    CreateProductDataController(IModel iModel, ICreateProductDataView iView) {
 
-        _model = model;
-        _view = new CreateProductDataView(model);
+        _iModel = iModel;
+        _iView = iView;
 
-        _view.getSaveButton().setOnAction(new SaveButtonEventHandler());
-        _view.getCancelButton().setOnAction(new CancelButtonEventHandler());
+        _iView.getSaveButton().setOnAction(new SaveButtonEventHandler());
+        _iView.getCancelButton().setOnAction(new CancelButtonEventHandler());
 
         createNewItem();
-    }
-
-    CreateProductDataController(IModel model, ProductData data) throws Exception {
-
-        _model = model;
-        _view = new CreateProductDataView(model);
-
-        _view.getSaveButton().setOnAction(new SaveButtonEventHandler());
-        _view.getCancelButton().setOnAction(new CancelButtonEventHandler());
-
-        editItem();
-        loadData(data);
     }
 
     /**
@@ -58,77 +42,25 @@ public class CreateProductDataController extends CreateItemController {
      */
     public void show() {
         _stage = new Stage();
-        _view.show(_stage);
+        _iView.show(_stage);
     }
 
     private void close() {
-        _view.close(_stage);
+        _iView.close(_stage);
     }
 
-    private void loadData(ProductData data) {
-
+    public void setArg(Object arg) {
+        ProductData data = (ProductData) arg;
+        editItem();
         if (_editMode) {
             _oldId = data.getId();
         }
-        _view.getMemoryContent().setText(data.getMemoryContent());
-        _view.getEstimation().setText(data.getEstimation());
-        _view.getReferences().setText(data.getReferences());
-        _view.getClassification().setValue(data.getClassification().getClassification());
-        _view.getId().setText(Integer.toString(data.getId()));
-        _view.getRet().setText(Integer.toString(data.getRet()));
-        _view.getDet().setText(Integer.toString(data.getDet()));
+        _iView.setProductData(data);
     }
 
-    /**
-     * This function gets the data out of the TextFields, TextArea and ChoiceBoxes
-     * of the CreateProductDataView.
-     * @author 1030129
-     */
-    private void getDataFromView() throws EmptyTextFieldException, EmptyChoiceBoxException, NumberSmallerOneException {
-        _memoryContent = _view.getMemoryContent().getText();
-        _references = _view.getReferences().getText();
-        _estimation = _view.getEstimation().getText();
-        checkForEmptyFields();
-
-        _classification = _view.getClassificationMap().get(_view.getClassification().getValue());
-        checkForEmptyChoiceBox();
-
-        _id = Integer.parseInt(_view.getId().getText());
-        _ret = Integer.parseInt(_view.getRet().getText());
-        _det = Integer.parseInt(_view.getDet().getText());
-        checkForNumbersSmallerOne();
-    }
-
-    /**
-     * This function checks if any of the data elements gotten from the
-     * CreateProductDataView is empty.
-     * @author 1030129
-     * @throws EmptyTextFieldException
-     */
-    private void checkForEmptyFields() throws EmptyTextFieldException {
-
-        if (_memoryContent.equals("") || _references.equals("") || _estimation.equals("")) {
-            throw new EmptyTextFieldException();
-        }
-    }
-
-    private void checkForEmptyChoiceBox() throws EmptyChoiceBoxException {
-
-        if (_classification == null) {
-            throw new EmptyChoiceBoxException();
-        }
-    }
-
-    private void checkForNumbersSmallerOne() throws NumberSmallerOneException {
-
-        if (_id < 1 || _ret < 1 || _det < 1) {
-            throw new NumberSmallerOneException();
-        }
-    }
-
-    private void checkIfIDAlreadyExists() throws IDAlreadyExistingException {
-        for (ProductData productData : _model.getProductDataList()) {
-            if (productData.getId() == _id) {
+    private void checkIfIDAlreadyExists(int id) throws IDAlreadyExistingException {
+        for (ProductData productData : _iModel.getProductDataList()) {
+            if (productData.getId() == id) {
                 throw new IDAlreadyExistingException();
             }
         }
@@ -137,12 +69,12 @@ public class CreateProductDataController extends CreateItemController {
     private void removeItemWithOldID() {
         ProductData toRemove = null;
 
-        for (ProductData productData : _model.getProductDataList()) {
+        for (ProductData productData : _iModel.getProductDataList()) {
             if (productData.getId() == _oldId) {
                 toRemove = productData;
             }
         }
-        _model.getProductDataList().remove(toRemove);
+        _iModel.getProductDataList().remove(toRemove);
     }
 
     private class CancelButtonEventHandler implements EventHandler<ActionEvent> {
@@ -165,22 +97,18 @@ public class CreateProductDataController extends CreateItemController {
          */
         @Override
         public void handle(ActionEvent event) {
-
             try {
-                getDataFromView();
-
+                ProductData productData = _iView.getProductData();
+                productData.check();
                 if (!_editMode) {
-                    checkIfIDAlreadyExists();
+                    checkIfIDAlreadyExists(productData.getId());
                 } else {
                     removeItemWithOldID();
                 }
+                _iModel.addProductData(productData);
+                LOGGER.info("New Product Data saved in Model");
 
-                ProductData productData = new ProductData(_id, _ret, _det, _memoryContent, _estimation, _references, _classification);
-
-                _model.addProductData(productData);
                 close();
-
-                _model.getProductDataList().iterator().forEachRemaining(ProductData::print);
             }
             catch (NumberFormatException e) {
                 System.out.println("Error: " + e);
@@ -188,7 +116,7 @@ public class CreateProductDataController extends CreateItemController {
             }
             catch (EmptyTextFieldException e) {
                 System.out.println("Error: " + e);
-                openEmptyTextFieldWarning();
+                openEmptyTextFieldWarning("Bitte füllen Sie alle erforderlichen Textfelder aus. ('Verweise' sind optional)");
             }
             catch (EmptyChoiceBoxException e) {
                 System.out.println("Error: " + e);
@@ -200,8 +128,9 @@ public class CreateProductDataController extends CreateItemController {
             }
             catch (IDAlreadyExistingException e) {
                 System.out.println("Error: " + e);
-                openIDAlreadyExistingWarning(_id);
+                openIDAlreadyExistingWarning();
             }
+
         }
     }
 }
