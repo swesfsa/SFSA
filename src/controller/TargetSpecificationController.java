@@ -46,7 +46,7 @@ class TargetSpecificationController extends TabController {
                 toggleEditMode(false);
                 LOGGER.info("Target Specification saved in Model");
             } catch (EmptyTextFieldException e) {
-                System.out.println("Error: " + e);
+                LOGGER.severe(e.toString() + " in " + getClass());
                 openEmptyTextFieldWarning();
             }
             toggleEditMode(false);

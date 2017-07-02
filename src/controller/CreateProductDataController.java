@@ -111,23 +111,23 @@ public class CreateProductDataController extends CreateItemController {
                 close();
             }
             catch (NumberFormatException e) {
-                System.out.println("Error: " + e);
+                LOGGER.severe(e.toString() + " in " + getClass());
                 openNumberFormatWarning("Die Textfelder 'ID', 'RET' und 'DET' erlauben nur Ganzzahlen als Eingabe!");
             }
             catch (EmptyTextFieldException e) {
-                System.out.println("Error: " + e);
+                LOGGER.severe(e.toString() + " in " + getClass());
                 openEmptyTextFieldWarning("Bitte füllen Sie alle erforderlichen Textfelder aus. ('Verweise' sind optional)");
             }
             catch (EmptyChoiceBoxException e) {
-                System.out.println("Error: " + e);
+                LOGGER.severe(e.toString() + " in " + getClass());
                 openEmptyChoiceBoxWarning("Bitte wählen Sie in der Auswahlliste \"Klassifikation\" ein Element aus.");
             }
             catch (NumberSmallerOneException e) {
-                System.out.println("Error: " + e);
+                LOGGER.severe(e.toString() + " in " + getClass());
                 openNumberFormatWarning("Die Textfelder 'ID', 'RET' und 'DET' erlauben nur Ganzzahlen > 0 als Eingabe!");
             }
             catch (IDAlreadyExistingException e) {
-                System.out.println("Error: " + e);
+                LOGGER.severe(e.toString() + " in " + getClass());
                 openIDAlreadyExistingWarning();
             }
 

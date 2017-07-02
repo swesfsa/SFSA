@@ -45,6 +45,7 @@ class EnvironmentController extends TabController {
                 LOGGER.info("Environment saved in Model");
             }
             catch (EmptyTextFieldException e) {
+                LOGGER.severe(e.toString() + " in " + getClass());
                 openEmptyTextFieldWarning();
             }
             toggleEditMode(false);

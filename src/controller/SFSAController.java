@@ -62,7 +62,7 @@ public class SFSAController extends ControllerTemplate implements IStageControll
                _iController = TabControllerFactory.create(TARGET_SPECIFICATION_CONTROLLER, _iModel);
                _iView.getTargetSpecificationTab().setContent(_iController.getAnchorPane());
            } catch (Exception e) {
-               LOGGER.warning(e.getMessage());
+               LOGGER.severe(e.toString() + " in " + getClass());
            }
        }
    }
@@ -75,7 +75,7 @@ public class SFSAController extends ControllerTemplate implements IStageControll
                _iController = TabControllerFactory.create(ENVIRONMENT_CONTROLLER, _iModel);
                _iView.getEnvironmentTab().setContent(_iController.getAnchorPane());
            } catch (Exception e) {
-               LOGGER.warning(e.getMessage());
+               LOGGER.severe(e.toString() + " in " + getClass());
            }
        }
    }
@@ -88,7 +88,7 @@ public class SFSAController extends ControllerTemplate implements IStageControll
                _iController = TabControllerFactory.create(PRODUCT_USE_CONTROLLER, _iModel);
                _iView.getProductUseTab().setContent(_iController.getAnchorPane());
            } catch (Exception e) {
-               LOGGER.warning(e.getMessage());
+               LOGGER.severe(e.toString() + " in " + getClass());
            }
        }
    }
@@ -101,7 +101,7 @@ public class SFSAController extends ControllerTemplate implements IStageControll
                _iController = TabControllerFactory.create(FUNCTIONAL_REQUIREMENTS_CONTROLLER, _iModel);
                _iView.getFunctionalRequirementsTab().setContent(_iController.getAnchorPane());
            } catch (Exception e) {
-               LOGGER.warning(e.getMessage());
+               LOGGER.severe(e.toString() + " in " + getClass());
            }
        }
    }
@@ -114,7 +114,7 @@ public class SFSAController extends ControllerTemplate implements IStageControll
                _iController = TabControllerFactory.create(PRODUCT_DATA_CONTROLLER, _iModel);
                _iView.getProductDataTab().setContent(_iController.getAnchorPane());
            } catch (Exception e) {
-               LOGGER.warning(e.getMessage());
+               LOGGER.severe(e.toString() + " in " + getClass());
            }
        }
    }
@@ -127,7 +127,7 @@ public class SFSAController extends ControllerTemplate implements IStageControll
                _iController = TabControllerFactory.create(ESTIMATION_CONFIGURATION_CONTROLLER, _iModel);
                _iView.getEstimationConfigTab().setContent(_iController.getAnchorPane());
            } catch (Exception e) {
-               LOGGER.warning(e.getMessage());
+               LOGGER.severe(e.toString() + " in " + getClass());
            }
        }
    }
@@ -140,7 +140,7 @@ public class SFSAController extends ControllerTemplate implements IStageControll
                _iController = TabControllerFactory.create(COST_ESTIMATION_CONTROLLER, _iModel);
                _iView.getCostEstimationTab().setContent(_iController.getAnchorPane());
            } catch (Exception e) {
-               LOGGER.warning(e.getMessage());
+               LOGGER.severe(e.toString() + " in " + getClass());
            }
        }
    }
@@ -162,9 +162,11 @@ public class SFSAController extends ControllerTemplate implements IStageControll
                     _iModel.xmlImport(file);
             } catch (JAXBException e) {
                 e.printStackTrace();
+                LOGGER.severe(e.toString() + " in " + getClass());
                 openXMLErrorWarning("XML Import fehlgeschlagen - JAXBException");
             } catch (SAXException e) {
                 e.printStackTrace();
+                LOGGER.severe(e.toString() + " in " + getClass());
                 openXMLErrorWarning("XML Import fehlgeschlagen - SAXException");
             }
         }
@@ -179,6 +181,7 @@ public class SFSAController extends ControllerTemplate implements IStageControll
                     _iModel.xmlExport(file);
             } catch (JAXBException e) {
                 e.printStackTrace();
+                LOGGER.severe(e.toString() + " in " + getClass());
                 openXMLErrorWarning("XML Export fehlgeschlagen - JAXBException");
             }
         }
@@ -217,6 +220,7 @@ public class SFSAController extends ControllerTemplate implements IStageControll
                 _iModel.xmlExport(file);
             } catch (JAXBException e) {
                 e.printStackTrace();
+                LOGGER.severe(e.toString() + " in " + getClass());
                 openXMLErrorWarning("XML Export fehlgeschlagen - JAXBException");
             }
         }
@@ -231,6 +235,7 @@ public class SFSAController extends ControllerTemplate implements IStageControll
                 _iModel.xmlExport(file);
             } catch (JAXBException e) {
                 e.printStackTrace();
+                LOGGER.severe(e.toString() + " in " + getClass());
                 openXMLErrorWarning("XML Export fehlgeschlagen - JAXBException");
             }
         }

@@ -70,8 +70,7 @@ class TabControllerFactory {
                     break;
             }
         } catch (IOException e) {
-            System.out.println(e);
-            LOGGER.severe("IO Exception creating View from FXML");
+            LOGGER.severe("IO Exception creating View from FXML " + e);
         }
         return iController;
     }

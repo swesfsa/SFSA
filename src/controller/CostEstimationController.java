@@ -49,8 +49,10 @@ public class CostEstimationController extends TabController {
                 openNumberFormatWarning("Bitte geben Sie nur Zahlen in die Textfelder ein. " +
                         "Die Felder 'ungewichtete Function Points', 'gewichtete Function Points' " +
                         "und 'Personen' dürfen zudem nur Ganzzahlen enthalten.");
+                LOGGER.severe(e.toString() + " in " + getClass());
             } catch (NumberSmallerOneException e) {
                 openNumberFormatWarning("Bitte geben Sie nur positive Zahlen ein.");
+                LOGGER.severe(e.toString() + " in " + getClass());
             }
             toggleEditMode(false);
         }

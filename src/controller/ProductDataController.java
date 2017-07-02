@@ -75,10 +75,10 @@ class ProductDataController extends TabController {
                                 getProductDataFromTableViewItem(_selectedTableViewItem));
                 controller.show();
             } catch (EmptyListException e) {
-                LOGGER.warning(e.toString());
+                LOGGER.severe(e.toString() + " in " + getClass());
                 openEmptyListWarning("bearbeiten");
             } catch (NoListViewRowSelectedException e) {
-                LOGGER.warning(e.toString());
+                LOGGER.severe(e.toString() + " in " + getClass());
                 openNoListViewRowSelectedWarning("bearbeiten");
             }
             _iView.clearDetailView();
@@ -100,10 +100,10 @@ class ProductDataController extends TabController {
                     _iView.clearDetailView();
                 }
             } catch (EmptyListException e) {
-                LOGGER.warning(e.toString());
+                LOGGER.severe(e.toString() + " in " + getClass());
                 openEmptyListWarning("löschen");
             } catch (NoListViewRowSelectedException e) {
-                LOGGER.warning(e.toString());
+                LOGGER.severe(e.toString() + " in " + getClass());
                 openNoListViewRowSelectedWarning("löschen");
             }
         }

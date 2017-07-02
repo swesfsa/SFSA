@@ -46,7 +46,7 @@ class ProductUseController extends TabController {
                 _iModel.setProductUse(productUse);
                 LOGGER.info("Product Use saved in Model");
             } catch (EmptyTextFieldException e) {
-                System.out.println("Error: " + e);
+                LOGGER.severe(e.toString() + " in " + getClass());
                 openEmptyTextFieldWarning();
             }
             toggleEditMode(false);

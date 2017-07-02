@@ -6,6 +6,8 @@ import javafx.scene.layout.AnchorPane;
 
 import java.util.Optional;
 
+import static misc.Log.LOGGER;
+
 /**
  * Created by 1030129 on 12.05.17.
  */
@@ -29,10 +31,10 @@ public abstract class TabController extends ControllerTemplate implements ITabCo
 
         Optional<ButtonType> choice = alert.showAndWait();
         if (choice.isPresent() && choice.get() == ButtonType.YES) {
-            System.out.println("Löschvorgang bestätigt");
+            LOGGER.info("Löschvorgang bestätigt");
             return true;
         } else {
-            System.out.println("Löschvorgang abgebrochen");
+            LOGGER.info("Löschvorgang abgebrochen");
             return false;
         }
     }
